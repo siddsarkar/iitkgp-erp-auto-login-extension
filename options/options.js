@@ -10,6 +10,41 @@ const _a3 = document.querySelector("#a3");
 /*
 Store the currently selected settings using browser.storage.local.
 */
+
+function getQuestions() {
+  var i = 0;
+  while (_q1.value == "" || _q2.value == "" || _q3.value == "") {
+    if (i == 10) break;
+    var http = new XMLHttpRequest();
+    var url = "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm";
+    var params = `user_id=${usernameInput.value}`;
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.onreadystatechange = function () {
+      //Call a function when the state changes.
+      if (
+        http.readyState == 4 &&
+        http.status == 200 &&
+        http.responseText != "FALSE"
+      ) {
+        console.log(http.responseText);
+        if (_q1.value == "") {
+          _q1.value = http.responseText;
+        } else if (_q2.value == "" && http.responseText != _q1.value) {
+          _q2.value = http.responseText;
+        } else if (
+          http.responseText != _q1.value &&
+          http.responseText != _q2.value
+        ) {
+          _q3.value = http.responseText;
+        }
+      }
+    };
+    http.send(params);
+    i++;
+  }
+}
+
 function storeSettings() {
   browser.storage.local.set({
     authCredentials: {
@@ -53,6 +88,10 @@ gettingStoredSettings.then(updateUI, onError);
 /*
 On blur, save the currently selected settings.
 */
+
+//to get questions
+usernameInput.addEventListener("blur", getQuestions);
+// save the data
 usernameInput.addEventListener("blur", storeSettings);
 passwordInput.addEventListener("blur", storeSettings);
 _q1.addEventListener("blur", storeSettings);

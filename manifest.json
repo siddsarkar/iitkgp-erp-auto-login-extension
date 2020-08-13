@@ -5,7 +5,10 @@
   "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
   "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
-    "96": "icons/logo.png"
+    "250": "icons/logo.png"
+  },
+  "options_ui": {
+    "page": "options/options.html"
   },
   "browser_action": {
     "default_icon": "icons/logo.png",
@@ -32,10 +35,11 @@
       "storage.js"
     ]
   },
-  "options_ui": {
-    "page": "options/options.html"
-  },
   "permissions": [
-    "storage"
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm",
+    "https://erp.iitkgp.ac.in/SSOAdministration/"
   ]
 }
