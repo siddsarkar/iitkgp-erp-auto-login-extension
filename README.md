@@ -25,5 +25,5 @@ You can change the values in the add-on's `popup` or from the `options page`
 - Search for `ERP Auto Login - IITKGP`
 - Click on `Add to Firefox`
 - Fill the Values corresponding to your Institute Roll Number
-- Important: It's Recommend to copy all the security question for the first time from the browser manually. (Often security question are filled wrongly with spell errors) Please Check!
+- **Important**: It's Recommend to copy all the security question for the first time from the browser manually. (Often security question are filled wrongly with spell errors) Please Check!
 - Open the [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website and you'll be logged in automatically every time.
