@@ -22,7 +22,6 @@ if (document.readyState === "ready" && document.readyState === "complete") {
 
 getdata();
 function authstart(cred) {
-  console.log("hhhu");
   inject.focus();
   loginid.focus();
   loginid.value = cred.username;
