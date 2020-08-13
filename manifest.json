@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "ERP Auto Login - IITKGP",
+  "version": "1.0",
+  "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/stored-credentials",
+  "icons": {
+    "96": "icons/logo.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/logo.png",
+    "default_title": "ERP Auto login",
+    "default_popup": "options/options.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://erp.iitkgp.ac.in/SSOAdministration/*"
+      ],
+      "js": [
+        "storage.js"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "54.0a1"
+    }
+  },
+  "background": {
+    "scripts": [
+      "storage.js"
+    ]
+  },
+  "options_ui": {
+    "page": "options/options.html"
+  },
+  "permissions": [
+    "storage"
+  ]
+}

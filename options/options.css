@@ -1,0 +1,29 @@
+body {
+  width: 25em;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+footer {
+  font-size: smaller;
+}
+label {
+  font-size: smaller;
+}
+.title {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+.credentials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  /* margin: 0.5em; */
+  width: 100%;
+  height: 2em;
+}
