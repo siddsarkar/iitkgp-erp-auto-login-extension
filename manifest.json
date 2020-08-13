@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "ERP Auto Login - IITKGP",
   "version": "1.0",
-  "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/stored-credentials",
+  "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
+  "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
     "96": "icons/logo.png"
   },
