@@ -25,21 +25,8 @@
       ]
     }
   ],
-  "browser_specific_settings": {
-    "gecko": {
-      "strict_min_version": "54.0a1"
-    }
-  },
-  "background": {
-    "scripts": [
-      "storage.js"
-    ]
-  },
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
     "storage",
-    "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm",
-    "https://erp.iitkgp.ac.in/SSOAdministration/"
+    "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm"
   ]
 }

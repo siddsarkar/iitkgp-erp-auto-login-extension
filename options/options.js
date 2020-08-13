@@ -7,10 +7,6 @@ const _a2 = document.querySelector("#a2");
 const _q3 = document.querySelector("#q3");
 const _a3 = document.querySelector("#a3");
 
-/*
-Store the currently selected settings using browser.storage.local.
-*/
-
 function getQuestions() {
   var i = 0;
   while (_q1.value == "" || _q2.value == "" || _q3.value == "") {
@@ -46,6 +42,10 @@ function getQuestions() {
     i++;
   }
 }
+
+/*
+Store the currently selected settings using browser.storage.local.
+*/
 
 function storeSettings() {
   browser.storage.local.set({
