@@ -46,4 +46,4 @@ You can change the values in the add-on's `popup` or from the `options page`
 
 ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/android.png?token=ALTGI24WRHOCDVKJQ5TOAOK7H6G34)
 
-![Mobile](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/pc.png?token=ALTGI26NZ2ZODZ5DCH6JFSK7H6G6Y)
+![Mobile](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/pc.png?token=ALTGI22WSMP2CZUZS7RC4KS7H6H4E)
