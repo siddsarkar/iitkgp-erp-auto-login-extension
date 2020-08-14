@@ -1,4 +1,5 @@
 # IITKGP ERP Auto Login Extension(Firefox)🦊
+### Supports both PC and Android !
 
 **This add-on lets you sign in to [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website instantly**
 
@@ -24,6 +25,7 @@ You can change the values in the add-on's `popup` or from the `options page`
 - Go to [Firefox-Addon Store](https://addons.mozilla.org/en-US/firefox/)
 - Search for `ERP Auto Login - IITKGP`
 - Click on `Add to Firefox`
-- Fill the Values corresponding to your Institute Roll Number
-- **Important**: It's Recommend to copy all the security question for the first time from the browser manually. (Often security question are filled wrongly with spell errors) Please Check!
+- Open options for the extension and fill your roll no and password
+- Questions will load after you enter your roll number and password
+- Fill in corresponding answers.
 - Open the [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website and you'll be logged in automatically every time.
