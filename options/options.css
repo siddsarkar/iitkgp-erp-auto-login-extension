@@ -1,24 +1,16 @@
 body {
-  width: 25em;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-size: 0.9em;
-  font-weight: 300;
+  background: #1b1b1b;
+  color: whitesmoke;
 }
-footer {
-  font-size: smaller;
-}
-label {
-  font-size: smaller;
-}
-.credentials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 input {
-  /* margin: 0.5em; */
-  width: 100%;
-  height: 2em;
+  background-color: rgba(255, 255, 255, 0.507) !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.507) !important;
+}
+span {
+  background-color: lightgray !important;
+  color: black !important;
+  border-color: lightgray !important;
 }

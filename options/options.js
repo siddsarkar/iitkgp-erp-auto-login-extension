@@ -7,6 +7,22 @@ const _a2 = document.querySelector("#a2");
 const _q3 = document.querySelector("#q3");
 const _a3 = document.querySelector("#a3");
 
+let reset = document.getElementById("reset");
+reset.addEventListener("click", () => {
+  browser.storage.local.set({
+    authCredentials: {
+      username: "",
+      password: "",
+      q1: "",
+      q2: "",
+      q3: "",
+      a1: "",
+      a2: "",
+      a3: "",
+    },
+  });
+});
+
 function getQuestions() {
   let i = 0;
   while (_q1.value == "" || _q2.value == "" || _q3.value == "") {

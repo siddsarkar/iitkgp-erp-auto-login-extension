@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="options.css" />
-    <link rel="stylesheet" href="Styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="Styles/[cosmo]bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="options.css" /> -->
     <title>ERP Auto Login - IITKGP</title>
   </head>
 
@@ -16,9 +16,11 @@
     <form>
       <div class="form-group">
         <label class="mb-0">Roll Number</label>
-        <input class="form-control" />
+        <input id="username" type="text" class="form-control" />
+        <!-- username -->
         <label class="mb-0">Password</label>
-        <input type="password" class="form-control" />
+        <input type="password" id="password" class="form-control" />
+        <!-- Password -->
       </div>
       <div class="text-center font-weight-bold p-2 text-uppercase mt-2">
         Fill Security Answers
@@ -28,13 +30,15 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Q-1</span>
           </div>
-          <input type="text" class="form-control md-8" readonly />
+          <input id="q1" type="text" class="form-control md-8" readonly />
+          <!-- Question1 -->
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
             <span class="input-group-text">A-1</span>
           </div>
-          <input type="password" class="form-control" />
+          <input type="password" id="a1" class="form-control" />
+          <!-- Password1 -->
         </div>
       </div>
       <div class="form-group">
@@ -42,49 +46,38 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Q-2</span>
           </div>
-          <input type="text" class="form-control md-8" readonly />
+          <input id="q2" type="text" class="form-control md-8" readonly />
+          <!-- Question2 -->
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
             <span class="input-group-text">A-2</span>
           </div>
-          <input type="password" class="form-control" />
+          <input type="password" id="a2" class="form-control" />
+          <!-- Password2 -->
         </div>
       </div>
-      <div class="form-group mb-0">
+      <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">Q-3</span>
           </div>
-          <input type="text" class="form-control md-8" readonly />
+          <input id="q3" type="text" class="form-control md-8" readonly />
+          <!-- Question3 -->
         </div>
         <div class="input-group mt-2">
           <div class="input-group-prepend">
             <span class="input-group-text">A-3</span>
           </div>
-          <input type="password" class="form-control" />
+          <input type="password" id="a3" class="form-control" />
+          <!-- Password2 -->
         </div>
       </div>
       <div class="text-center m-2">
-        <button type="submit" class="btn btn-primary">Save Details</button>
-        <button type="submit" class="btn btn-secondary">Reset</button>
+        <!-- <button type="submit" class="btn btn-primary">Save Details</button> -->
+        <button id="reset" class="btn btn-secondary">Reset</button>
       </div>
     </form>
-
-    <!-- <div class="credentials">
-      <label>Roll No: <input id="username" type="text" /></label>
-      <label>Password: <input type="password" id="password" /></label>
-      <label>Question1: <input id="q1" type="text" /></label>
-      <label>Answer1: <input type="password" id="a1" /></label>
-      <label>Question2: <input id="q2" type="text" /></label>
-      <label>Answer2: <input type="password" id="a2" /></label>
-      <label>Question3: <input id="q3" type="text" /></label>
-      <label>Answer3: <input type="password" id="a3" /></label>
-      <footer>
-        <p>Made for IITKGPians by IITKGPian</p>
-      </footer>
-    </div> -->
-
     <script src="options.js"></script>
   </body>
 </html>
