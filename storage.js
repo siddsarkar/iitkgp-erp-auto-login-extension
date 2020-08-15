@@ -1,9 +1,9 @@
-var loginid = document.getElementById("user_id");
-var quesn = document.getElementById("question");
-var answer = document.getElementById("answer");
-var pass = document.getElementById("password");
-var inject = document.getElementById("signin");
-var btn = document.getElementsByClassName("btn btn-primary");
+const loginid = document.getElementById("user_id");
+const quesn = document.getElementById("question");
+const answer = document.getElementById("answer");
+const pass = document.getElementById("password");
+const inject = document.getElementById("signin");
+const btn = document.getElementsByClassName("btn btn-primary");
 
 const getdata = async () => {
   let data = await browser.storage.local.get({ authCredentials });
@@ -60,7 +60,6 @@ function authstart(cred) {
         setTimeout(() => {
           document.body.removeChild(msg);
         }, 5000);
-        null;
       }
     }, 2000);
   } else {
@@ -80,7 +79,7 @@ function authstart(cred) {
 /*
 Default settings. Initialize storage to these values.
 */
-var authCredentials = {
+let authCredentials = {
   username: "",
   password: "",
   q1: "",

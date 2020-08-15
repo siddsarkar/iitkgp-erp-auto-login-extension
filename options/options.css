@@ -10,11 +10,6 @@ footer {
 label {
   font-size: smaller;
 }
-.title {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-}
 .credentials {
   display: flex;
   justify-content: center;

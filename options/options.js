@@ -8,14 +8,12 @@ const _q3 = document.querySelector("#q3");
 const _a3 = document.querySelector("#a3");
 
 function getQuestions() {
-  var i = 0;
+  let i = 0;
   while (_q1.value == "" || _q2.value == "" || _q3.value == "") {
-    if (i == 10) {
-      break;
-    }
-    var http = new XMLHttpRequest();
-    var url = "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm";
-    var params = `user_id=${usernameInput.value}`;
+    if (i == 10) break;
+    let http = new XMLHttpRequest();
+    let url = "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm";
+    let params = `user_id=${usernameInput.value}`;
     http.open("POST", url, false);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.onreadystatechange = function () {

@@ -1,4 +1,9 @@
 {
+  "applications": {
+    "gecko": {
+      "id": "{50c89d7f-d510-4c8b-9add-f88ac799f33d}"
+    }
+  },
   "manifest_version": 2,
   "name": "ERP Auto Login - IITKGP",
   "version": "2.0",
@@ -12,7 +17,7 @@
   },
   "browser_action": {
     "default_icon": "icons/logo.png",
-    "default_title": "ERP Auto login",
+    "default_title": "ERP Auto Login",
     "default_popup": "options/options.html"
   },
   "content_scripts": [
