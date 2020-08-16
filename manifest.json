@@ -1,12 +1,7 @@
 {
-  "applications": {
-    "gecko": {
-      "id": "{50c89d7f-d510-4c8b-9add-f88ac799f33d}"
-    }
-  },
   "manifest_version": 2,
   "name": "ERP Auto Login - IITKGP",
-  "version": "2.0",
+  "version": "2.2",
   "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
   "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
