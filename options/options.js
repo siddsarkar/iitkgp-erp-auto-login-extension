@@ -7,7 +7,25 @@ const _a2 = document.querySelector("#a2");
 const _q3 = document.querySelector("#q3");
 const _a3 = document.querySelector("#a3");
 
+let darkTheme = false;
+const head = document.querySelector("#head");
+const body = document.querySelector("body");
+
+head.addEventListener("click", () => {
+  darkTheme = !darkTheme;
+  toggler(darkTheme);
+});
+
+function toggler(isdark) {
+  if (isdark) {
+    body.setAttribute("style", "background:#1B1B1B;color: whitesmoke");
+  } else {
+    body.removeAttribute("style");
+  }
+}
+
 let reset = document.getElementById("reset");
+
 reset.addEventListener("click", () => {
   browser.storage.local.set({
     authCredentials: {
@@ -104,7 +122,6 @@ gettingStoredSettings.then(updateUI, onError);
 /*
 On blur, save the currently selected settings.
 */
-
 //to get questions
 usernameInput.addEventListener("blur", getQuestions);
 // save the data

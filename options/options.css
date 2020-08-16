@@ -1,16 +1,6 @@
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   font-size: 0.9em;
-  background: #1b1b1b;
-  color: whitesmoke;
-}
-input {
-  background-color: rgba(255, 255, 255, 0.507) !important;
-  color: white !important;
-  border-color: rgba(255, 255, 255, 0.507) !important;
-}
-span {
-  background-color: lightgray !important;
-  color: black !important;
-  border-color: lightgray !important;
+  /* background: #1b1b1b;
+  color: whitesmoke; */
 }

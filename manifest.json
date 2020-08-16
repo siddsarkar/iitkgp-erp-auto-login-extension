@@ -5,7 +5,7 @@
   "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
   "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
-    "250": "icons/logo.png"
+    "256": "icons/logo.png"
   },
   "options_ui": {
     "page": "options/options.html"

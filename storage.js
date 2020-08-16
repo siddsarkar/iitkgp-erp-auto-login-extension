@@ -12,6 +12,7 @@ const getdata = async () => {
   loginid.value = cred.username;
   pass.value = cred.password;
 };
+
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     getdata();
