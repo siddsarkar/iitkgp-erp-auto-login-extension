@@ -5,19 +5,24 @@ const pass = document.getElementById("password");
 const inject = document.getElementById("signin");
 const btn = document.getElementsByClassName("btn btn-primary");
 
-const getdata = async () => {
-  let data = await browser.storage.local.get({ authCredentials });
-  let cred = await data.authCredentials;
-  authstart(cred);
-  loginid.value = cred.username;
-  pass.value = cred.password;
-};
+function process() {
+  browser.storage.local.get().then((res) => {
+    authstart(res.authCredentials);
+  });
+}
 
-document.onreadystatechange = function () {
+if (document.readyState == "complete") {
+  process();
+}
+
+function stateEvent(e) {
+  document.removeEventListener("readystatechange", stateEvent);
   if (document.readyState == "complete") {
-    getdata();
+    process();
   }
-};
+}
+document.addEventListener("readystatechange", stateEvent);
+
 function authstart(cred) {
   if (
     cred.username != "" &&
@@ -50,26 +55,15 @@ function authstart(cred) {
         setTimeout(() => {
           btn[0].click();
         }, 100);
-      } else {
-        const msg = document.createElement("div");
-        msg.setAttribute(
-          "style",
-          "background-color: black;color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center"
-        );
-        msg.innerHTML = "BAD CREDENTIALS ! Please check again!";
-        document.body.prepend(msg);
-        setTimeout(() => {
-          document.body.removeChild(msg);
-        }, 5000);
       }
-    }, 2000);
+    }, 1000);
   } else {
     const msg = document.createElement("div");
     msg.setAttribute(
       "style",
-      "background-color: black;color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center"
+      "background-color: red;color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;"
     );
-    msg.innerHTML = "Fill out your credentials !";
+    msg.innerHTML = "Fill out your credentials on extension !";
     document.body.prepend(msg);
     setTimeout(() => {
       document.body.removeChild(msg);
@@ -89,6 +83,7 @@ let authCredentials = {
   a1: "",
   a2: "",
   a3: "",
+  dark: false,
 };
 
 /*

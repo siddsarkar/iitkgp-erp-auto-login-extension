@@ -1,83 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Styles/[cosmo]bootstrap.min.css" />
-    <link rel="stylesheet" href="options.css" />
-    <title>ERP Auto Login - IITKGP</title>
-  </head>
 
-  <body class="container">
-    <div id="head" class="font-weight-bold text-center p-2 text-uppercase">
-      Set your ERP Credentials
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Styles/cosmo.min.css" />
+  <link rel="stylesheet" href="options.css" />
+  <title>ERP Auto Login - IITKGP</title>
+</head>
+
+<body class="container">
+  <div class="font-weight-bold text-center p-2 text-uppercase">
+    Set your ERP Credentials
+    <p style="color: gray; font-size: x-small;text-transform: none;">
+      Copyright©2020_Siddharth
+    </p>
+  </div>
+  <form>
+    <div class="form-group">
+      <label class="mb-0">Roll Number</label>
+      <input id="username" type="text" class="form-control" />
+      <!-- username -->
+      <label class="mb-0">Password</label>
+      <input type="password" id="password" class="form-control" />
+      <!-- Password -->
     </div>
+    <div class="text-center font-weight-bold p-2 text-uppercase mt-2">
+      Fill Security Answers
 
-    <form>
-      <div class="form-group">
-        <label class="mb-0">Roll Number</label>
-        <input id="username" type="text" class="form-control" />
-        <!-- username -->
-        <label class="mb-0">Password</label>
-        <input type="password" id="password" class="form-control" />
-        <!-- Password -->
-      </div>
-      <div class="text-center font-weight-bold p-2 text-uppercase mt-2">
-        Fill Security Answers
-      </div>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Q-1</span>
-          </div>
-          <input id="q1" type="text" class="form-control md-8" readonly />
-          <!-- Question1 -->
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Q-1</span>
         </div>
-        <div class="input-group mt-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">A-1</span>
-          </div>
-          <input type="password" id="a1" class="form-control" />
-          <!-- Password1 -->
-        </div>
+        <input id="q1" type="text" class="form-control md-8" readonly />
+        <!-- Question1 -->
       </div>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Q-2</span>
-          </div>
-          <input id="q2" type="text" class="form-control md-8" readonly />
-          <!-- Question2 -->
+      <div class="input-group mt-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">A-1</span>
         </div>
-        <div class="input-group mt-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">A-2</span>
-          </div>
-          <input type="password" id="a2" class="form-control" />
-          <!-- Password2 -->
-        </div>
+        <input type="password" id="a1" class="form-control" />
+        <!-- Password1 -->
       </div>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Q-3</span>
-          </div>
-          <input id="q3" type="text" class="form-control md-8" readonly />
-          <!-- Question3 -->
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Q-2</span>
         </div>
-        <div class="input-group mt-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">A-3</span>
-          </div>
-          <input type="password" id="a3" class="form-control" />
-          <!-- Password2 -->
+        <input id="q2" type="text" class="form-control md-8" readonly />
+        <!-- Question2 -->
+      </div>
+      <div class="input-group mt-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">A-2</span>
         </div>
+        <input type="password" id="a2" class="form-control" />
+        <!-- Password2 -->
       </div>
-      <div class="text-center m-2">
-        <!-- <button type="submit" class="btn btn-primary">Save Details</button> -->
-        <button id="reset" class="btn btn-secondary">Reset</button>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Q-3</span>
+        </div>
+        <input id="q3" type="text" class="form-control md-8" readonly />
+        <!-- Question3 -->
       </div>
-    </form>
-    <script src="options.js"></script>
-  </body>
+      <div class="input-group mt-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">A-3</span>
+        </div>
+        <input type="password" id="a3" class="form-control" />
+        <!-- Password2 -->
+      </div>
+    </div>
+    <div class="text-center d-flex container-fluid my-2 p-0">
+      <button id="erpBtn" type="submit" class=" btn btn-primary w-50">
+        ERP <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-link-45deg" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+          <path
+            d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z" />
+        </svg>
+
+      </button>
+      <button id="reset" class="btn btn-info w-100">Logout <svg width="1em" height="1em" viewBox="0 0 16 16"
+          class="bi bi-person-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm1.146-7.85a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z" />
+        </svg></button>
+      <button id="head" class="btn btn-dark">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-moon" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z" />
+        </svg>
+      </button>
+    </div>
+  </form>
+  <script src="options.js"></script>
+</body>
+
 </html>

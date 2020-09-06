@@ -18,7 +18,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://erp.iitkgp.ac.in/SSOAdministration/*"
+        "*://erp.iitkgp.ac.in/SSOAdministration/*"
       ],
       "js": [
         "storage.js"
