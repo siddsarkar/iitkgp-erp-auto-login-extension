@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "ERP Auto Login - IITKGP",
-  "version": "2.2",
+  "version": "2.3",
   "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
   "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
