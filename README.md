@@ -44,6 +44,4 @@ You can change the values in the add-on's `popup` or from the `options page`
 
 ## Screenshots:
 
-![PC](https://addons.cdn.mozilla.net/user-media/previews/full/243/243293.png?modified=1597562214)
-
-![Mobile](https://addons.cdn.mozilla.net/user-media/previews/full/243/243294.png?modified=1597562219)
+![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/preview.png)
