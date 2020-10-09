@@ -1,21 +1,21 @@
 # IITKGP ERP Auto Login Extension(Firefox)🦊
 
-## What it does?
+## What it does
 
 - This add-on lets you sign in to [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website automatically.
 
-## Features:
+## Features
 
 - Supports both `PC` and `Android`.
 - Automatically retrieve security questions.
 - This add-on lets you sign in to [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website instantly.
 
-## Note:
+## Note
 
 - This extension `never` reads or uses your personal data. It stays safe in your browser itself.
 - This add-on stores your Roll number, Password and Secutity Questions along with answers using the [`storage.local`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API.
 
-### Permissions:
+## Permissions
 
 - [`storage.local`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API by Mozilla.
 
@@ -32,7 +32,7 @@
 
 You can change the values in the add-on's `popup` or from the `options page`
 
-## How to use:
+## How to use
 
 - Go to [Firefox-Addon Store](https://addons.mozilla.org/en-US/firefox/)
 - Search for `ERP Auto Login - IITKGP`
@@ -42,6 +42,6 @@ You can change the values in the add-on's `popup` or from the `options page`
 - Fill in corresponding answers.
 - Open the [`erp.iitkgp.ac.in`](https://erp.iitkgp.ac.in) website and you'll be logged in automatically every time.
 
-## Screenshots:
+## Screenshots
 
 ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/preview.png)
