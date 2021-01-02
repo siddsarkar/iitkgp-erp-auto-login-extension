@@ -6,6 +6,8 @@ const pass = document.getElementById("password");
 const inject = document.getElementById("signin");
 const btn = document.getElementsByClassName("btn btn-primary");
 
+const ans = document.getElementById("answer_div");
+
 //process of filling info to the page
 function process() {
   browser.storage.local.get().then((res) => {
@@ -27,7 +29,7 @@ function stateEvent() {
 }
 
 //listen to state of page
-document.addEventListener("readystatechange", stateEvent);
+// document.addEventListener("readystatechange", stateEvent);
 
 function authstart(cred) {
   //check if all fields are filled.
@@ -83,9 +85,9 @@ function authstart(cred) {
 let authCredentials = {
   username: "",
   password: "",
-  q1: "",
-  q2: "",
-  q3: "",
+  q1: "loading",
+  q2: "loading",
+  q3: "loading",
   a1: "",
   a2: "",
   a3: "",

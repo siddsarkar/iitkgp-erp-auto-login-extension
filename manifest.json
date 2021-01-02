@@ -17,12 +17,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://erp.iitkgp.ac.in/SSOAdministration/*"
-      ],
-      "js": [
-        "storage.js"
-      ]
+      "matches": ["*://erp.iitkgp.ac.in/SSOAdministration/*"],
+      "js": ["storage.js"]
     }
   ],
   "permissions": [
