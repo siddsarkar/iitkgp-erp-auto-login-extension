@@ -6,48 +6,15 @@
 }
 
 body {
-  margin: 10px 0 10px 0;
+  /* padding: 0 5px; */
+  padding: 10px 15px 10px 5px;
+  margin: 0 5px 0 0;
   width: 260px;
   display: grid;
   grid-gap: 10px;
   align-items: flex-start;
   justify-items: center;
-}
-
-.contact-us {
   background: #f8f4e5;
-  border: 2px solid black;
-  /* box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black; */
-  box-shadow: 3px 3px 1px #ffa580, 3px 3px 1px 1px black;
-}
-
-.dark {
-  background: #000000;
-}
-.message {
-  padding-right: 4pt;
-  padding-left: 4pt;
-  color: black;
-  background: #ffa580;
-  border: 1px solid black;
-  line-height: 28pt;
-  font-family: "Fjalla One";
-  /* box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black; */
-  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
-}
-.action-btns {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-self: center;
-}
-.icon {
-  padding: 0 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-self: center;
-  /* background-color: teal; */
 }
 
 input {
@@ -56,7 +23,7 @@ input {
   font-size: 14pt;
   line-height: 28pt;
   font-family: "Fjalla One";
-  margin-bottom: 8pt;
+  margin-bottom: 4pt;
   /* margin-bottom: 28pt; */
   border: none;
   border-bottom: 5px solid black;
@@ -72,7 +39,18 @@ input:focus {
 }
 
 input:disabled {
-  background: #d3d3d3;
+  /* background: #d3d3d3; */
+  background: #939393;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2a293e;
+  box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 button {
@@ -88,7 +66,9 @@ button {
   outline: none;
   border: 1px solid black;
   box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
+  cursor: pointer;
 }
+
 button:hover {
   background: black;
   color: white;
@@ -99,12 +79,70 @@ button:hover {
   background: #ffc8ff;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2a293e;
-  box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-  transition: background-color 5000s ease-in-out 0s;
+.contact-us {
+  background: #f8f4e5;
+  border: 2px solid black;
+  /* box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black; */
+  box-shadow: 3px 3px 1px #ffa580, 3px 3px 1px 1px black;
+}
+
+.dark {
+  background: #2a293e;
+  box-shadow: 3px 3px 1px #ffa580, 3px 3px 1px 1px #95a4ff;
+  border: 2px solid white;
+}
+.message {
+  width: 100%;
+  /* min-width: 250px; */
+
+  color: black;
+  background: #ffa580;
+  border: 1px solid black;
+  line-height: 28pt;
+  font-family: "Fjalla One";
+  text-align: center;
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
+}
+.action-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 4pt;
+}
+.icon {
+  /* min-width: 250px; */
+
+  width: 100%;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #ffa580;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
+  transition: 0.2s all ease-in-out;
+  /* background-color: teal; */
+}
+
+.header {
+  flex-grow: 1;
+  line-height: 18pt;
+  font-family: "Fjalla One";
+}
+
+.sub-header {
+  line-height: 8pt;
+  font-family: "Fjalla One";
+  font-size: x-small;
+  color: #4a4a4f;
+}
+
+.icon-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  /* background: #d3d3d3; */
 }

@@ -10,26 +10,25 @@ const ans = document.getElementById("answer_div");
 
 //process of filling info to the page
 function process() {
+  document.removeEventListener("readystatechange", stateEvent);
   browser.storage.local.get().then((res) => {
     authstart(res.authCredentials);
   });
 }
 
 // case-1 refresh on page
-if (document.readyState == "complete") {
-  process();
-}
+// if (document.readyState == "complete") {
+//   process();
+// }
 
 //case-2 on new tab creation
 function stateEvent() {
-  document.removeEventListener("readystatechange", stateEvent);
   if (document.readyState == "complete") {
     process();
   }
 }
 
-//listen to state of page
-// document.addEventListener("readystatechange", stateEvent);
+document.addEventListener("readystatechange", stateEvent);
 
 function authstart(cred) {
   //check if all fields are filled.
@@ -69,15 +68,17 @@ function authstart(cred) {
   } else {
     //if not show error msg on the page.
     const msg = document.createElement("div");
+
     msg.setAttribute(
       "style",
-      "background-color: red;color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;"
+      "background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row"
     );
     msg.innerHTML = "Fill out your credentials on extension !";
+
     document.body.prepend(msg);
     setTimeout(() => {
       document.body.removeChild(msg);
-    }, 5000);
+    }, 50000);
   }
 }
 
@@ -103,7 +104,7 @@ function onError(e) {
 function checkStoredSettings(storedSettings) {
   if (!storedSettings.authCredentials) {
     //If we don't, then store the default settings.
-    browser.storage.local.set({ authCredentials });
+    browser.storage.local.set(authCredentials);
   }
 }
 
