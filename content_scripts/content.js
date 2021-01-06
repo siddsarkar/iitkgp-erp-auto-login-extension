@@ -8,6 +8,7 @@ const btn = document.getElementsByClassName("btn btn-primary");
 
 //process of filling info to the page
 function process() {
+  document.removeEventListener("readystatechange", stateEvent);
   browser.storage.local.get().then((res) => {
     authstart(res.authCredentials);
   });
@@ -20,13 +21,11 @@ if (document.readyState == "complete") {
 
 //case-2 on new tab creation
 function stateEvent() {
-  document.removeEventListener("readystatechange", stateEvent);
   if (document.readyState == "complete") {
     process();
   }
 }
 
-//listen to state of page
 document.addEventListener("readystatechange", stateEvent);
 
 function authstart(cred) {
@@ -67,15 +66,17 @@ function authstart(cred) {
   } else {
     //if not show error msg on the page.
     const msg = document.createElement("div");
+
     msg.setAttribute(
       "style",
-      "background-color: red;color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;"
+      "background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row"
     );
     msg.innerHTML = "Fill out your credentials on extension !";
+
     document.body.prepend(msg);
     setTimeout(() => {
       document.body.removeChild(msg);
-    }, 5000);
+    }, 50000);
   }
 }
 
@@ -83,9 +84,9 @@ function authstart(cred) {
 let authCredentials = {
   username: "",
   password: "",
-  q1: "",
-  q2: "",
-  q3: "",
+  q1: "loading",
+  q2: "loading",
+  q3: "loading",
   a1: "",
   a2: "",
   a3: "",
