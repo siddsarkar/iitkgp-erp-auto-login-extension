@@ -1,23 +1,24 @@
 {
   "manifest_version": 2,
   "name": "ERP Auto Login - IITKGP",
-  "version": "2.3",
+  "version": "3.0",
+  "author": "Siddhartha Sarkar",
   "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
   "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
   "icons": {
-    "256": "icons/logo.png"
+    "256": "icons/icon.png"
   },
   "options_ui": {
     "page": "options/options.html"
   },
   "browser_action": {
-    "default_icon": "icons/logo.png",
+    "default_icon": "icons/icon.png",
     "default_title": "ERP Auto Login",
     "default_popup": "options/options.html",
     "theme_icons": [
       {
-        "light": "icons/logo/light.png",
-        "dark": "icons/logo/dark.png",
+        "light": "icons/icon.png",
+        "dark": "icons/icon_dark.png",
         "size": 256
       }
     ]
@@ -25,11 +26,16 @@
   "content_scripts": [
     {
       "matches": ["*://erp.iitkgp.ac.in/SSOAdministration/*"],
-      "js": ["storage.js"]
+      "js": ["content_scripts/content.js"]
     }
   ],
   "permissions": [
     "storage",
     "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm"
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{fa21e38a-41b3-4891-8f6b-8ba837e2df65}"
+    }
+  }
 }

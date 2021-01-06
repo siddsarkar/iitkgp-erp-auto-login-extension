@@ -58,7 +58,7 @@ button {
   margin: 0 auto;
   line-height: 28pt;
   font-family: "Fjalla One";
-
+  color: rgba(0, 0, 0, 0.87);
   padding: 0 5px;
   background: #ffa580;
   /* letter-spacing: 2px; */
@@ -94,8 +94,7 @@ button:hover {
 .message {
   width: 100%;
   /* min-width: 250px; */
-
-  color: black;
+  color: rgba(0, 0, 0, 0.87);
   background: #ffa580;
   border: 1px solid black;
   line-height: 28pt;
@@ -130,13 +129,14 @@ button:hover {
   flex-grow: 1;
   line-height: 18pt;
   font-family: "Fjalla One";
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .sub-header {
   line-height: 8pt;
   font-family: "Fjalla One";
   font-size: x-small;
-  color: #4a4a4f;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .icon-image {

@@ -351,45 +351,27 @@ reset.onclick = () => {
   _a2.setAttribute("disabled", true);
   _a3.setAttribute("disabled", true);
 
-  browser.storage.local.set({
-    authCredentials: {
-      username: "",
-      password: "",
-      q1: "loading",
-      q2: "loading",
-      q3: "loading",
-      a1: "",
-      a2: "",
-      a3: "",
-      dark: false,
-    },
-  });
-
-  // var creating = browser.tabs.create({
-  //   url: "https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm",
-  // });
-  // creating.then(onCreated, onError);
-  // function onCreated(tab) {
-  //   console.log(`Created new tab: ${tab.id}`);
-  // }
+  browser.storage.local
+    .set({
+      authCredentials: {
+        username: "",
+        password: "",
+        q1: "loading",
+        q2: "loading",
+        q3: "loading",
+        a1: "",
+        a2: "",
+        a3: "",
+        dark: false,
+      },
+    })
+    .then(() => {
+      browser.tabs
+        .create({
+          url: "https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm",
+        })
+        .then(function onCreated(tab) {
+          console.log("Successfully logged Out!");
+        }, onError);
+    });
 };
-// reset.addEventListener("click", );
-
-// To get questions
-// usernameInput.addEventListener("blur", getQuestions);
-
-// btnerp.addEventListener("click",);
-// btnerp2.addEventListener("click", () => openThis("https://erp.iitkgp.ac.in/", ));
-
-// function theme(isdark) {
-//   if (isdark) {
-//     document.getElementById("contact-us").classList.add("dark");
-//     body.setAttribute("style", "background:#202020; color: whitesmoke");
-//   } else {
-//     body.removeAttribute("style");
-//     document.getElementById("contact-us").classList.remove("dark");
-//   }
-// }
-// On opening the options page, fetch stored settings and update the UI with them.
-// const gettingStoredSettings = browser.storage.local.get();
-// gettingStoredSettings.then(updateUI, onError);

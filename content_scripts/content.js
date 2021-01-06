@@ -6,8 +6,6 @@ const pass = document.getElementById("password");
 const inject = document.getElementById("signin");
 const btn = document.getElementsByClassName("btn btn-primary");
 
-const ans = document.getElementById("answer_div");
-
 //process of filling info to the page
 function process() {
   document.removeEventListener("readystatechange", stateEvent);
@@ -17,9 +15,9 @@ function process() {
 }
 
 // case-1 refresh on page
-// if (document.readyState == "complete") {
-//   process();
-// }
+if (document.readyState == "complete") {
+  process();
+}
 
 //case-2 on new tab creation
 function stateEvent() {
@@ -104,7 +102,7 @@ function onError(e) {
 function checkStoredSettings(storedSettings) {
   if (!storedSettings.authCredentials) {
     //If we don't, then store the default settings.
-    browser.storage.local.set(authCredentials);
+    browser.storage.local.set({ authCredentials });
   }
 }
 
