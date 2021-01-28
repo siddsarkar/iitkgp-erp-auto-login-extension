@@ -27,7 +27,6 @@ Our default branch `master` is the source code to the recent stable release. Wan
 - [Why Us?](#why-us)
 - [Permissions](#permissions-used)
 - [Installation](#installation)
-- [Status](#status)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Previous releases](#previous-releases)
 - [Contributing](#contributing)
@@ -36,6 +35,16 @@ Our default branch `master` is the source code to the recent stable release. Wan
 - [Thanks](#thanks)
 - [Screenshots](#screenshots)
 - [Copyright and license](#copyright-and-license)
+
+## Status
+
+![Mozilla Add-on](https://img.shields.io/amo/v/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
+![Mozilla Add-on](https://img.shields.io/amo/users/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
+![Mozilla Add-on](https://img.shields.io/amo/dw/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
+![GitHub](https://img.shields.io/github/license/siddsarkar/iitkgp-erp-auto-login-extension)
+![Mozilla Add-on](https://img.shields.io/amo/rating/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
+![Mozilla Add-on](https://img.shields.io/amo/stars/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
+![Code Style](https://img.shields.io/badge/code%20style-prettier-ff69b4)
 
 ## Why Us?
 
@@ -61,16 +70,6 @@ Several Installation options are available:
   - Open Add-on Manager from options (or) by pressing Ctrl/Cmd+Shift+A on Widows/Mac
   - Click the gear icon gear icon in the upper-right area of the Add-on Manager Extensions panel.
   - Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
-
-## Status
-
-![Mozilla Add-on](https://img.shields.io/amo/v/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Mozilla Add-on](https://img.shields.io/amo/users/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Mozilla Add-on](https://img.shields.io/amo/dw/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![GitHub](https://img.shields.io/github/license/siddsarkar/iitkgp-erp-auto-login-extension)
-![Mozilla Add-on](https://img.shields.io/amo/rating/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Mozilla Add-on](https://img.shields.io/amo/stars/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Code Style](https://img.shields.io/badge/code%20style-prettier-ff69b4)
 
 ## Bugs and feature requests
 
