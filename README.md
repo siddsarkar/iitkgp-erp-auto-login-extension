@@ -75,7 +75,7 @@ Several Installation options are available:
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new).
 
-### Previous releases
+## Previous releases
 
 You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) on releases page of the github repo or directly from [AMO Website](https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/versions/)
 
