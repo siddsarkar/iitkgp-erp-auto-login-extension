@@ -29,6 +29,7 @@ Our default branch `master` is the source code to the recent stable release. Wan
 - [Installation](#installation)
 - [Bugs and feature requests](#bugs-and-feature-requests)
 - [Previous releases](#previous-releases)
+- [Todos](#to-do)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Creator](#creator)
@@ -78,6 +79,16 @@ Have a bug or a feature request? Please first search for existing and closed iss
 ## Previous releases
 
 You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) on releases page of the github repo or directly from [AMO Website](https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/versions/)
+
+## To do
+
+- [ ] Add Overlay during autofill, show animation loader
+- [ ] Add a reset warning
+- [ ] Multiple users support
+- [ ] Add autofill mode
+- [ ] Show Changelogs on update
+- [ ] Add Uninstall, Install pages to show
+
 
 ## Contributing
 
