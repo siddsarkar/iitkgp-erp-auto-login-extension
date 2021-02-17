@@ -8,7 +8,7 @@
     "artifactsDir": "dist/"
   },
   "scripts": {
-    "ext": "web-ext run",
+    "ext": "web-ext run --firefox=firefoxdeveloperedition",
     "lint": "web-ext lint",
     "watch": "webpack --mode=development --watch",
     "build": "webpack --mode=production && web-ext build"
