@@ -1,0 +1,61 @@
+{
+  "page_size": 1,
+  "page_count": 5,
+  "count": 5,
+  "next": "https://addons.mozilla.org/api/v5/addons/addon/erp-auto-login-iitkgp/versions/?page=2&page_size=1",
+  "previous": null,
+  "results": [
+    {
+      "id": 5158774,
+      "channel": "listed",
+      "compatibility": {
+        "firefox": {
+          "min": "48.0",
+          "max": "*"
+        },
+        "android": {
+          "min": "48.0",
+          "max": "*"
+        }
+      },
+      "edit_url": "https://addons.mozilla.org/en-US/developers/addon/erp-auto-login-iitkgp/versions/5158774",
+      "files": [
+        {
+          "id": 3703136,
+          "created": "2021-01-04T16:32:43Z",
+          "hash": "sha256:f42bba6c36714c89bd4060052fe0d16216d27b60240ff4d7aa863f9664c8e5a6",
+          "is_restart_required": false,
+          "is_webextension": true,
+          "is_mozilla_signed_extension": false,
+          "platform": "all",
+          "size": 46301,
+          "status": "public",
+          "url": "https://addons.mozilla.org/firefox/downloads/file/3703136/erp_auto_login_iitkgp-3.0-an+fx.xpi",
+          "permissions": [
+            "storage",
+            "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm",
+            "*://erp.iitkgp.ac.in/SSOAdministration/*"
+          ],
+          "optional_permissions": []
+        }
+      ],
+      "is_strict_compatibility_enabled": false,
+      "license": {
+        "id": 3338,
+        "is_custom": false,
+        "name": {
+          "en-US": "Mozilla Public License, version 2.0"
+        },
+        "text": {
+          "en-US": "This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a rel=\"nofollow\" href=\"https://outgoing.prod.mozaws.net/v1/cfa1520767b4bc45590e23d48de7bec652c237ee0ad206608dfa16f2a0e21c8d/http%3A//mozilla.org/MPL/2.0/\">http://mozilla.org/MPL/2.0/</a>."
+        },
+        "url": "http://www.mozilla.org/MPL/2.0/"
+      },
+      "release_notes": {
+        "en-US": "- major release\n- new adaptative ui based on current theme\n- faster login and fetching questions\n- bug fixes improvements\n- new adaptative extension icon\n(feel free to give a feedback)"
+      },
+      "reviewed": null,
+      "version": "3.0"
+    }
+  ]
+}

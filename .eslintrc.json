@@ -1,0 +1,18 @@
+{
+  "env": {
+    "commonjs": true,
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "webextensions": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "extends": ["eslint:recommended"],
+  "plugins": ["no-unsanitized"],
+  "rules": {
+    "no-unsanitized/method": "error",
+    "no-unsanitized/property": "error"
+  }
+}
