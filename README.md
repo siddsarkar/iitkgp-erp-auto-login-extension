@@ -83,10 +83,10 @@ You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-er
 ## To do
 
 - [ ] Add Overlay during autofill, show animation loader
-- [ ] Add a reset warning
+- [x] Add a reset warning
 - [ ] Multiple users support
-- [ ] Add autofill mode
-- [ ] Show Changelogs on update
+- [x] Add autofill mode
+- [x] Show Changelogs on update
 - [ ] Add Uninstall, Install pages to show
 
 
