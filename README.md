@@ -20,7 +20,7 @@
 
 Our default branch `master` is the source code to the recent stable release. Want to test beta versions? Head to the [`develop` branch](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/tree/develop) to view the latest updates and features before the official release.
 
->This extension `never` shares your credentials. It stays locally in your browser itself using the browser API [`storage.local`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) by mozilla.
+> This extension `never` shares your credentials. It stays locally in your browser itself using the browser API [`storage.local`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) by mozilla.
 
 ## Table of contents
 
@@ -89,7 +89,6 @@ You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-er
 - [x] Show Changelogs on update
 - [ ] Add Uninstall, Install pages to show
 
-
 ## Contributing
 
 For Contributing to this project please open a pull request describing the changes or features with proper documentation.
@@ -116,7 +115,13 @@ Thanks to [vs code](https://code.visualstudio.com/) and [web-ext](https://www.np
 ## Screenshots
 
 - latest-release-v3
-  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/preview3.0.png)
+  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/old/preview3.0.png)
+
+- v4_Light - Coming Soon
+  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_light.png)
+
+- v4_Dark - Coming Soon
+  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_dark.png)
 
 ## Copyright and license
 
