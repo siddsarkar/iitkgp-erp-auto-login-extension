@@ -47,6 +47,12 @@ document.getElementById(
 /****************
  * DEVELOP AREA *
  ****************/
+
+// disable context menu
+document.oncontextmenu = () => {
+  return false;
+};
+
 const hIcon = document.getElementById("form-header-icon");
 const closeForm = document.getElementById("form-done");
 const mBtn = document.getElementById("maximize-btn");
@@ -186,7 +192,7 @@ function updateUI(restoredSettings) {
     _a1.setAttribute("disabled", true);
     _a2.setAttribute("disabled", true);
     _a3.setAttribute("disabled", true);
-    logger(`You are all set! ${authCredentials.username}`, "success");
+    logger(`You are all set! ${authCredentials.username}`, "check");
   } else {
     logger("Fill security answers!", "warning");
     _a1.removeAttribute("disabled");
@@ -209,11 +215,11 @@ function questionsCallback(message, done) {
     // All Questions Loaded
 
     if (passwordInput.value == "") {
-      logger(`${message} Fill required info.`, "success");
+      logger(`${message} Fill required info.`, "check");
     } else if (_a1.value == "" || _a2.value == "" || _a3.value == "") {
       logger("Fill Security Answers", "warning");
     } else {
-      logger("All Set!", "success");
+      logger("All Set!", "check");
     }
     storeSettings();
   } else {
@@ -255,7 +261,7 @@ async function getQuestions(cb) {
     } else {
       // Invalid rollno (does not exist)
 
-      logger(message, "error");
+      logger(message, "cross");
       return;
     }
   }
@@ -315,14 +321,14 @@ function testRoll() {
       _a3.value = "";
       passwordInput.value = "";
     }
-    logger("Enter a valid Roll No", "error");
+    logger("Enter a valid Roll No", "cross");
     return;
   }
   var re = /[0-9]{2}[a-z|A-Z]{2}[0-9]{5}/; //? regex for IITKGP ROLL-NUMBERS
   var OK = re.exec(usernameInput.value);
   if (!OK) {
     // console.error(usernameInput.value + " isn't a roll number!");
-    logger("Enter a valid Roll No", "error");
+    logger("Enter a valid Roll No", "cross");
   } else {
     // console.log("roll number is " + OK[0]);
     logger("Getting Questions..", "warning");
@@ -333,40 +339,12 @@ function testRoll() {
 /**
  * @description desplays message on ui
  * @param {String} message messsge to display
- * @param {String} type ["info","warning","success","error"]
+ * @param {String} iconId id of svg icon to use
  */
-function logger(message, type = "info") {
+function logger(message, iconId = "info") {
   log.textContent = message;
-  logClass.className = type;
-
-  switch (type) {
-    case "info":
-      logIcon.setAttribute(
-        "src",
-        browser.runtime.getURL("/assets/svg/Info.svg")
-      );
-      break;
-    case "warning":
-      logIcon.setAttribute(
-        "src",
-        browser.runtime.getURL("/assets/svg/Warning.svg")
-      );
-      break;
-    case "success":
-      logIcon.setAttribute(
-        "src",
-        browser.runtime.getURL("/assets/svg/Check.svg")
-      );
-      break;
-    case "error":
-      logIcon.setAttribute(
-        "src",
-        browser.runtime.getURL("/assets/svg/Close.svg")
-      );
-      break;
-    default:
-      break;
-  }
+  logClass.className = iconId;
+  logIcon.setAttribute("href", `#${iconId}`);
 }
 
 /**
@@ -471,7 +449,7 @@ function resetHandler() {
         },
       })
       .then(() => {
-        logger("Data Cleared!", "success");
+        logger("Data Cleared!", "check");
         browser.tabs
           .create({
             url: "https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm",
@@ -487,7 +465,7 @@ function resetHandler() {
 
     logClass.removeChild(actionBtnYes);
     logClass.removeChild(actionBtnCancel);
-    logger("Cancelled!", "info");
+    logger("Cancelled!");
   };
 }
 

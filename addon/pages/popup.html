@@ -13,16 +13,19 @@
       <main class="panel-container" id="panel-container">
         <section id="p-01" class="panel">
           <div id="panel-home" class="panel-card">
-            <div class="panel-card-label">Quick Links</div>
+            <div class="panel-card-label">Login To</div>
 
-            <a href="https://erp.iitkgp.ac.in/" target="_blank">
+            <a
+              href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+              target="_blank"
+            >
               <div class="panel-card-link">
                 <div class="panel-card-link-icon">
                   <svg>
-                    <use href="#web"></use>
+                    <use href="#home"></use>
                   </svg>
                 </div>
-                <div class="panel-card-link-title">ERP</div>
+                <div class="panel-card-link-title">ERP Home</div>
                 <div class="panel-card-link-external">
                   <svg>
                     <use href="#external-link"></use>
@@ -30,6 +33,62 @@
                 </div>
               </div>
             </a>
+            <a
+              href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=16"
+              target="_blank"
+            >
+              <div class="panel-card-link">
+                <div class="panel-card-link-icon">
+                  <svg>
+                    <use href="#cap"></use>
+                  </svg>
+                </div>
+                <div class="panel-card-link-title">Academic</div>
+                <div class="panel-card-link-external">
+                  <svg>
+                    <use href="#external-link"></use>
+                  </svg>
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=30"
+              target="_blank"
+            >
+              <div class="panel-card-link">
+                <div class="panel-card-link-icon">
+                  <svg>
+                    <use href="#building"></use>
+                  </svg>
+                </div>
+                <div class="panel-card-link-title">Guest House</div>
+                <div class="panel-card-link-external">
+                  <svg>
+                    <use href="#external-link"></use>
+                  </svg>
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
+              target="_blank"
+            >
+              <div class="panel-card-link">
+                <div class="panel-card-link-icon">
+                  <svg>
+                    <use href="#briefcase"></use>
+                  </svg>
+                </div>
+                <div class="panel-card-link-title">CDC</div>
+                <div class="panel-card-link-external">
+                  <svg>
+                    <use href="#external-link"></use>
+                  </svg>
+                </div>
+              </div>
+            </a>
+
+            <div class="panel-card-divider"></div>
 
             <a
               href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/"
@@ -107,15 +166,6 @@
                 </div>
               </div>
             </a>
-
-            <div class="panel-card-footer">
-              designed & developed by
-              <a target="_blank" href="https://github.com/siddsarkar"
-                >siddharth</a
-              >
-              with
-              <span>❤</span>
-            </div>
           </div>
         </section>
         <section id="p-02" class="panel">
@@ -241,6 +291,15 @@
                 </div>
               </div>
             </a>
+
+            <div class="panel-card-footer">
+              designed & developed by
+              <a target="_blank" href="https://github.com/siddsarkar"
+                >siddharth</a
+              >
+              with
+              <span>❤</span>
+            </div>
           </div>
         </section>
         <section id="p-03" class="panel">
@@ -312,15 +371,12 @@
           <div id="copyright" class="card-header-sub"></div>
         </div>
 
-        <div class="info" id="log-class">
-          <img
-            id="log-icon"
-            class="icon-info"
-            src="../assets/svg/Info.svg"
-            alt="mesage"
-          />
+        <div class="message" id="log-class">
+          <svg class="message-icon">
+            <use id="log-icon" href="#info"></use>
+          </svg>
           <p id="log">It is possible to wrap?</p>
-          <!-- ACTIONS -->
+          <!-- ACTIONS BUTTONS -->
           <!-- <div class="action">Yes Clear</div> -->
           <!-- <img class="icon-close" src="../assets/svg/Close.svg" alt="close" /> -->
         </div>
@@ -444,6 +500,35 @@
 
     <svg class="hidden">
       <defs>
+        <svg id="cap" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M7.693 1.066a.75.75 0 01.614 0l7.25 3.25a.75.75 0 010 1.368L13 6.831v2.794c0 1.024-.81 1.749-1.66 2.173-.893.447-2.075.702-3.34.702-.278 0-.55-.012-.816-.036a.75.75 0 01.133-1.494c.22.02.45.03.683.03 1.082 0 2.025-.221 2.67-.543.69-.345.83-.682.83-.832V7.503L8.307 8.934a.75.75 0 01-.614 0L4 7.28v1.663c.296.105.575.275.812.512.438.438.688 1.059.688 1.796v3a.75.75 0 01-.75.75h-3a.75.75 0 01-.75-.75v-3c0-.737.25-1.358.688-1.796.237-.237.516-.407.812-.512V6.606L.443 5.684a.75.75 0 010-1.368l7.25-3.25zM2.583 5L8 7.428 13.416 5 8 2.572 2.583 5zM2.5 11.25c0-.388.125-.611.25-.735a.704.704 0 01.5-.203c.19 0 .37.071.5.203.125.124.25.347.25.735v2.25H2.5v-2.25z"
+          ></path>
+        </svg>
+        <svg id="briefcase" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M6.75 0A1.75 1.75 0 005 1.75V3H1.75A1.75 1.75 0 000 4.75v8.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H11V1.75A1.75 1.75 0 009.25 0h-2.5zM9.5 3V1.75a.25.25 0 00-.25-.25h-2.5a.25.25 0 00-.25.25V3h3zM5 4.5H1.75a.25.25 0 00-.25.25V6a2 2 0 002 2h9a2 2 0 002-2V4.75a.25.25 0 00-.25-.25H5zm-1.5 5a3.484 3.484 0 01-2-.627v4.377c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V8.873a3.484 3.484 0 01-2 .627h-9z"
+          ></path>
+        </svg>
+        <svg id="building" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M1.5 14.25c0 .138.112.25.25.25H4v-1.25a.75.75 0 01.75-.75h2.5a.75.75 0 01.75.75v1.25h2.25a.25.25 0 00.25-.25V1.75a.25.25 0 00-.25-.25h-8.5a.25.25 0 00-.25.25v12.5zM1.75 16A1.75 1.75 0 010 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 00.25-.25V8.285a.25.25 0 00-.111-.208l-1.055-.703a.75.75 0 11.832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0114.25 16h-3.5a.75.75 0 01-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 01-.75-.75V14h-1v1.25a.75.75 0 01-.75.75h-3zM3 3.75A.75.75 0 013.75 3h.5a.75.75 0 010 1.5h-.5A.75.75 0 013 3.75zM3.75 6a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM3 9.75A.75.75 0 013.75 9h.5a.75.75 0 010 1.5h-.5A.75.75 0 013 9.75zM7.75 9a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM7 6.75A.75.75 0 017.75 6h.5a.75.75 0 010 1.5h-.5A.75.75 0 017 6.75zM7.75 3a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5z"
+          ></path>
+        </svg>
+        <svg id="home" viewBox="0 0 24 24">
+          <path
+            d="M12.97 2.59a1.5 1.5 0 00-1.94 0l-7.5 6.363A1.5 1.5 0 003 10.097V19.5A1.5 1.5 0 004.5 21h4.75a.75.75 0 00.75-.75V14h4v6.25c0 .414.336.75.75.75h4.75a1.5 1.5 0 001.5-1.5v-9.403a1.5 1.5 0 00-.53-1.144l-7.5-6.363z"
+          ></path>
+        </svg>
+
+        <svg id="cross" viewBox="0 0 16 16">
+          <path
+            d="M9.061 8l3.47-3.47a.75.75 0 0 0-1.061-1.06L8 6.939 4.53 3.47a.75.75 0 1 0-1.06 1.06L6.939 8 3.47 11.47a.75.75 0 1 0 1.06 1.06L8 9.061l3.47 3.47a.75.75 0 0 0 1.06-1.061z"
+          ></path>
+        </svg>
         <svg id="bin" viewBox="0 0 16 16">
           <path
             d="M6.5 12a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 0 .5.5zm2 0a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 0 .5.5zm2 0a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 0 .5.5z"

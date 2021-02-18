@@ -1,66 +1,14 @@
-// Base Colors
-$black: #000000;
-$white: #ffffff;
-$grey-10: #f9f9fa;
-$grey-10-a10: rgba(249, 249, 250, 0.1);
-$grey-10-a20: rgba(249, 249, 250, 0.2);
-$grey-10-a40: rgba(249, 249, 250, 0.4);
-$grey-10-a60: rgba(249, 249, 250, 0.6);
-$grey-10-a80: rgba(249, 249, 250, 0.8);
-$grey-20: #ededf0;
-$grey-30: #d7d7db;
-$grey-40: #b1b1b3;
-$grey-50: #737373;
-$grey-60: #4a4a4f;
-$grey-70: #38383d;
-$grey-80: #2a2a2e;
-$grey-90: #0c0c0d;
-$grey-90-a05: rgba(12, 12, 13, 0.05);
-$grey-90-a10: rgba(12, 12, 13, 0.1);
-$grey-90-a20: rgba(12, 12, 13, 0.2);
-$grey-90-a30: rgba(12, 12, 13, 0.3);
-$grey-90-a40: rgba(12, 12, 13, 0.4);
-$grey-90-a50: rgba(12, 12, 13, 0.5);
-$grey-90-a60: rgba(12, 12, 13, 0.6);
-$grey-90-a70: rgba(12, 12, 13, 0.7);
-$grey-90-a80: rgba(12, 12, 13, 0.8);
-$grey-90-a90: rgba(12, 12, 13, 0.9);
+@import "variables";
 
-// Light Theme Vars
-$text-primary-light: $grey-90;
-$text-secondary-light: $grey-50;
-$bg-light: $grey-30;
-$bg-card-light: $grey-10;
-$input-bg-light: $white;
-$primary-icon-light: $grey-90-a80;
-$secondary-icon-light: $grey-90-a60;
-
-// Dark theme vars
-$text-primary-dark: $white;
-$text-secondary-dark: $grey-40;
-$bg-dark: $grey-80;
-$bg-card-dark: $grey-70;
-$input-bg-dark: $grey-60;
-$primary-icon-dark: $grey-10-a80;
-$secondary-icon-dark: $grey-10-a60;
-
-// Accent
-$accent-1: #0060df;
-
-$height: 590px;
-$width: 348px;
-
-//light
 :root {
   --color-bg: #{$bg-light};
   --color-card-bg: #{$bg-card-light};
-
   --color-text-primary: #{$text-primary-light};
   --color-text-secondary: #{$text-secondary-light};
 
   --color-input-bg: #{$input-bg-light};
 
-  --color-input-border: #{$grey-30};
+  --color-input-border: #{$input-border-light};
 
   --primary-icon: #{$primary-icon-light};
   --secondary-icon: #{$secondary-icon-light};
@@ -74,7 +22,7 @@ $width: 348px;
 
   --color-input-bg: #{$input-bg-dark};
 
-  --color-input-border: #{$grey-50};
+  --color-input-border: #{$input-border-dark};
 
   --primary-icon: #{$primary-icon-dark};
   --secondary-icon: #{$secondary-icon-dark};
@@ -105,7 +53,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #0a84ff;
+  color: $primary-40;
 }
 
 .hidden {
@@ -156,8 +104,8 @@ a {
 
     svg {
       fill: var(--primary-icon);
-      height: 16px;
-      width: 16px;
+      height: 20px;
+      width: 20px;
     }
 
     &:hover {
@@ -227,13 +175,19 @@ a {
       padding: 8px;
     }
 
-    &-link {
+    &-link a {
       // background: purple;
 
+      display: block;
       padding-top: 4px;
       text-align: center;
       width: 100%;
-      font-size: 13px;
+      color: $primary-40;
+      font-size: 11px;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &-group {
@@ -287,23 +241,18 @@ a {
         }
 
         &:not([disabled]):hover {
-          border-color: rgba(12, 12, 13, 0.3);
+          border-color: $primary-50-a30;
         }
 
         &:focus:not([disabled]) {
-          border-color: #0a84ff;
-          box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+          border-color: $primary-50;
+          box-shadow: 0 0 0 1px $primary-50, 0 0 0 4px $primary-50-a30;
         }
 
         &:invalid {
-          border-color: #d70022;
-          box-shadow: 0 0 0 1px #d70022, 0 0 0 4px rgba(251, 0, 34, 0.3);
-        }
-
-        &:required {
-          box-shadow: none;
-          // border-color: #d7b600;
-          // box-shadow: 0 0 0 1px #d7b600, 0 0 0 4px rgba(215, 182, 0, 0.3);
+          border-color: $red-60;
+          box-shadow: 0 0 0 1px $red-60,
+            0 0 0 4px rgba(rgba($color: $red-60, $alpha: 0.3), 0.3);
         }
       }
     }
@@ -515,26 +464,28 @@ input[type="checkbox"] {
   height: 32px;
 
   color: $white;
-  background: #0060df;
+  background: $primary-60;
   border: none;
   // font-size: 13px;
   border-radius: 2px;
 
-  &:hover {
-    background: #003eaa;
+  &:hover:not([disabled]) {
+    background: $primary-70;
   }
 
-  &:active {
-    background: #002275;
+  &:active:not([disabled]) {
+    background: $primary-80;
   }
 
-  &:focus {
-    box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff,
-      0 0 0 4px rgba(10, 132, 255, 0.3);
+  &:focus:not([disabled]) {
+    box-shadow: 0 0 0 1px $primary-50 inset, 0 0 0 1px $primary-50,
+      0 0 0 4px rgba($primary-60, 0.3);
   }
 
   &:disabled {
     opacity: 50%;
+    box-shadow: none;
+    border: none;
   }
 
   svg {
@@ -549,27 +500,29 @@ input[type="checkbox"] {
   width: 100%;
   height: 32px;
   cursor: pointer;
-
+  background: rgba($color: $input-border-dark, $alpha: 0.3);
   color: var(--color-text-primary);
-  background: var(--color-input-border);
   border: none;
   font-size: 13px;
   border-radius: 2px;
 
-  &:hover {
-    background: rgba(12, 12, 13, 0.2);
+  &:hover:not([disabled]) {
+    background: var(--color-input-border);
   }
 
-  &:active {
-    background: rgba(12, 12, 13, 0.3);
+  &:active:not([disabled]) {
+    background: rgba($color: $input-border-dark, $alpha: 0.5);
   }
 
-  &:focus {
-    box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff,
-      0 0 0 4px rgba(10, 132, 255, 0.3);
+  &:focus:not([disabled]) {
+    box-shadow: 0 0 0 1px $primary-50 inset, 0 0 0 1px $primary-50,
+      0 0 0 4px rgba($primary-60, 0.3);
   }
+
   &:disabled {
     opacity: 50%;
+    box-shadow: none;
+    border: none;
   }
 
   svg {
@@ -579,19 +532,22 @@ input[type="checkbox"] {
   }
 }
 
-.success {
+.check {
   @extend .message;
-  background: #12bc00;
+  background: $green-60;
+  color: $black;
 }
 
 .warning {
   @extend .message;
-  background: #d7b600;
+  background: $yellow-60;
+  color: $black;
 }
 
-.error {
+.cross {
   @extend .message;
-  background: #a4000f;
+  background: $red-60;
+  color: $black;
 }
 
 .message {
@@ -601,16 +557,22 @@ input[type="checkbox"] {
   min-height: 32px;
   display: flex;
   align-items: center;
-  color: $black;
+
   border-radius: 4px;
 
   font-size: 13px;
   font-weight: 400;
   line-height: 1.4;
 
-  .icon-info {
+  &-icon {
     margin-right: 4px;
+    height: 16px;
+    width: 16px;
     cursor: pointer;
+
+    svg {
+      fill: $grey-90;
+    }
   }
 
   .action {

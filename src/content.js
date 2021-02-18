@@ -4,28 +4,33 @@
  */
 
 console.log("execute_c_script");
-
 browser.storage.local.get().then((res) => {
   if (!res.authCredentials) {
-    displayMessage("You have extension to automatic login. Please fill it");
+    displayMessage(
+      "You have extension to automatic login. Please fill it",
+      "#715100"
+    );
   } else {
     let { authCredentials } = res;
 
     if (!authCredentials.autoLogin) {
-      return displayMessage("AutoLogin is turned off");
+      return displayMessage("AutoLogin is turned off", "#4a4a4f");
     }
 
     if (
-      authCredentials.username == "" &&
-      authCredentials.password == "" &&
-      authCredentials.q1 == "loading" &&
-      authCredentials.q2 == "loading" &&
-      authCredentials.q3 == "loading" &&
-      authCredentials.a1 == "" &&
-      authCredentials.a2 == "" &&
+      authCredentials.username == "" ||
+      authCredentials.password == "" ||
+      authCredentials.q1 == "loading" ||
+      authCredentials.q2 == "loading" ||
+      authCredentials.q3 == "loading" ||
+      authCredentials.a1 == "" ||
+      authCredentials.a2 == "" ||
       authCredentials.a3 == ""
     ) {
-      return displayMessage("Fill out credentials");
+      return displayMessage(
+        "Fill out credentials, in the extension!",
+        "#715100"
+      );
     }
 
     displayMessage("Logging you in..");
@@ -63,8 +68,9 @@ browser.storage.local.get().then((res) => {
       body: params,
     });
     fetching.then((q) => {
-      console.log(q);
       q.text().then((str) => {
+        console.log(str);
+
         if (str === authCredentials.q1) {
           ans = authCredentials.a1;
         } else if (str === authCredentials.q2) {
@@ -90,11 +96,11 @@ browser.storage.local.get().then((res) => {
             result.statusText == "OK" &&
             result.redirected
           ) {
-            console.log(result);
             location.href = result.url;
           } else {
             displayMessage(
-              "Wrong Credentials set. Please update your credentials"
+              "Wrong Credentials set. Please update your credentials",
+              "#a4000f"
             );
           }
         });
@@ -107,18 +113,18 @@ browser.storage.local.get().then((res) => {
  * @description Displays message on top of page
  * @param {string} message
  */
-function displayMessage(message) {
-  if (!document.getElementById("erpautologinmessage")) {
-    const msg = document.createElement("div");
-    msg.id = "erpautologinmessage";
-
-    msg.setAttribute(
-      "style",
-      "background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);color: white; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row"
-    );
-    msg.textContent = message;
-    document.body.prepend(msg);
-  } else {
-    document.getElementById("erpautologinmessage").textContent = message;
+function displayMessage(message, color = "#45a1ff") {
+  if (document.getElementById("erpautologinmessage")) {
+    document.getElementById("erpautologinmessage").remove();
   }
+
+  const msg = document.createElement("div");
+  msg.id = "erpautologinmessage";
+
+  msg.setAttribute(
+    "style",
+    `background: ${color};color: #ffffff;font-weight:500; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row`
+  );
+  msg.textContent = message;
+  document.body.prepend(msg);
 }
