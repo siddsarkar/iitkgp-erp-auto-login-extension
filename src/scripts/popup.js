@@ -76,6 +76,14 @@ mBtn.onclick = () => {
   }
 };
 
+document.querySelectorAll(".quick-link").forEach((element) => {
+  element.onclick = () => {
+    setTimeout(() => {
+      window.close();
+    }, 10);
+  };
+});
+
 /**********************
  * ACTION CONTROLLERS *
  **********************/
