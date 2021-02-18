@@ -35,7 +35,7 @@
   "permissions": ["storage", "https://erp.iitkgp.ac.in/"],
   "browser_specific_settings": {
     "gecko": {
-      "id": "erpautologin@siddsarkar.github.io"
+      "id": "{fa21e38a-41b3-4891-8f6b-8ba837e2df65}"
     }
   }
 }
