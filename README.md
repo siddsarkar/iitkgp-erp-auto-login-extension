@@ -114,13 +114,10 @@ Thanks to [vs code](https://code.visualstudio.com/) and [web-ext](https://www.np
 
 ## Screenshots
 
-- latest-release-v3
-  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/old/preview3.0.png)
-
-- v4_Light - Coming Soon
+- v4_Light - Released!
   ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_light.png)
 
-- v4_Dark - Coming Soon
+- v4_Dark - Released!
   ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_dark.png)
 
 ## Copyright and license
