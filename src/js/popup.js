@@ -11,6 +11,7 @@
  */
 
 import '../css/popup.scss'
+import getSecurityQues from './utils/getSecurityQues'
 
 /** ***************
  * HTML ELEMENTS *
@@ -259,17 +260,7 @@ async function getQuestions(cb) {
         logger(message, 'cross')
     }
 
-    const params = `user_id=${usernameInput.value}`
-    const url =
-        'https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm'
-    const res = await fetch(url, {
-        method: 'POST',
-        headers: new Headers({
-            'Content-type': 'application/x-www-form-urlencoded'
-        }),
-        body: params
-    })
-    const q = await res.text() // Question or FALSE
+    const q = await getSecurityQues(usernameInput.value) // Question or FALSE
 
     if (q !== 'FALSE') {
         passwordInput.removeAttribute('disabled')

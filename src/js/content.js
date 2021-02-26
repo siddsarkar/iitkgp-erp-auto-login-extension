@@ -1,7 +1,6 @@
-/**
- * * ------------ README FIRST ----------------
- *
- */
+import extractToken from './helpers/extractToken'
+import authRequest from './utils/authRequest'
+import getSecurityQues from './utils/getSecurityQues'
 
 console.log('execute_c_script')
 
@@ -16,7 +15,6 @@ function displayMessage(message, color = '#45a1ff') {
 
     const msg = document.createElement('div')
     msg.id = 'erpautologinmessage'
-
     msg.setAttribute(
         'style',
         `background: ${color};color: #ffffff;font-weight:500; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row`
@@ -56,44 +54,21 @@ browser.storage.local.get().then((res) => {
                 '#715100'
             )
         }
-
         displayMessage('Logging you in..')
-        const ssToken = window.location.search.replace(
-            new RegExp(
-                `^(?:.*[&\\?]${encodeURIComponent(
-                    'sessionToken'
-                ).replace(/[.+*]/g, '\\$&')}(?:\\=([^&]*))?)?.*$`,
-                'i'
-            ),
-            '$1'
-        )
-        const rURL = window.location.search.replace(
-            new RegExp(
-                `^(?:.*[&\\?]${encodeURIComponent(
-                    'requestedUrl'
-                ).replace(/[.+*]/g, '\\$&')}(?:\\=([^&]*))?)?.*$`,
-                'i'
-            ),
-            '$1'
-        )
 
+        const ssToken = extractToken(
+            window.location.search,
+            'sessionToken'
+        )
+        const rURL = extractToken(
+            window.location.search,
+            'requestedUrl'
+        )
         let ans
 
-        // qes
-        const params = `user_id=${authCredentials.username}`
-        const url =
-            'https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm'
-        const fetching = fetch(url, {
-            method: 'POST',
-            headers: new Headers({
-                'Content-type': 'application/x-www-form-urlencoded'
-            }),
-            body: params
-        })
-        fetching.then((q) => {
-            q.text().then((str) => {
-                console.log(str)
-
+        const fetching = getSecurityQues(authCredentials.username)
+        fetching.then((str) => {
+            if (str !== 'FALSE') {
                 if (str === authCredentials.q1) {
                     ans = authCredentials.a1
                 } else if (str === authCredentials.q2) {
@@ -101,18 +76,12 @@ browser.storage.local.get().then((res) => {
                 } else {
                     ans = authCredentials.a3
                 }
-
-                const authParams = `user_id=${authCredentials.username}&password=${authCredentials.password}&answer=${ans}&sessionToken=${ssToken}&requestedUrl=${rURL}`
-                const authUrl =
-                    'https://erp.iitkgp.ac.in/SSOAdministration/auth.htm'
-
-                const authenticating = fetch(authUrl, {
-                    method: 'POST',
-                    headers: new Headers({
-                        'Content-type':
-                            'application/x-www-form-urlencoded'
-                    }),
-                    body: authParams
+                const authenticating = authRequest({
+                    username: authCredentials.username,
+                    password: authCredentials.password,
+                    answer: ans,
+                    sessionToken: ssToken,
+                    requestedUrl: rURL
                 })
 
                 authenticating.then((result) => {
@@ -130,7 +99,7 @@ browser.storage.local.get().then((res) => {
                         )
                     }
                 })
-            })
+            }
         })
     }
 })
