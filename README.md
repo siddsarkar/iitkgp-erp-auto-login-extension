@@ -24,18 +24,18 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Table of contents
 
-- [Why Us?](#why-us)
-- [Permissions](#permissions-used)
-- [Installation](#installation)
-- [Bugs and feature requests](#bugs-and-feature-requests)
-- [Previous releases](#previous-releases)
-- [Todos](#to-do)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Creator](#creator)
-- [Thanks](#thanks)
-- [Screenshots](#screenshots)
-- [Copyright and license](#copyright-and-license)
+-   [Why Us?](#why-us)
+-   [Permissions](#permissions-used)
+-   [Installation](#installation)
+-   [Bugs and feature requests](#bugs-and-feature-requests)
+-   [Previous releases](#previous-releases)
+-   [Todos](#to-do)
+-   [Contributing](#contributing)
+-   [Versioning](#versioning)
+-   [Creator](#creator)
+-   [Thanks](#thanks)
+-   [Screenshots](#screenshots)
+-   [Copyright and license](#copyright-and-license)
 
 ## Status
 
@@ -49,28 +49,28 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Why Us?
 
-- Local only extension (serverless)
-- No fancy permissions, minimum [permissions](#permissions-used) used to work.
-- Light on browser, size ~45-50 kilobytes
-- Updates every 2 months
-- Open source and documented code
+-   Local only extension (serverless)
+-   No fancy permissions, minimum [permissions](#permissions-used) used to work.
+-   Light on browser, size ~45-50 kilobytes
+-   Updates every 2 months
+-   Open source and documented code
 
 ## Permissions Used
 
-- [Storage Local](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API by Mozilla.
-- Access to [erp.iitkgp.ac.in](https://erp.iitkgp.ac.in) to run script for automatic login
+-   [Storage Local](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API by Mozilla.
+-   Access to [erp.iitkgp.ac.in](https://erp.iitkgp.ac.in) to run script for automatic login
 
 ## Installation
 
 Several Installation options are available:
 
-- From Official [AMO Website](https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/)
-  - Click on `Add to firefox` on the extension page.
-- Manual Installation (Beta users)
-  - [Download the latest release](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) (.xpi) file to your computer.
-  - Open Add-on Manager from options (or) by pressing Ctrl/Cmd+Shift+A on Widows/Mac
-  - Click the gear icon gear icon in the upper-right area of the Add-on Manager Extensions panel.
-  - Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
+-   From Official [AMO Website](https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/)
+    -   Click on `Add to firefox` on the extension page.
+-   Manual Installation (Beta users)
+    -   [Download the latest release](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) (.xpi) file to your computer.
+    -   Open Add-on Manager from options (or) by pressing Ctrl/Cmd+Shift+A on Widows/Mac
+    -   Click the gear icon gear icon in the upper-right area of the Add-on Manager Extensions panel.
+    -   Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
 
 ## Bugs and feature requests
 
@@ -82,12 +82,12 @@ You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-er
 
 ## To do
 
-- [ ] Add Overlay during autofill, show animation loader
-- [x] Add a reset warning
-- [ ] Multiple users support
-- [x] Add autofill mode
-- [x] Show Changelogs on update
-- [ ] Add Uninstall, Install pages to show
+-   [ ] Add Overlay during autofill, show animation loader
+-   [x] Add a reset warning
+-   [ ] Multiple users support
+-   [x] Add autofill mode
+-   [x] Show Changelogs on update
+-   [ ] Add Uninstall, Install pages to show
 
 ## Contributing
 
@@ -105,8 +105,8 @@ See [the Releases section of our GitHub project](https://github.com/siddsarkar/i
 
 ### **Siddhartha Sarkar**
 
-- <https://twitter.com/ssarkar791>
-- <https://github.com/siddsarkar>
+-   <https://twitter.com/ssarkar791>
+-   <https://github.com/siddsarkar>
 
 ## Thanks
 
@@ -114,11 +114,11 @@ Thanks to [vs code](https://code.visualstudio.com/) and [web-ext](https://www.np
 
 ## Screenshots
 
-- v4_Light - Released!
-  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_light.png)
+-   v4_Light - Released!
+    ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_light.png)
 
-- v4_Dark - Released!
-  ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_dark.png)
+-   v4_Dark - Released!
+    ![PC](https://raw.githubusercontent.com/siddsarkar/iitkgp-erp-auto-login-extension/master/screenshots/v4_dark.png)
 
 ## Copyright and license
 

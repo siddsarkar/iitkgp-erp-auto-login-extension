@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link rel="stylesheet" href="css/popup.css" />
+        <title>ERP Auto Login</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <main class="panel-container" id="panel-container">
+                <section id="p-01" class="panel">
+                    <div id="panel-home" class="panel-card">
+                        <div class="panel-card-label">Login To</div>
+
+                        <a
+                            href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#home"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    ERP Home
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <a
+                            href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=16"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#cap"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Academic
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <a
+                            href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=30"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#building"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Guest House
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <a
+                            href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#briefcase"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    CDC
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="panel-card-divider"></div>
+
+                        <a
+                            href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#star"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Rate this Extension
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="panel-card-divider"></div>
+                        <div class="panel-card-label">
+                            Preferences
+                        </div>
+
+                        <div class="panel-card-link">
+                            <div class="panel-card-link-icon">
+                                <input
+                                    type="checkbox"
+                                    name="theme"
+                                    id="theme"
+                                />
+                            </div>
+                            <div class="panel-card-link-title">
+                                Dark Theme
+                            </div>
+                            <div class="panel-card-link-external">
+                                <p id="theme-info"></p>
+                            </div>
+                        </div>
+
+                        <div class="panel-card-link">
+                            <div class="panel-card-link-icon">
+                                <input
+                                    type="checkbox"
+                                    name="login-mode"
+                                    id="auto-login"
+                                />
+                            </div>
+                            <div class="panel-card-link-title">
+                                Automatic Login
+                            </div>
+                            <div class="panel-card-link-external">
+                                <p id="auto-login-info"></p>
+                            </div>
+                        </div>
+
+                        <div class="panel-card-divider"></div>
+                        <div class="panel-card-label">Sources</div>
+
+                        <a href="#panel-about">
+                            <div class="panel-card-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#info"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    About
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#chevron-right"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#panel-update">
+                            <div class="panel-card-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#sync"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Update Check
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#chevron-right"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+                <section id="p-02" class="panel">
+                    <div id="panel-about" class="panel-card">
+                        <div class="panel-header">
+                            <a href="#panel-home">
+                                <div class="panel-header-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#chevron-left"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </a>
+                            About
+                        </div>
+
+                        <a
+                            href="https://www.paypal.com/paypalme/siddsarkar"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#heart"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Donate
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#info"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Report a bug
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="panel-card-divider"></div>
+                        <div class="panel-card-label">
+                            Developer contact
+                        </div>
+
+                        <a
+                            href="https://t.me/siddsarkar"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#airplane"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Telegram
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://siddsarkar.github.io/"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#web"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Website
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="panel-card-divider"></div>
+                        <div class="panel-card-label">Sources</div>
+
+                        <a
+                            href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#github"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Github
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            href="https://design.firefox.com/photon/"
+                            target="_blank"
+                        >
+                            <div class="panel-card-link quick-link">
+                                <div class="panel-card-link-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#firefox"
+                                        ></use>
+                                    </svg>
+                                </div>
+                                <div class="panel-card-link-title">
+                                    Photon Design
+                                </div>
+                                <div class="panel-card-link-external">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#external-link"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="panel-card-footer quick-link">
+                            designed & developed by
+                            <a
+                                target="_blank"
+                                href="https://github.com/siddsarkar"
+                                >siddharth</a
+                            >
+                            with
+                            <span>❤</span>
+                        </div>
+                    </div>
+                </section>
+                <section id="p-03" class="panel">
+                    <div id="panel-update" class="panel-card">
+                        <div class="panel-header">
+                            <a href="#panel-home">
+                                <div class="panel-header-icon">
+                                    <svg>
+                                        <use
+                                            href="assets/icons.svg#chevron-left"
+                                        ></use>
+                                    </svg>
+                                </div>
+                            </a>
+                            Updates
+                        </div>
+
+                        <div class="panel-card-icon">
+                            <img
+                                src="assets/images/ext_icon.png"
+                                height="40px"
+                                alt="ext-icon"
+                            />
+                            <p>
+                                ERP Auto Login Version
+                                <span id="ext-version"></span>
+                            </p>
+                        </div>
+
+                        <div class="panel-card-link" id="update">
+                            <div class="panel-card-link-icon">
+                                <!-- default -->
+                                <svg id="update-default-icon">
+                                    <use
+                                        href="assets/icons.svg#sync"
+                                    ></use>
+                                </svg>
+
+                                <!-- update availabe -->
+                                <svg
+                                    id="update-found-icon"
+                                    style="display: none"
+                                >
+                                    <use
+                                        href="assets/icons.svg#warning"
+                                    ></use>
+                                </svg>
+                                <!-- no update availabe -->
+                                <svg
+                                    id="no-update-found-icon"
+                                    style="display: none"
+                                >
+                                    <use
+                                        href="assets/icons.svg#check"
+                                    ></use>
+                                </svg>
+                            </div>
+                            <div
+                                class="panel-card-link-title"
+                                id="update-btn"
+                            >
+                                Check For Updates
+                            </div>
+                            <div class="panel-card-link-external">
+                                <div id="update-info"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <div class="card">
+                <div class="card-menu-icon" id="maximize-btn">
+                    <svg>
+                        <use href="assets/icons.svg#menu"></use>
+                    </svg>
+                </div>
+
+                <div class="card-icon">
+                    <img
+                        id="form-header-icon"
+                        src="assets/images/header_icon.png"
+                        alt=" icon"
+                    />
+                </div>
+
+                <div class="card-header">
+                    <div class="card-header-main">
+                        ERP Auto Login - IITKGP
+                    </div>
+                    <div id="copyright" class="card-header-sub"></div>
+                </div>
+
+                <div class="message" id="log-class">
+                    <svg class="message-icon">
+                        <use
+                            href="assets/icons.svg#info"
+                            id="log-icon"
+                        ></use>
+                    </svg>
+                    <p id="log">It is possible to wrap?</p>
+                    <!-- ACTIONS BUTTONS -->
+                    <!-- <div class="action">Yes Clear</div> -->
+                    <!-- <img class="icon-close" src="assets/svg/Close.svg" alt="close" /> -->
+                </div>
+
+                <div class="form">
+                    <div class="form-label">
+                        <label>Login Info</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#lock"
+                                ></use>
+                            </svg>
+                        </div>
+                        <input
+                            autocomplete="off"
+                            id="username"
+                            name="rollNo"
+                            placeholder="Roll Number"
+                            type="text"
+                            required="required"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#key"
+                                ></use>
+                            </svg>
+                        </div>
+                        <input
+                            id="password"
+                            disabled
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            required="required"
+                        />
+                    </div>
+                    <div class="form-separator"></div>
+                    <div class="form-label">
+                        <label>Security Questions</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#help"
+                                ></use>
+                            </svg>
+                        </div>
+                        <input
+                            id="a1"
+                            disabled
+                            placeholder="loading"
+                            type="password"
+                            required="required"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#help"
+                                ></use>
+                            </svg>
+                        </div>
+                        <input
+                            id="a2"
+                            disabled
+                            placeholder="loading"
+                            type="password"
+                            required="required"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#help"
+                                ></use>
+                            </svg>
+                        </div>
+                        <input
+                            id="a3"
+                            disabled
+                            placeholder="loading"
+                            type="password"
+                            required="required"
+                        />
+                    </div>
+                    <!-- <div class="form-separator"></div> -->
+                    <div class="form-group">
+                        <button class="btn-primary" id="form-done">
+                            Done
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#form-check"
+                                ></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button id="reset" class="btn-secondary">
+                            Clear Data
+
+                            <svg>
+                                <use
+                                    href="assets/icons.svg#bin"
+                                ></use>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div
+                        class="form-link quick-link"
+                        title="Rate this Extension"
+                    >
+                        <a
+                            target="_blank"
+                            href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/"
+                            >Found helpful? Rate us
+                        </a>
+                    </div>
+                    <div
+                        class="form-link quick-link"
+                        title="Report a bug"
+                    >
+                        <a
+                            target="_blank"
+                            href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new"
+                            >Encountered an issue? Report here
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/popup.js"></script>
+    </body>
+</html>
