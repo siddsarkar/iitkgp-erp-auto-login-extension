@@ -540,7 +540,7 @@ function testRoll() {
         logger('Enter a valid Roll No', 'cross')
         return
     }
-    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9]{5}/ // ? regex for IITKGP ROLL-NUMBERS
+    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
     const OK = re.exec(usernameInput.value)
     if (!OK) {
         // console.error(usernameInput.value + " isn't a roll number!");
