@@ -4,7 +4,6 @@ const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    devtool: 'source-map',
     entry: {
         background: './src/js/background.js',
         content: './src/js/content.js',
