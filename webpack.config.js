@@ -4,10 +4,12 @@ const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+    stats: 'errors-only',
     entry: {
         background: './src/js/background.js',
         content: './src/js/content.js',
-        popup: './src/js/popup.js'
+        popup: './src/js/popup.js',
+        autofill: './src/js/scripts/autofill.js'
     },
     output: {
         path: path.join(__dirname, 'addon'),

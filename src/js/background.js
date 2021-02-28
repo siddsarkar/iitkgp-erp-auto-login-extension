@@ -47,3 +47,21 @@ function messageHandler(request, sender, sendResponse) {
 }
 
 browser.runtime.onMessage.addListener(messageHandler)
+
+browser.menus.create({
+    id: 'autofill',
+    title: 'Autofill Login',
+    contexts: ['password'],
+    documentUrlPatterns: [
+        '*://erp.iitkgp.ac.in/SSOAdministration/login.htm*'
+    ]
+})
+
+browser.menus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === 'autofill') {
+        console.log(info, tab)
+        const executing = browser.tabs.executeScript(tab.id, {
+            file: 'js/autofill.js'
+        })
+    }
+})

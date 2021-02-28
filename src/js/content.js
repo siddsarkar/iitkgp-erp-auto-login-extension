@@ -4,6 +4,10 @@ import getSecurityQues from './utils/getSecurityQues'
 
 console.log('execute_c_script')
 
+// temp
+const answerdiv = document.getElementById('answer_div')
+answerdiv.addEventListener('', (e) => console.log(e))
+
 /**
  * @description Displays message on top of page
  * @param {string} message
