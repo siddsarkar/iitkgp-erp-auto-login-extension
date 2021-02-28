@@ -4,9 +4,8 @@ const answer = document.getElementById('answer')
 const answerdiv = document.getElementById('answer_div')
 const pass = document.getElementById('password')
 const inject = document.getElementById('signin')
-// const btn = document.getElementsByClassName('btn btn-primary')4
 
-answerdiv.addEventListener('change', (e) => console.log(e))
+console.log('execute_autofill_script')
 
 /**
  * @description Displays message on top of page
@@ -28,36 +27,65 @@ function displayMessage(message, color = '#45a1ff') {
 }
 
 function authstart(cred) {
-    console.log('hhhu')
     inject.focus()
     loginid.focus()
     loginid.value = cred.username
     loginid.blur()
     pass.value = cred.password
-    setTimeout(() => {
-        if (quesn.innerHTML === cred.q1) {
-            answer.value = cred.a1
-            // setTimeout(() => {
-            //     btn[0].click()
-            // }, 100)
-        } else if (quesn.innerHTML === cred.q2) {
-            answer.value = cred.a2
-            // setTimeout(() => {
-            //     btn[0].click()
-            // }, 100)
-        } else if (quesn.innerHTML === cred.q3) {
-            answer.value = cred.a3
-            // setTimeout(() => {
-            //     btn[0].click()
-            // }, 100)
-        } else {
-            displayMessage('BAD CREDENTIALS ! Please check again!')
-        }
-    }, 3000)
 }
 
 browser.storage.local.get('authCredentials').then((data) => {
-    if (!data.authCredentials)
+    if (!data.authCredentials) {
         return displayMessage('No Login Info Found!')
-    authstart(data.authCredentials)
+    }
+    const { authCredentials } = data
+    if (
+        authCredentials.username === '' ||
+        authCredentials.password === '' ||
+        authCredentials.q1 === 'loading' ||
+        authCredentials.q2 === 'loading' ||
+        authCredentials.q3 === 'loading' ||
+        authCredentials.a1 === '' ||
+        authCredentials.a2 === '' ||
+        authCredentials.a3 === ''
+    ) {
+        return displayMessage(
+            'Fill out credentials, in the extension!',
+            '#715100'
+        )
+    }
+    displayMessage('Filling Info..')
+    authstart(authCredentials)
+})
+
+loginid.addEventListener('blur', () => {
+    const checking = setInterval(() => {
+        if (answerdiv.classList.contains('hidden')) return
+        browser.storage.local
+            .get('authCredentials')
+            .then(({ authCredentials }) => {
+                if (quesn.innerHTML === authCredentials.q1) {
+                    answer.value = authCredentials.a1
+                    displayMessage(
+                        'Filled Succesfully! Click Sign In',
+                        '#058b00'
+                    )
+                } else if (quesn.innerHTML === authCredentials.q2) {
+                    answer.value = authCredentials.a2
+                    displayMessage(
+                        'Filled Succesfully! Click Sign In',
+                        '#058b00'
+                    )
+                } else if (quesn.innerHTML === authCredentials.q3) {
+                    answer.value = authCredentials.a3
+                    displayMessage(
+                        'Filled Succesfully! Click Sign In',
+                        '#058b00'
+                    )
+                } else {
+                    displayMessage('Bad Credentials Set!')
+                }
+                clearInterval(checking)
+            })
+    }, 1000)
 })
