@@ -1,27 +1,13 @@
 import extractToken from './helpers/extractToken'
 import authRequest from './utils/authRequest'
 import getSecurityQues from './utils/getSecurityQues'
+import displayMessage from './helpers/displayMessage'
 
 console.log('execute_c_script')
 
-/**
- * @description Displays message on top of page
- * @param {string} message
- */
-function displayMessage(message, color = '#45a1ff') {
-    if (document.getElementById('erpautologinmessage')) {
-        document.getElementById('erpautologinmessage').remove()
-    }
-
-    const msg = document.createElement('div')
-    msg.id = 'erpautologinmessage'
-    msg.setAttribute(
-        'style',
-        `background: ${color};color: #ffffff;font-weight:500; width:100%; height:35px; text-align: center;display:flex; justify-content: center; align-items: center;flex-direction:row`
-    )
-    msg.textContent = message
-    document.body.prepend(msg)
-}
+// @debug
+const answerDiv = document.getElementById('answer_div')
+answerDiv.addEventListener('', (e) => console.log(e))
 
 browser.storage.local.get().then((res) => {
     if (!res.authCredentials) {

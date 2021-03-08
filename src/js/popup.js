@@ -96,25 +96,27 @@ document.querySelectorAll('.quick-link').forEach((element) => {
  * @description updates ext-storage on user interactions
  */
 function storeSettings() {
-    browser.storage.local.set({
-        authCredentials: {
-            username: usernameInput.value,
-            password: passwordInput.value,
-            q1: _a1.placeholder,
-            a1: _a1.value,
-            q2: _a2.placeholder,
-            a2: _a2.value,
-            q3: _a3.placeholder,
-            a3: _a3.value,
-            dark: themeBtn.checked,
-            autoLogin: auto.checked
-        }
-    })
+    browser.storage.local
+        .set({
+            authCredentials: {
+                username: usernameInput.value,
+                password: passwordInput.value,
+                q1: _a1.placeholder,
+                a1: _a1.value,
+                q2: _a2.placeholder,
+                a2: _a2.value,
+                q3: _a3.placeholder,
+                a3: _a3.value,
+                dark: themeBtn.checked,
+                autoLogin: auto.checked
+            }
+        })
+        .then(() => console.info('Updated Storage'))
 }
 
 /**
- * @description desplays message on ui
- * @param {String} message messsge to display
+ * @description displays message on ui
+ * @param {String} message message to display
  * @param {String} iconId id of svg icon to use
  */
 function logger(message, iconId = 'info') {
@@ -205,18 +207,18 @@ function updateUI(restoredSettings) {
         _a2.value !== '' &&
         _a3.value !== ''
     ) {
-        _a1.setAttribute('disabled', true)
-        _a2.setAttribute('disabled', true)
-        _a3.setAttribute('disabled', true)
+        _a1.disabled = true
+        _a2.disabled = true
+        _a3.disabled = true
         logger(
             `You are all set! ${authCredentials.username}`,
             'check'
         )
     } else {
         logger('Fill security answers!', 'warning')
-        _a1.removeAttribute('disabled')
-        _a2.removeAttribute('disabled')
-        _a3.removeAttribute('disabled')
+        _a1.disabled = false
+        _a2.disabled = false
+        _a3.disabled = false
     }
 }
 
@@ -228,7 +230,7 @@ function updateUI(restoredSettings) {
  * @description network req done here
  * @param {Function} cb Callback function
  */
-async function getQuestions(cb) {
+function getQuestions(cb) {
     if (
         _a1.placeholder !== 'loading' &&
         _a2.placeholder !== 'loading' &&
@@ -240,50 +242,53 @@ async function getQuestions(cb) {
     /**
      * @description Callback after fetch request
      * @param {String} message error msg from fetch
-     * @param {Boolean} done success/failure of fetch (valid/invalid rollno)
+     * @param {Boolean} done success/failure of fetch (valid/invalid rollNo)
      */
     function httpCallback(message, done) {
         if (done) {
-            // fetch success and rollno exist
+            // fetch success and rollNo exist
 
             if (
                 _a1.placeholder === 'loading' ||
                 _a2.placeholder === 'loading' ||
                 _a3.placeholder === 'loading'
             ) {
-                return cb('Re call getquestion', false)
+                return cb('Re call getQuestion', false)
             }
             return cb('Got all Questions!', true)
         }
-        // Invalid rollno (does not exist)
+        // Invalid rollNo (does not exist)
 
         logger(message, 'cross')
     }
 
-    const q = await getSecurityQues(usernameInput.value) // Question or FALSE
-
-    if (q !== 'FALSE') {
-        passwordInput.removeAttribute('disabled')
-        if (_a1.placeholder === 'loading') {
-            _a1.placeholder = q
-            _a1.removeAttribute('disabled')
-        } else if (
-            _a2.placeholder === 'loading' &&
-            q !== _a1.placeholder
-        ) {
-            _a2.placeholder = q
-            _a2.removeAttribute('disabled')
-        } else if (q !== _a1.placeholder && q !== _a2.placeholder) {
-            _a3.placeholder = q
-            _a3.removeAttribute('disabled')
+    getSecurityQues(usernameInput.value).then((q) => {
+        if (q !== 'FALSE') {
+            passwordInput.removeAttribute('disabled')
+            if (_a1.placeholder === 'loading') {
+                _a1.placeholder = q
+                _a1.removeAttribute('disabled')
+            } else if (
+                _a2.placeholder === 'loading' &&
+                q !== _a1.placeholder
+            ) {
+                _a2.placeholder = q
+                _a2.removeAttribute('disabled')
+            } else if (
+                q !== _a1.placeholder &&
+                q !== _a2.placeholder
+            ) {
+                _a3.placeholder = q
+                _a3.removeAttribute('disabled')
+            }
+            return httpCallback('Got a Question', true)
         }
-        return httpCallback('Got a Question', true)
-    }
-    return httpCallback('Roll No does not exist, Retry!', false)
+        return httpCallback('Roll No does not exist, Retry!', false)
+    })
 }
 
 /**
- * @description Caller for `getQuestions` untill we get all 3 questions
+ * @description Caller for `getQuestions` until we get all 3 questions
  * @param {String} message message from `httpCallback`
  * @param {Boolean} done tells if all messages loaded.
  */
@@ -369,10 +374,10 @@ function resetHandler() {
     logClass.appendChild(actionBtnYes)
     logClass.appendChild(actionBtnCancel)
     logger('Are you sure!', 'warning')
-    reset.setAttribute('disabled', true)
+    reset.disabled = true
 
     actionBtnYes.onclick = () => {
-        reset.removeAttribute('disabled')
+        reset.disabled = false
         logClass.removeChild(actionBtnYes)
         logClass.removeChild(actionBtnCancel)
         usernameInput.value = ''
@@ -383,10 +388,10 @@ function resetHandler() {
         _a1.placeholder = 'loading'
         _a2.placeholder = 'loading'
         _a3.placeholder = 'loading'
-        passwordInput.setAttribute('disabled', true)
-        _a1.setAttribute('disabled', true)
-        _a2.setAttribute('disabled', true)
-        _a3.setAttribute('disabled', true)
+        passwordInput.disabled = true
+        _a1.disabled = true
+        _a2.disabled = true
+        _a3.disabled = true
 
         browser.storage.local
             .set({
@@ -452,27 +457,31 @@ function toggleDark() {
 /**
  * @description get current theme from storage and inverse it
  * @param {object} curr Storage
- * @param {string} id target checkbox's id
+ * @param {string} id target checkbox id
  */
 function updateCheckBox(curr, id) {
     const { authCredentials } = curr
 
     if (id === 'theme') {
-        browser.storage.local.set({
-            authCredentials: {
-                ...authCredentials,
-                dark: !authCredentials.dark
-            }
-        })
+        browser.storage.local
+            .set({
+                authCredentials: {
+                    ...authCredentials,
+                    dark: !authCredentials.dark
+                }
+            })
+            .then(() => console.info('Updated theme on Storage'))
 
         toggleDark()
     } else if (id === 'auto-login') {
-        browser.storage.local.set({
-            authCredentials: {
-                ...authCredentials,
-                autoLogin: !authCredentials.autoLogin
-            }
-        })
+        browser.storage.local
+            .set({
+                authCredentials: {
+                    ...authCredentials,
+                    autoLogin: !authCredentials.autoLogin
+                }
+            })
+            .then(() => console.info('Updated auto-login on Storage'))
         if (authCredentials.autoLogin) {
             autoInfo.textContent = 'off'
         } else autoInfo.textContent = 'on'
@@ -488,7 +497,7 @@ function updateCheckBox(curr, id) {
  */
 function handleMessageResponse(response) {
     if (response.action === 'update_check') {
-        const { update, message, type } = response
+        const { update, message } = response
         updateInfo.textContent = ''
         document.getElementById('update-btn').textContent = message
 
@@ -499,16 +508,16 @@ function handleMessageResponse(response) {
             document.getElementById(
                 'update-found-icon'
             ).style.display = 'block'
-            document.getElementById('update-btn').setAttribute =
-                'disabled'
-            const whatsnew = document.createElement('p')
-            whatsnew.id = 'update_checked'
-            whatsnew.className = 'panel-card-label'
-            whatsnew.innerText = update.release_notes['en-US']
+            document.getElementById('update-btn').disabled = true
+
+            const whatsNew = document.createElement('p')
+            whatsNew.id = 'update_checked'
+            whatsNew.className = 'panel-card-label'
+            whatsNew.innerText = update.release_notes['en-US']
 
             document
                 .getElementById('panel-update')
-                .appendChild(whatsnew)
+                .appendChild(whatsNew)
         } else {
             document.getElementById(
                 'update-default-icon'
@@ -540,7 +549,7 @@ function testRoll() {
         logger('Enter a valid Roll No', 'cross')
         return
     }
-    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
+    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
     const OK = re.exec(usernameInput.value)
     if (!OK) {
         // console.error(usernameInput.value + " isn't a roll number!");
