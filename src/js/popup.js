@@ -43,12 +43,11 @@ const updateBtn = document.getElementById('update')
 const updateInfo = document.getElementById('update-info')
 
 // Set Copyright Text
-document.getElementById(
-    'copyright'
-).textContent = `Copyright©${new Date().getFullYear()}`
-document.getElementById(
-    'ext-version'
-).textContent = browser.runtime.getManifest().version
+const cText = document.getElementById('copyright')
+const extVer = document.getElementById('ext-version')
+
+cText.innerText = `Copyright©${new Date().getFullYear()}`
+extVer.innerText = browser.runtime.getManifest().version
 
 /** **************
  * DEVELOP AREA *
