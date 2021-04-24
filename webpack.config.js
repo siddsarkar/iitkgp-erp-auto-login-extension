@@ -4,10 +4,12 @@ const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+    stats: 'errors-only',
     entry: {
         background: './src/js/background.js',
         content: './src/js/content.js',
-        popup: './src/js/popup.js'
+        popup: './src/js/popup.js',
+        autofill: './src/js/scripts/autofill.js'
     },
     output: {
         path: path.join(__dirname, 'addon'),
@@ -22,6 +24,12 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(woff)$/,
+                use: {
+                    loader: 'url-loader'
+                }
             }
         ]
     },
@@ -35,24 +43,17 @@ module.exports = {
                     from: '**/*',
                     context: 'src/',
                     globOptions: {
-                        ignore: ['**/*.scss', '**/js/**']
+                        ignore: [
+                            '**/*.scss',
+                            '**/js/**',
+                            '**/fonts/**'
+                        ]
                     }
                 }
             ]
         })
     ],
     optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    mangle: false,
-                    compress: false,
-                    output: {
-                        beautify: true,
-                        indent_level: 2
-                    }
-                }
-            })
-        ]
+        minimizer: [new TerserPlugin()]
     }
 }

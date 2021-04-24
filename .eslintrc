@@ -22,12 +22,6 @@
         "no-console": "off",
         "no-unsanitized/method": "error",
         "no-unsanitized/property": "error",
-        "prettier/prettier": [
-            "error",
-            {
-                "printWidth": 70,
-                "trailingComma": "none"
-            }
-        ]
+        "prettier/prettier": ["error"]
     }
 }

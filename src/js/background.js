@@ -4,7 +4,7 @@
  * ? Use `background.js` only to execute user actions
  * ? Follow redux pattern dispatch -> execute(here) -> respond
  *
- * TODO: Add Onboarding/Welcome Page
+ * TODO: Add Onboard/Welcome Page
  * TODO: Add more functions
  */
 
@@ -38,6 +38,7 @@ const fetchUpdate = async (currentVersion = '1.0') => {
  * @returns object response that includes requested action
  */
 /* eslint-disable no-unused-vars */
+// noinspection JSUnusedLocalSymbols
 function messageHandler(request, sender, sendResponse) {
     if (request.action === 'update_check') {
         return fetchUpdate(
@@ -47,3 +48,22 @@ function messageHandler(request, sender, sendResponse) {
 }
 
 browser.runtime.onMessage.addListener(messageHandler)
+
+browser.menus.create({
+    id: 'autofill',
+    title: 'Autofill Login',
+    contexts: ['password'],
+    documentUrlPatterns: [
+        '*://erp.iitkgp.ac.in/SSOAdministration/login.htm*'
+    ]
+})
+
+browser.menus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === 'autofill') {
+        browser.tabs
+            .executeScript(tab.id, {
+                file: 'js/autofill.js'
+            })
+            .then(() => console.log('Auto-fill Done'))
+    }
+})

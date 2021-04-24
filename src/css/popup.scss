@@ -27,14 +27,28 @@
     --primary-icon: #{$primary-icon-dark};
     --secondary-icon: #{$secondary-icon-dark};
 }
+/* montserrat-regular - latin */
+@font-face {
+    font-family: 'Primary';
+    font-style: normal;
+    font-weight: normal;
+    src: local(''),
+        url('../assets/fonts/roboto-v27-latin-regular.woff')
+            format('woff');
+}
+@font-face {
+    font-family: 'Secondary';
+    font-style: normal;
+    font-weight: normal;
+    src: local(''),
+        url('../assets/fonts/josefin-sans-v17-latin-regular.woff')
+            format('woff');
+}
 
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    transition: all 0.3s ease;
     scrollbar-width: none;
     ::-webkit-scrollbar {
         display: none;
@@ -43,7 +57,7 @@
 
 html,
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Primary;
     background: var(--color-bg);
 }
 
@@ -77,7 +91,7 @@ a {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-radius: 2px 2px 0 0;
+    border-radius: 4px 4px 0 0;
     padding-bottom: 8px;
     box-shadow: 0 0 4px rgba(12, 12, 13, 0.2);
     background: var(--color-card-bg);
@@ -142,11 +156,14 @@ a {
             font-size: 17px;
             font-weight: 500;
             color: var(--color-text-primary);
+            font-family: Secondary;
         }
 
         &-sub {
             font-size: 11px;
             color: var(--secondary-icon);
+            font-family: Secondary;
+            margin-top: 3px;
         }
     }
 
@@ -184,6 +201,7 @@ a {
             width: 100%;
             color: $primary-40;
             font-size: 11px;
+            font-family: Secondary;
 
             &:hover {
                 text-decoration: underline;
@@ -219,6 +237,7 @@ a {
             }
 
             input {
+                font-family: Secondary;
                 height: 32px;
                 background: var(--color-input-bg);
                 color: var(--color-text-primary);
@@ -335,8 +354,8 @@ a {
         }
 
         &-label {
-            font-size: 13px;
             color: var(--color-text-secondary);
+            font-family: Secondary;
             padding: 4px 16px;
             font-size: 13px;
             line-height: 1.4;
@@ -346,10 +365,12 @@ a {
             padding: 16px 0;
             text-align: center;
             color: var(--color-text-primary);
+            font-family: Secondary;
             font-size: 15px;
         }
 
         &-footer {
+            font-family: Secondary;
             position: relative;
             margin-top: 8px;
             text-align: center;
@@ -426,24 +447,6 @@ a {
 * COMPONENTS *
 **************/
 
-// a {
-//   cursor: pointer;
-//   color: #0a84ff;
-//   text-decoration: none;
-
-//   &:hover {
-//     text-decoration: underline;
-//   }
-
-//   &:active {
-//     color: #003eaa;
-//   }
-
-//   &:focus {
-//     box-shadow: 0 0 0 2px #0a84ff, 0 0 0 6px rgba(10, 132, 255, 0.3);
-//   }
-// }
-
 input[type='checkbox'] {
     cursor: pointer;
     border-radius: 2px;
@@ -455,6 +458,18 @@ input[type='checkbox'] {
     -moz-appearance: none;
     background: var(--color-input-bg);
     border: 1px solid var(--color-input-border);
+    position: relative;
+
+    &:checked::after {
+        position: absolute;
+        display: block;
+        content: '✔';
+        left: calc(50% - 6px);
+        top: 0;
+        height: 12px;
+        width: 12px;
+        color: var(--color-card-bg);
+    }
 
     &:checked {
         background: var(--primary-icon);
@@ -463,8 +478,8 @@ input[type='checkbox'] {
 }
 
 .btn-primary {
-    cursor: pointer;
     display: block;
+    cursor: pointer;
     width: 100%;
     height: 32px;
 
@@ -473,6 +488,13 @@ input[type='checkbox'] {
     border: none;
     // font-size: 13px;
     border-radius: 2px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Secondary;
 
     &:hover:not([disabled]) {
         background: $primary-70;
@@ -493,23 +515,23 @@ input[type='checkbox'] {
         border: none;
     }
 
+    span {
+        text-align: right;
+    }
+
     svg {
         fill: $white;
         height: 13px;
         width: 13px;
+        padding-top: 2px;
     }
 }
 
 .btn-secondary {
-    display: block;
-    width: 100%;
-    height: 32px;
-    cursor: pointer;
+    @extend .btn-primary;
+
     background: rgba($color: $input-border-dark, $alpha: 0.3);
     color: var(--color-text-primary);
-    border: none;
-    font-size: 13px;
-    border-radius: 2px;
 
     &:hover:not([disabled]) {
         background: var(--color-input-border);
@@ -524,16 +546,8 @@ input[type='checkbox'] {
             0 0 0 4px rgba($primary-60, 0.3);
     }
 
-    &:disabled {
-        opacity: 50%;
-        box-shadow: none;
-        border: none;
-    }
-
     svg {
         fill: var(--primary-icon);
-        height: 13px;
-        width: 13px;
     }
 }
 
@@ -567,7 +581,8 @@ input[type='checkbox'] {
 
     font-size: 13px;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 0;
+    font-family: Primary;
 
     &-icon {
         margin-right: 4px;
