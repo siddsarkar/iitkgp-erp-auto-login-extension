@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "4.0.1",
+    "version": "4.2",
     "developer": {
         "name": "Siddhartha Sarkar",
         "url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"

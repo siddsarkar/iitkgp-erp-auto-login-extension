@@ -8,6 +8,7 @@
  *
  * TODO: Add Changelogs
  * TODO: Fix About
+ * TODO: Add Loading View
  */
 
 import '../css/popup.scss'

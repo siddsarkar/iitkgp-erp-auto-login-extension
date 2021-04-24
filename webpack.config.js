@@ -24,6 +24,12 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(woff)$/,
+                use: {
+                    loader: 'url-loader'
+                }
             }
         ]
     },
@@ -37,24 +43,17 @@ module.exports = {
                     from: '**/*',
                     context: 'src/',
                     globOptions: {
-                        ignore: ['**/*.scss', '**/js/**']
+                        ignore: [
+                            '**/*.scss',
+                            '**/js/**',
+                            '**/fonts/**'
+                        ]
                     }
                 }
             ]
         })
     ],
     optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    mangle: false,
-                    compress: false,
-                    output: {
-                        beautify: true,
-                        indent_level: 2
-                    }
-                }
-            })
-        ]
+        minimizer: [new TerserPlugin()]
     }
 }
