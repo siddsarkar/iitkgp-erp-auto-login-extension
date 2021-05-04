@@ -643,3 +643,16 @@ input[type='checkbox'] {
     justify-content: center;
     align-items: flex-end;
 }
+
+/*************
+* ANIMATIONS *
+**************/
+
+@keyframes rotate-svg-icon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
