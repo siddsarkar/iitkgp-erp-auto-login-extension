@@ -1,6 +1,8 @@
 @import 'variables';
 
 :root {
+    --border-radius: #{$border-radius};
+
     --color-bg: #{$bg-light};
     --color-card-bg: #{$bg-card-light};
     --color-text-primary: #{$text-primary-light};
@@ -91,7 +93,7 @@ a {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     padding-bottom: 8px;
     box-shadow: 0 0 4px rgba(12, 12, 13, 0.2);
     background: var(--color-card-bg);
@@ -288,7 +290,7 @@ a {
     top: 20px;
     left: 20px;
     right: 20px;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     flex: 1;
     display: none;
@@ -344,6 +346,8 @@ a {
         background: var(--color-card-bg);
         width: 100%;
         padding-bottom: 8px;
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
 
         &-divider {
             position: relative;
