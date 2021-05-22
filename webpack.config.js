@@ -54,6 +54,17 @@ module.exports = {
         })
     ],
     optimization: {
-        minimizer: [new TerserPlugin()]
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    mangle: false,
+                    compress: false,
+                    output: {
+                        beautify: true,
+                        indent_level: 2
+                    }
+                }
+            })
+        ]
     }
 }

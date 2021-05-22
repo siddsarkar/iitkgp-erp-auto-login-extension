@@ -41,7 +41,6 @@ const reset = document.getElementById('reset')
 
 // Update
 const updateBtn = document.getElementById('update')
-const updateInfo = document.getElementById('update-info')
 
 // Set Copyright Text
 document.getElementById(
@@ -499,7 +498,6 @@ function updateCheckBox(curr, id) {
 function handleMessageResponse(response) {
     if (response.action === 'update_check') {
         const { update, message } = response
-        updateInfo.textContent = ''
         document.getElementById('update-btn').textContent = message
 
         if (update) {
@@ -604,10 +602,22 @@ themeBtn.onclick = () => {
 updateBtn.onclick = () => {
     if (document.getElementById('update_checked')) {
         document.getElementById('update_checked').remove()
-        updateInfo.textContent = 'checking..'
+        document.getElementById('update-btn').textContent =
+            'Checking for updates...'
+        document.getElementById(
+            'update-default-icon'
+        ).style.animation = 'rotate-svg-icon infinite 1s linear'
+        document.getElementById('update-default-icon').style.fill =
+            'crimson'
         messageTab('update_check')
     } else {
-        updateInfo.textContent = 'checking..'
+        document.getElementById('update-btn').textContent =
+            'Checking for updates...'
+        document.getElementById(
+            'update-default-icon'
+        ).style.animation = 'rotate-svg-icon infinite 1s linear'
+        document.getElementById('update-default-icon').style.fill =
+            'crimson'
         messageTab('update_check')
     }
 }
