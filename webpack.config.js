@@ -43,12 +43,11 @@ module.exports = {
                     from: '**/*',
                     context: 'src/',
                     globOptions: {
-                        ignore: [
-                            '**/*.scss',
-                            '**/js/**',
-                            '**/fonts/**'
-                        ]
+                        ignore: ['**/css/**', '**/js/**']
                     }
+                },
+                {
+                    from: 'manifest.json'
                 }
             ]
         })
