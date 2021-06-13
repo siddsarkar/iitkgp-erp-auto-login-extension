@@ -8,616 +8,446 @@
  *
  * TODO: Add Changelogs
  * TODO: Fix About
- * TODO: Add Loading View
+ * //TODO: Add Loading View
  */
 
-import '../css/popup.scss'
+import '../sass/popup.scss'
+import logger from './components/logger'
+import PanelGroup from './components/panel/panelgroup'
+import PanelGroupItem from './components/panel/panelgroupitem'
+import PanelHeader from './components/panel/panelheader'
 import getSecurityQues from './utils/getSecurityQues'
+import storage from './utils/storage'
 
-/** ***************
- * HTML ELEMENTS *
- **************** */
+customElements.define('panel-group', PanelGroup)
+customElements.define('panel-header', PanelHeader)
+customElements.define('panel-group-item', PanelGroupItem)
 
-// Core Logic Dependencies
-const usernameInput = document.querySelector('#username')
-const passwordInput = document.querySelector('#password')
-const _a1 = document.querySelector('#a1')
-const _a2 = document.querySelector('#a2')
-const _a3 = document.querySelector('#a3')
+// panel
+const resetBtn = document.getElementById('resetBtn')
+const cardMaximizeBtn = document.getElementById('cardMaximizeBtn')
+const updateBtn = document.getElementById('updateBtn')
+const themeBtn = document.getElementById('darkMode').shadowRoot
+const autoLoginBtn = document.getElementById('autoLogin').shadowRoot
 
-// Message Elements
-const log = document.getElementById('log')
-const logClass = document.getElementById('log-class')
-const logIcon = document.getElementById('log-icon')
-
-// checkboxes
-const themeBtn = document.getElementById('theme')
-const themeInfo = document.getElementById('theme-info')
-const auto = document.getElementById('auto-login')
-const autoInfo = document.getElementById('auto-login-info')
-
-// Click Handlers
-const reset = document.getElementById('reset')
-
-// Update
-const updateBtn = document.getElementById('update')
-
-// Set Copyright Text
-document.getElementById(
-    'copyright'
-).textContent = `Copyright©${new Date().getFullYear()}`
-document.getElementById(
-    'ext-version'
-).textContent = browser.runtime.getManifest().version
-
-/** **************
- * DEVELOP AREA *
- *************** */
-
-// disable context menu
-document.oncontextmenu = () => false
-
-const hIcon = document.getElementById('form-header-icon')
-const closeForm = document.getElementById('form-done')
-const mBtn = document.getElementById('maximize-btn')
-const panelContainer = document.getElementById('panel-container')
-
-closeForm.onclick = () => {
-    document.body.classList.toggle('all-set')
-    if (document.body.classList.contains('all-set')) {
-        panelContainer.style.display = 'flex'
-    } else {
-        panelContainer.style.display = 'none'
-    }
-}
-
-mBtn.onclick = () => {
-    document.body.classList.toggle('all-set')
-    if (document.body.classList.contains('all-set')) {
-        panelContainer.style.display = 'flex'
-    } else {
-        panelContainer.style.display = 'none'
-    }
-}
-
-document.querySelectorAll('.quick-link').forEach((element) => {
-    element.addEventListener('click', () => {
-        setTimeout(() => {
-            window.close()
-        }, 10)
-    })
-})
-
-/** ****************
- * POPUP UI PAINT *
- ***************** */
+// form
+const headerIcon = document.getElementById('formHeaderIcon')
+const credentialsForm = document.getElementById('credentialsForm')
+const rollno = document.getElementById('rollno')
+const password = document.getElementById('password')
+const a1 = document.getElementById('a1')
+const a2 = document.getElementById('a2')
+const a3 = document.getElementById('a3')
 
 /**
- * @description updates ext-storage on user interactions
+ * INITIALIZATION
+ * ? getAllKeys -> checkStoredInfo -> updateUI(fill-form,set-theme) -> toggle header_icon or panel_maximize/minimize (if necessary)
  */
-function storeSettings() {
-    browser.storage.local
-        .set({
-            authCredentials: {
-                username: usernameInput.value,
-                password: passwordInput.value,
-                q1: _a1.placeholder,
-                a1: _a1.value,
-                q2: _a2.placeholder,
-                a2: _a2.value,
-                q3: _a3.placeholder,
-                a3: _a3.value,
-                dark: themeBtn.checked,
-                autoLogin: auto.checked
-            }
-        })
-        .then(() => console.info('Updated Storage'))
-}
 
-/**
- * @description displays message on ui
- * @param {String} message message to display
- * @param {String} iconId id of svg icon to use
- */
-function logger(message, iconId = 'info') {
-    log.textContent = message
-    logClass.className = iconId
-    logIcon.setAttribute(
-        'href',
-        browser.runtime.getURL(`/assets/icons.svg#${iconId}`)
-    )
-}
-
-/**
- * @description Popup UI First Paint
- * @param {Object} restoredSettings Storage Object
- */
-function updateUI(restoredSettings) {
-    const { authCredentials } = restoredSettings
-
-    // Set theme
-    if (!authCredentials.dark) {
-        document.body.className = ''
-        themeBtn.checked = false
-        themeInfo.textContent = 'off'
-    } else {
-        themeInfo.textContent = 'on'
-        themeBtn.checked = true
-        hIcon.setAttribute(
-            'src',
-            browser.runtime.getURL(
-                '/assets/images/header_icon_light.png'
-            )
-        )
-        document.body.className = 'dark'
-    }
-
-    auto.checked = authCredentials.autoLogin
-
-    if (authCredentials.autoLogin) {
-        autoInfo.textContent = 'on'
-    } else {
-        autoInfo.textContent = 'off'
-    }
-
-    // Minimize if all set
-    if (
-        authCredentials.username !== '' &&
-        authCredentials.password !== '' &&
-        authCredentials.q1 !== 'loading' &&
-        authCredentials.q2 !== 'loading' &&
-        authCredentials.q3 !== 'loading' &&
-        authCredentials.a1 !== '' &&
-        authCredentials.a2 !== '' &&
-        authCredentials.a3 !== ''
-    ) {
-        document.body.classList.toggle('all-set')
-        if (document.body.classList.contains('all-set')) {
-            panelContainer.style.display = 'flex'
-        } else {
-            panelContainer.style.display = 'none'
-        }
-    }
-
-    // Set Fields
-    usernameInput.value = authCredentials.username || ''
-    passwordInput.value = authCredentials.password || ''
-    _a1.value = authCredentials.a1 || ''
-    _a2.value = authCredentials.a2 || ''
-    _a3.value = authCredentials.a3 || ''
-    _a1.placeholder = authCredentials.q1 || 'loading'
-    _a2.placeholder = authCredentials.q2 || 'loading'
-    _a3.placeholder = authCredentials.q3 || 'loading'
-
-    // Set Message
-    if (authCredentials.username === '') {
-        logger('Enter Roll Number')
-    } else if (authCredentials.password === '') {
-        logger('Enter Password', 'warning')
-        passwordInput.removeAttribute('disabled')
-        passwordInput.addEventListener('keyup', () => {
-            _a1.removeAttribute('disabled')
-            _a2.removeAttribute('disabled')
-            _a3.removeAttribute('disabled')
-            logger('Enter security answers!', 'warning')
-        })
-        passwordInput.removeEventListener('keyup', null)
-    } else if (
-        _a1.value !== '' &&
-        _a2.value !== '' &&
-        _a3.value !== ''
-    ) {
-        _a1.disabled = true
-        _a2.disabled = true
-        _a3.disabled = true
-        logger(
-            `You are all set! ${authCredentials.username}`,
-            'check'
-        )
-    } else {
-        logger('Fill security answers!', 'warning')
-        _a1.disabled = false
-        _a2.disabled = false
-        _a3.disabled = false
-    }
-}
-
-/** ************
- * CORE LOGIC *
- ************* */
-
-/**
- * @description network req done here
- * @param {Function} cb Callback function
- */
-function getQuestions(cb) {
-    if (
-        _a1.placeholder !== 'loading' &&
-        _a2.placeholder !== 'loading' &&
-        _a3.placeholder !== 'loading'
-    ) {
-        return cb('Question already loaded!', true)
-    }
-
-    /**
-     * @description Callback after fetch request
-     * @param {String} message error msg from fetch
-     * @param {Boolean} done success/failure of fetch (valid/invalid rollNo)
-     */
-    function httpCallback(message, done) {
-        if (done) {
-            // fetch success and rollNo exist
-
-            if (
-                _a1.placeholder === 'loading' ||
-                _a2.placeholder === 'loading' ||
-                _a3.placeholder === 'loading'
-            ) {
-                return cb('Re call getQuestion', false)
-            }
-            return cb('Got all Questions!', true)
-        }
-        // Invalid rollNo (does not exist)
-
-        logger(message, 'cross')
-    }
-
-    getSecurityQues(usernameInput.value).then((q) => {
-        if (q !== 'FALSE') {
-            passwordInput.removeAttribute('disabled')
-            if (_a1.placeholder === 'loading') {
-                _a1.placeholder = q
-                _a1.removeAttribute('disabled')
-            } else if (
-                _a2.placeholder === 'loading' &&
-                q !== _a1.placeholder
-            ) {
-                _a2.placeholder = q
-                _a2.removeAttribute('disabled')
-            } else if (
-                q !== _a1.placeholder &&
-                q !== _a2.placeholder
-            ) {
-                _a3.placeholder = q
-                _a3.removeAttribute('disabled')
-            }
-            return httpCallback('Got a Question', true)
-        }
-        return httpCallback('Roll No does not exist, Retry!', false)
-    })
-}
-
-/**
- * @description Caller for `getQuestions` until we get all 3 questions
- * @param {String} message message from `httpCallback`
- * @param {Boolean} done tells if all messages loaded.
- */
-function questionsCallback(message, done) {
-    if (done) {
-        // All Questions Loaded
-
-        if (passwordInput.value === '') {
-            logger(`${message} Fill required info.`, 'check')
-        } else if (
-            _a1.value === '' ||
-            _a2.value === '' ||
-            _a3.value === ''
-        ) {
-            logger('Fill Security Answers', 'warning')
-        } else {
-            logger('All Set!', 'check')
-        }
-        storeSettings()
-    } else {
-        // Not All Questions Loaded
-
-        getQuestions(questionsCallback)
-    }
-}
-
-/** ***********
- * UTILITIES *
- ************ */
-
-/**
- * @description Error Logger
- * @param {*} e error
- */
-function onError(e) {
-    console.error(e)
-}
-
-/**
- * @description Checks/initializes extension storage
- * @param {Object} storedSettings Storage Object
- */
-function checkStoredSettings(storedSettings) {
-    if (!storedSettings.authCredentials) {
-        // Initialize storage then Update UI
-
-        const authCredentials = {
-            username: '',
-            password: '',
-            q1: 'loading',
-            q2: 'loading',
-            q3: 'loading',
-            a1: '',
-            a2: '',
-            a3: '',
-            dark: false,
-            autoLogin: true
-        }
-        browser.storage.local
-            .set({ authCredentials })
-            .then(() => updateUI({ authCredentials }), onError)
-    } else {
-        // updateUI with stored data
-
-        updateUI(storedSettings)
-    }
-}
-
-/** **********
- * HANDLERS *
- *********** */
-
-/**
- * @description handles reset-click
- */
-function resetHandler() {
-    const actionBtnYes = document.createElement('div')
-    actionBtnYes.className = 'action'
-    actionBtnYes.textContent = 'Yes'
-    const actionBtnCancel = document.createElement('div')
-    actionBtnCancel.className = 'action'
-    actionBtnCancel.textContent = 'Cancel'
-    logClass.appendChild(actionBtnYes)
-    logClass.appendChild(actionBtnCancel)
-    logger('Are you sure!', 'warning')
-    reset.disabled = true
-
-    actionBtnYes.onclick = () => {
-        reset.disabled = false
-        logClass.removeChild(actionBtnYes)
-        logClass.removeChild(actionBtnCancel)
-        usernameInput.value = ''
-        passwordInput.value = ''
-        _a1.value = ''
-        _a2.value = ''
-        _a3.value = ''
-        _a1.placeholder = 'loading'
-        _a2.placeholder = 'loading'
-        _a3.placeholder = 'loading'
-        passwordInput.disabled = true
-        _a1.disabled = true
-        _a2.disabled = true
-        _a3.disabled = true
-
-        browser.storage.local
-            .set({
-                authCredentials: {
-                    username: '',
-                    password: '',
-                    q1: 'loading',
-                    q2: 'loading',
-                    q3: 'loading',
-                    a1: '',
-                    a2: '',
-                    a3: '',
-                    dark: false,
-                    autoLogin: true
-                }
-            })
-            .then(() => {
-                logger('Data Cleared!', 'check')
-                browser.tabs
-                    .create({
-                        url:
-                            'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
-                    })
-                    .then(() => {
-                        console.log('Successfully logged Out!')
-                    }, onError)
-            })
-    }
-
-    actionBtnCancel.onclick = () => {
-        reset.removeAttribute('disabled')
-
-        logClass.removeChild(actionBtnYes)
-        logClass.removeChild(actionBtnCancel)
-        logger('Cancelled!')
-    }
-}
-
-/**
- * @description toggles dark mode
- */
-/* eslint-disable no-unused-vars */
-function toggleDark() {
+const toggleHeaderIcon = () => {
     if (document.body.classList.contains('dark')) {
-        themeInfo.textContent = 'off'
-        hIcon.setAttribute(
+        headerIcon.setAttribute(
             'src',
             browser.runtime.getURL('/assets/images/header_icon.png')
         )
     } else {
-        themeInfo.textContent = 'on'
-
-        hIcon.setAttribute(
+        headerIcon.setAttribute(
             'src',
             browser.runtime.getURL(
                 '/assets/images/header_icon_light.png'
             )
         )
     }
-    document.body.classList.toggle('dark')
 }
 
-/**
- * @description get current theme from storage and inverse it
- * @param {object} curr Storage
- * @param {string} id target checkbox id
- */
-function updateCheckBox(curr, id) {
-    const { authCredentials } = curr
-
-    if (id === 'theme') {
-        browser.storage.local
-            .set({
-                authCredentials: {
-                    ...authCredentials,
-                    dark: !authCredentials.dark
-                }
-            })
-            .then(() => console.info('Updated theme on Storage'))
-
-        toggleDark()
-    } else if (id === 'auto-login') {
-        browser.storage.local
-            .set({
-                authCredentials: {
-                    ...authCredentials,
-                    autoLogin: !authCredentials.autoLogin
-                }
-            })
-            .then(() => console.info('Updated auto-login on Storage'))
-        if (authCredentials.autoLogin) {
-            autoInfo.textContent = 'off'
-        } else autoInfo.textContent = 'on'
+const toggleCard = () => {
+    if (
+        document
+            .querySelector('.panel-container')
+            .classList.contains('panel-hidden')
+    ) {
+        document.querySelector(
+            '.card-container'
+        ).style = `transform: translateY(${credentialsForm.clientHeight}px)`
+    } else {
+        document.querySelector(
+            '.card-container'
+        ).style = `transform: translateY(0)`
     }
+    document
+        .querySelector('.card-menu-icon')
+        .classList.toggle('menu-expanded')
+    document
+        .querySelector('.panel-container')
+        .classList.toggle('panel-hidden')
 }
 
-/** ***************
- * REDUX-PATTERN *
- **************** */
+const updateUI = (restoredSettings, onUpdated = () => {}) => {
+    const { credentials, preferences } = restoredSettings
 
-/**
- * @description handles response w.r.t action
- */
-function handleMessageResponse(response) {
-    if (response.action === 'update_check') {
-        const { update, message } = response
-        document.getElementById('update-btn').textContent = message
+    // update theme checkbox
+    themeBtn.querySelector('#darkMode').checked = preferences.darkMode
+    themeBtn.querySelector('#panelGroupItemEndText').textContent =
+        preferences.darkMode
 
-        if (update) {
-            document.getElementById(
-                'update-default-icon'
-            ).style.display = 'none'
-            document.getElementById(
-                'update-found-icon'
-            ).style.display = 'block'
-            document.getElementById('update-btn').disabled = true
+    // update autologin checkbox
+    autoLoginBtn.querySelector('#autoLogin').checked =
+        preferences.autoLogin
+    autoLoginBtn.querySelector('#panelGroupItemEndText').textContent =
+        preferences.autoLogin
 
-            const whatsNew = document.createElement('p')
-            whatsNew.id = 'update_checked'
-            whatsNew.className = 'panel-card-label'
-            whatsNew.innerText = update.release_notes['en-US']
+    if (preferences.darkMode) {
+        toggleHeaderIcon()
+        document.body.classList.toggle('dark')
+    }
 
-            document
-                .getElementById('panel-update')
-                .appendChild(whatsNew)
-        } else {
-            document.getElementById(
-                'update-default-icon'
-            ).style.display = 'none'
-            document.getElementById(
-                'no-update-found-icon'
-            ).style.display = 'block'
+    // Minimize if all set
+    const emptyFieldExists =
+        credentials.rollno === '' ||
+        credentials.password === '' ||
+        credentials.a1 === '' ||
+        credentials.q1 === 'Security Question 1' ||
+        credentials.a2 === '' ||
+        credentials.q2 === 'Security Question 2' ||
+        credentials.a3 === '' ||
+        credentials.q3 === 'Security Question 3'
+
+    console.log(emptyFieldExists)
+    if (emptyFieldExists) {
+        toggleCard()
+    }
+
+    // Set Fields
+    rollno.value = credentials.rollno || ''
+    password.value = credentials.password || ''
+    a1.value = credentials.a1 || ''
+    a2.value = credentials.a2 || ''
+    a3.value = credentials.a3 || ''
+    a1.placeholder = credentials.q1 || 'Security Question 1'
+    a2.placeholder = credentials.q2 || 'Security Question 2'
+    a3.placeholder = credentials.q3 || 'Security Question 3'
+
+    // Set Message
+    if (credentials.rollno === '') {
+        logger('Enter Roll Number')
+    } else if (credentials.password === '') {
+        logger('Enter Password', 'warning')
+        password.removeAttribute('disabled')
+        password.addEventListener('keyup', () => {
+            a1.removeAttribute('disabled')
+            a2.removeAttribute('disabled')
+            a3.removeAttribute('disabled')
+            logger('Enter security answers!', 'warning')
+        })
+        password.removeEventListener('keyup', null)
+    } else if (
+        a1.value !== '' &&
+        a2.value !== '' &&
+        a3.value !== ''
+    ) {
+        a1.disabled = true
+        a2.disabled = true
+        a3.disabled = true
+        logger(`You are all set! ${credentials.rollno}`, 'check')
+    } else {
+        logger('Fill security answers!', 'warning')
+        a1.disabled = false
+        a2.disabled = false
+        a3.disabled = false
+    }
+    onUpdated()
+}
+
+const checkStoredInfo = (storedInfo) => {
+    console.log('retrieved storage', storedInfo)
+    if (!storedInfo.preferences) {
+        // Initialize storage then Update UI
+        const credentials = {
+            rollno: '',
+            password: '',
+            q1: 'Security Question 1',
+            q2: 'Security Question 2',
+            q3: 'Security Question 3',
+            a1: '',
+            a2: '',
+            a3: ''
         }
+
+        const preferences = {
+            darkMode: true,
+            autoLogin: false
+        }
+
+        updateUI({ credentials, preferences }, () => {
+            setTimeout(() => {
+                document
+                    .querySelector('.popup-loading')
+                    .classList.toggle('popup-loading-hidden')
+                console.log('exiting loader...')
+            }, 500)
+        })
+        storage.setItem({ credentials, preferences }).then(() => {
+            console.log('Initalized Storage.')
+        })
+    } else {
+        updateUI(storedInfo, () => {
+            setTimeout(() => {
+                document
+                    .querySelector('.popup-loading')
+                    .classList.toggle('popup-loading-hidden')
+                console.log('exiting loader...')
+            }, 500)
+        })
     }
 }
 
+document.querySelector(
+    '.card-container'
+).style = `transform: translateY(${credentialsForm.clientHeight}px)`
+cardMaximizeBtn.onclick = toggleCard
+credentialsForm.onsubmit = toggleCard
+storage.getAllKeys().then(checkStoredInfo)
+
 /**
- * @description Validate Roll Number and initiate logic `getQuestions`
+ * EVENT HANDLERS
+ * ? keyup, formsubmit/reset, clicks
  */
-function testRoll() {
-    if (usernameInput.value.length !== 9) {
+
+const storeCredentials = () => {
+    const credentials = {
+        rollno: rollno.value,
+        password: password.value,
+        q1: a1.placeholder,
+        q2: a2.placeholder,
+        q3: a2.placeholder,
+        a1: a1.value,
+        a2: a1.value,
+        a3: a1.value
+    }
+    storage.setItem({ credentials }).then(() => {
+        console.log('updated Storage.')
+    })
+}
+
+const resetCredentialsForm = () => {
+    // document.getElementById('credentialsForm').reset()
+    password.value = ''
+    password.disabled = true
+
+    a1.value = ''
+    a1.placeholder = 'Security Question 1'
+    a1.disabled = true
+    a2.value = ''
+    a2.placeholder = 'Security Question 2'
+    a2.disabled = true
+    a3.value = ''
+    a3.placeholder = 'Security Question 3'
+    a3.disabled = true
+}
+
+const checkForUpdates = (e) => {
+    const { shadowRoot } = e.target
+    shadowRoot.querySelector('.panel-group-item-title').textContent =
+        'Checking for updates...'
+    shadowRoot.querySelector('#panelGroupItemStartIcon').style =
+        'animation: rotate-svg-icon infinite 1s linear; fill: crimson;'
+
+    setTimeout(() => {
+        shadowRoot
+            .querySelector('use')
+            .setAttribute(
+                'href',
+                browser.runtime.getURL(`/assets/icons.svg#info`)
+            )
+        shadowRoot.querySelector(
+            '#panelGroupItemStartIcon'
+        ).style.animation = ''
+        shadowRoot.querySelector(
+            '#panelGroupItemStartIcon'
+        ).style.fill = 'var(--secondary-icon)'
+
+        const changlogsPanel = document.createElement('section')
+        changlogsPanel.setAttribute('class', 'panel')
+        changlogsPanel.setAttribute('id', 'panel-changelogs')
+
+        document
+            .querySelector('.panel-container')
+            .appendChild(changlogsPanel)
+
+        const header = new PanelHeader()
+        header.href = '#panel-updates'
+        header.title = 'Changelogs'
+        changlogsPanel.appendChild(header)
+    }, 2000)
+}
+
+const validateRollNumber = (e) => {
+    const roll = e.target.value || ''
+
+    function loadQuestions(r) {
+        function cb(message, allQuesFetched) {
+            if (allQuesFetched) {
+                // All Questions Loaded
+                if (password.value === '') {
+                    logger(`${message} Fill required info.`, 'check')
+                } else if (a1 === '' || a2 === '' || a3 === '') {
+                    logger('Fill Security Answers', 'warning')
+                } else {
+                    logger('All Set!', 'check')
+                }
+
+                // store the questions into storage
+                storeCredentials()
+            } else {
+                // Not All Questions Loaded so recurse
+                console.log(message)
+                loadQuestions(r)
+            }
+        }
+
         if (
-            usernameInput.value.length === 8 ||
-            usernameInput.value.length === 10
+            a1.placeholder !== 'Security Question 1' &&
+            a2.placeholder !== 'Security Question 2' &&
+            a3.placeholder !== 'Security Question 3'
         ) {
-            _a1.placeholder = 'loading'
-            _a2.placeholder = 'loading'
-            _a3.placeholder = 'loading'
-            _a1.value = ''
-            _a2.value = ''
-            _a3.value = ''
-            passwordInput.value = ''
+            return cb('Question already loaded!', true)
         }
+
+        function fetchCallback(message, gotQuestion) {
+            if (gotQuestion) {
+                console.log('got question:', message)
+                // rollno exists and one question fetched
+                if (
+                    a1.placeholder === 'Security Question 1' ||
+                    a2.placeholder === 'Security Question 2' ||
+                    a3.placeholder === 'Security Question 3'
+                ) {
+                    return cb('Get next question.', false)
+                }
+                return cb('Got all Questions!', true)
+            }
+
+            // rollno does not exists
+            console.log('rollno does not exists')
+            logger(message, 'cross')
+        }
+
+        getSecurityQues(r).then((q) => {
+            if (q !== 'FALSE') {
+                password.removeAttribute('disabled')
+                if (a1.placeholder === 'Security Question 1') {
+                    a1.setAttribute('placeholder', q)
+                    a1.removeAttribute('disabled')
+                } else if (
+                    a2.placeholder === 'Security Question 2' &&
+                    q !== a1.placeholder
+                ) {
+                    a2.setAttribute('placeholder', q)
+                    a2.removeAttribute('disabled')
+                } else if (
+                    q !== a1.placeholder &&
+                    q !== a2.placeholder
+                ) {
+                    a3.setAttribute('placeholder', q)
+                    a3.removeAttribute('disabled')
+                }
+                return fetchCallback(q, true)
+            }
+            return fetchCallback(
+                'Roll No does not exist, Retry!',
+                false
+            )
+        })
+    }
+
+    if (roll.length !== 9) {
+        resetCredentialsForm()
         logger('Enter a valid Roll No', 'cross')
         return
     }
-    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
-    const OK = re.exec(usernameInput.value)
+
+    const re =
+        /[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}/ // regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
+    const OK = re.exec(roll)
+
     if (!OK) {
-        // console.error(usernameInput.value + " isn't a roll number!");
+        console.error(`${roll} isn't a roll number!`)
         logger('Enter a valid Roll No', 'cross')
     } else {
-        // console.log("roll number is " + OK[0]);
+        console.info(`getting questions for - ${OK[0]}`)
         logger('Getting Questions..', 'warning')
-        getQuestions(questionsCallback)
+
+        loadQuestions(roll)
     }
 }
 
-/**
- * @param {string} action action update_check
- * @param {string} msg any
- */
-function messageTab(action, msg = '') {
-    const sending = browser.runtime.sendMessage({
-        action,
-        query: msg
+const toggleCheckBox = (e) => {
+    const { target } = e
+    storage.getItem('preferences').then((preferences) => {
+        console.log(`curr ${target.id}:`, preferences[target.id])
+        if (target.id === 'darkMode') {
+            toggleHeaderIcon()
+            document.body.classList.toggle('dark')
+        }
+        storage
+            .setItem({
+                preferences: {
+                    ...preferences,
+                    [target.id]: !preferences[target.id]
+                }
+            })
+            .then(() => {
+                console.log(
+                    `set ${target.id} to:`,
+                    !preferences[target.id]
+                )
+
+                target.checked = !preferences[target.id]
+                document
+                    .getElementById(target.id)
+                    .shadowRoot.querySelector(
+                        '#panelGroupItemEndText'
+                    ).textContent = !preferences[target.id]
+            })
     })
-    sending.then(handleMessageResponse, (err) =>
-        console.log(`Error: ${err}`)
+}
+
+const resetForm = (e) => {
+    e.preventDefault()
+
+    resetBtn.disabled = true
+    logger(
+        'Are you sure!',
+        'warning',
+        true,
+        () => {
+            rollno.value = ''
+            resetCredentialsForm()
+            storeCredentials()
+            logger('cleared data!')
+            browser.tabs
+                .create({
+                    url: 'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
+                })
+                .then(() => {
+                    console.log('Successfully logged Out!')
+                })
+
+            resetBtn.disabled = false
+        },
+        () => {
+            logger('cancelled')
+            resetBtn.disabled = false
+        }
     )
 }
 
-/** ********************
- * ACTION CONTROLLERS *
- ********************* */
-
-// Initialize
-browser.storage.local.get().then(checkStoredSettings, onError)
-
-// Listen Events
-reset.addEventListener('click', resetHandler)
-usernameInput.addEventListener('keyup', testRoll)
-passwordInput.addEventListener('blur', storeSettings)
-_a1.addEventListener('blur', storeSettings)
-_a2.addEventListener('blur', storeSettings)
-_a3.addEventListener('blur', storeSettings)
-
-auto.onclick = () => {
-    const getData = browser.storage.local.get()
-    getData.then((data) => updateCheckBox(data, 'auto-login'))
-}
-
-themeBtn.onclick = () => {
-    const getData = browser.storage.local.get()
-    getData.then((data) => updateCheckBox(data, 'theme'))
-}
-
-updateBtn.onclick = () => {
-    if (document.getElementById('update_checked')) {
-        document.getElementById('update_checked').remove()
-        document.getElementById('update-btn').textContent =
-            'Checking for updates...'
-        document.getElementById(
-            'update-default-icon'
-        ).style.animation = 'rotate-svg-icon infinite 1s linear'
-        document.getElementById('update-default-icon').style.fill =
-            'crimson'
-        messageTab('update_check')
-    } else {
-        document.getElementById('update-btn').textContent =
-            'Checking for updates...'
-        document.getElementById(
-            'update-default-icon'
-        ).style.animation = 'rotate-svg-icon infinite 1s linear'
-        document.getElementById('update-default-icon').style.fill =
-            'crimson'
-        messageTab('update_check')
-    }
-}
+rollno.onkeyup = validateRollNumber
+password.onblur = storeCredentials
+a1.onblur = storeCredentials
+a2.onblur = storeCredentials
+a3.onblur = storeCredentials
+themeBtn.getElementById('darkMode').onclick = toggleCheckBox
+autoLoginBtn.getElementById('autoLogin').onclick = toggleCheckBox
+updateBtn.onclick = checkForUpdates
+resetBtn.onclick = resetForm

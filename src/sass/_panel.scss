@@ -1,0 +1,166 @@
+.panel {
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 2px -1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: calc(348px - 40px);
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    background: var(--color-card-bg);
+    padding-bottom: 8px;
+
+    &-header {
+        position: relative;
+        height: 40px;
+        width: 100%;
+        color: var(--color-text-primary);
+        border-bottom: 1px solid var(--color-input-border);
+        margin-bottom: 4px;
+        display: flex;
+        flex-direction: row;
+
+        &-start,
+        &-end {
+            position: relative;
+            height: calc(100% - 8px);
+            width: 32px;
+            margin: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            svg {
+                fill: var(--primary-icon);
+                height: 16px;
+                width: 16px;
+            }
+
+            &:hover,
+            &:active {
+                background: var(--color-input-border);
+            }
+        }
+
+        &-end {
+            &:hover,
+            &:active {
+                background: initial;
+            }
+        }
+
+        &-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+    }
+    &-group {
+        display: flex;
+        flex-direction: column;
+
+        &-label {
+            // font-family: Secondary;
+            color: var(--color-text-secondary);
+            color: $primary-40;
+            padding: 4px 16px;
+            font-size: 11px;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: row;
+            height: 32px;
+            cursor: pointer;
+
+            input[type='checkbox'] {
+                cursor: pointer;
+                border-radius: 2px;
+                height: 16px;
+                width: 16px;
+                padding: 0 4px;
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: var(--color-input-bg);
+                border: 1px solid var(--color-input-border);
+                position: relative;
+
+                &:checked::after {
+                    position: absolute;
+                    display: block;
+                    content: '✔';
+                    left: calc(50% - 6px);
+                    top: 0;
+                    height: 12px;
+                    width: 12px;
+                    color: var(--color-card-bg);
+                }
+
+                &:checked {
+                    background: var(--primary-icon);
+                    border: none;
+                }
+            }
+
+            &-start,
+            &-end {
+                svg {
+                    height: 16px;
+                    width: 16px;
+                    fill: var(--primary-icon);
+                }
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 8px 0 16px;
+                color: var(--secondary-icon);
+                font-size: 13px;
+            }
+
+            &-end {
+                padding: 0 16px 0 8px;
+                svg {
+                    fill: var(--secondary-icon);
+                }
+            }
+
+            &-title {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                color: var(--color-text-primary);
+                font-size: 13px;
+
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            &:hover {
+                background: $grey-90-a10;
+                svg {
+                    fill: $primary-50;
+                }
+                .panel-group-item-title {
+                    color: $primary-50;
+                }
+                .panel-group-item-start > svg {
+                    animation: shake 1s infinite linear;
+                }
+
+                input[type='checkbox'] {
+                    background: $primary-40;
+                }
+                p {
+                    color: rgba($primary-40, 0.8);
+                }
+            }
+        }
+
+        &-divider {
+            position: relative;
+            width: 100%;
+            margin: 4px 0;
+            border-bottom: 1px solid var(--color-input-border);
+        }
+    }
+}

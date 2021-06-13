@@ -1,18 +1,25 @@
 {
     "manifest_version": 2,
+
     "version": "4.2.2",
+
     "developer": {
         "name": "Siddhartha Sarkar",
         "url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
     },
+
     "name": "ERP Auto Login - IITKGP",
+
     "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
+
     "icons": {
         "256": "assets/images/ext_icon.png"
     },
+
     "background": {
         "scripts": ["js/background.js"]
     },
+
     "browser_action": {
         "default_icon": "assets/images/ext_icon.png",
         "default_title": "ERP Auto Login",
@@ -25,16 +32,31 @@
             }
         ]
     },
+
     "content_scripts": [
         {
             "matches": ["*://erp.iitkgp.ac.in/SSOAdministration/*"],
             "js": ["js/content.js"]
         }
     ],
+
     "permissions": ["storage", "menus", "https://erp.iitkgp.ac.in/"],
+
     "browser_specific_settings": {
         "gecko": {
             "id": "{fa21e38a-41b3-4891-8f6b-8ba837e2df65}"
         }
-    }
+    },
+
+    "web_accessible_resources": [
+        "assets/fonts/*.woff",
+        "assets/fonts/*.woff2",
+        "assets/images/*.png",
+        "assets/images/*.svg",
+        "assets/images/*.jpg",
+        "assets/images/*.gif",
+        "assets/*.svg",
+        "js/*.js",
+        "css/*.css"
+    ]
 }

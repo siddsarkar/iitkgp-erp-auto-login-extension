@@ -24,12 +24,6 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
-            },
-            {
-                test: /\.(woff)$/,
-                use: {
-                    loader: 'url-loader'
-                }
             }
         ]
     },
@@ -43,7 +37,7 @@ module.exports = {
                     from: '**/*',
                     context: 'src/',
                     globOptions: {
-                        ignore: ['**/css/**', '**/js/**']
+                        ignore: ['**/sass/**', '**/js/**']
                     }
                 },
                 {
