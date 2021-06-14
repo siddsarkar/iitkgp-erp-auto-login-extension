@@ -77,7 +77,6 @@
             font-size: 17px;
             font-weight: 500;
             color: var(--color-text-primary);
-            font-family: Secondary;
         }
 
         &-sub {
@@ -153,14 +152,16 @@
             }
 
             input {
-                font-family: Secondary;
+                font-family: Primary, 'sans-serif';
                 height: 32px;
                 background: var(--color-input-bg);
                 color: var(--color-text-primary);
                 border: 1px solid var(--color-input-border);
                 border-radius: 2px;
                 flex-grow: 1;
-                padding: 0 8px 0 32px;
+                padding-top: 2px;
+                padding-right: 8px;
+                padding-left: 32px;
                 outline: none;
                 box-shadow: none;
 

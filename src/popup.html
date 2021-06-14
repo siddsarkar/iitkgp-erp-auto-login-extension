@@ -10,7 +10,7 @@
         <title>ERP Auto Login</title>
 
         <!-- preload fonts here -->
-        <link
+        <!-- <link
             rel="preload"
             href="assets/fonts/roboto-v27-latin-regular.woff"
             as="font"
@@ -21,7 +21,7 @@
             href="assets/fonts/josefin-sans-v17-latin-regular.woff"
             as="font"
             crossorigin="anonymous"
-        />
+        /> -->
 
         <!-- stylesheet -->
         <link rel="stylesheet" href="css/popup.css" />
@@ -72,18 +72,6 @@
                                 ></panel-group-item>
                             </a>
                         </panel-group>
-                        <panel-group label="Preferences">
-                            <panel-group-item
-                                type="checkbox"
-                                id="darkMode"
-                                title="Dark Theme"
-                            ></panel-group-item>
-                            <panel-group-item
-                                type="checkbox"
-                                id="autoLogin"
-                                title="Automatic Login"
-                            ></panel-group-item>
-                        </panel-group>
                         <panel-group label="Sources">
                             <a href="#panel-about">
                                 <panel-group-item
@@ -100,16 +88,35 @@
                                 ></panel-group-item>
                             </a>
                         </panel-group>
-                        <a
-                            href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <panel-group-item
-                                title="Rate this addon"
-                                icon="star"
-                            ></panel-group-item>
-                        </a>
+                        <panel-group label="Miscellaneous" nodivider>
+                            <a href="#panel-preferences">
+                                <panel-group-item
+                                    type="link"
+                                    title="Preferences"
+                                    icon="gear"
+                                ></panel-group-item>
+                            </a>
+                            <a
+                                href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <panel-group-item
+                                    title="Rate this addon"
+                                    icon="star"
+                                ></panel-group-item>
+                            </a>
+                            <a
+                                href="https://t.me/erpautologiniitkgp"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <panel-group-item
+                                    title="Join the Discussion"
+                                    icon="external-discuss"
+                                ></panel-group-item>
+                            </a>
+                        </panel-group>
                     </section>
                     <section class="panel" id="panel-about">
                         <panel-header
@@ -183,7 +190,7 @@
                                 ></panel-group-item>
                             </a>
                         </panel-group>
-                        <div class="panel-card-footer">
+                        <div class="panel-item-footer">
                             designed & developed by
                             <a
                                 target="_blank"
@@ -201,7 +208,7 @@
                             href="#panel-home"
                             title="Updates"
                         ></panel-header>
-                        <div class="panel-card-icon">
+                        <div class="panel-item-about-extension">
                             <img
                                 src="assets/images/ext_icon.png"
                                 height="40px"
@@ -222,12 +229,30 @@
                                 icon="info"
                             ></panel-group-item>
                         </a>
-                        <panel-group-item
+                        <!-- <panel-group-item
                             id="updateBtn"
                             type="button"
                             title="Check for updates"
                             icon="sync"
-                        ></panel-group-item>
+                        ></panel-group-item> -->
+                    </section>
+                    <section class="panel" id="panel-preferences">
+                        <panel-header
+                            href="#panel-home"
+                            title="Preferences"
+                        ></panel-header>
+                        <panel-group label="Preferences" nodivider>
+                            <panel-group-item
+                                type="checkbox"
+                                id="darkMode"
+                                title="Dark Theme"
+                            ></panel-group-item>
+                            <panel-group-item
+                                type="checkbox"
+                                id="autoLogin"
+                                title="Automatic Login"
+                            ></panel-group-item>
+                        </panel-group>
                     </section>
                 </div>
                 <div class="card-container">

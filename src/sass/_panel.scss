@@ -47,6 +47,7 @@
         }
 
         &-title {
+            font-family: Primary;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,7 +59,7 @@
         flex-direction: column;
 
         &-label {
-            // font-family: Secondary;
+            font-family: Secondary;
             color: var(--color-text-secondary);
             color: $primary-40;
             padding: 4px 16px;

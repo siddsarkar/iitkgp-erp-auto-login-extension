@@ -18,7 +18,7 @@
     font-family: 'Secondary';
     font-style: normal;
     font-weight: normal;
-    src: url('moz-extension://__MSG_@@extension_id__/assets/fonts/roboto-v27-latin-regular.woff')
+    src: url('moz-extension://__MSG_@@extension_id__/assets/fonts/josefin-sans-v17-latin-regular.woff')
         format('woff');
 }
 
@@ -77,22 +77,17 @@ a {
     color: var(--color-text-primary);
     background: var(--color-bg);
 
-    overflow: auto;
+    overflow: hidden;
 }
 
-// content
+// wrapper
 .popup {
     margin: 0;
     display: flex;
     flex-direction: column;
 
-    overflow: auto;
+    overflow: hidden;
     min-height: 600px;
-}
-
-.card-container {
-    position: relative;
-    transition: all 0.4s ease;
 }
 
 .panel-container {
@@ -106,39 +101,46 @@ a {
     flex-direction: row;
     align-items: flex-start;
     flex: 1;
-    overflow: auto;
+    overflow: hidden;
 
     #panel-home {
         padding-top: 8px;
     }
 }
-
 .panel-hidden {
     transform: translateY(50px);
     opacity: 0;
 }
 
-.panel-card-footer {
-    font-family: Secondary;
-    position: relative;
-    margin-top: 8px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--secondary-icon);
+.card-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s ease;
+}
 
-    a {
-        text-decoration: none;
-        color: $primary-40;
+.panel-item {
+    &-footer {
+        font-family: Secondary;
+        position: relative;
+        margin-top: 8px;
+        text-align: center;
+        font-size: 11px;
+        color: var(--secondary-icon);
+
+        a {
+            text-decoration: none;
+            color: $primary-40;
+        }
+    }
+    &-about-extension {
+        padding: 16px 0;
+        text-align: center;
+        color: var(--color-text-primary);
+        font-family: Secondary;
+        font-size: 15px;
     }
 }
-.panel-card-icon {
-    padding: 16px 0;
-    text-align: center;
-    color: var(--color-text-primary);
-    font-family: Secondary;
-    font-size: 15px;
-}
-
 /*********
 * MIXINS *
 **********/

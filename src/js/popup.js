@@ -1,3 +1,5 @@
+'use-strict'
+
 /**
  * * ------------ README FIRST ----------------
  *
@@ -26,7 +28,6 @@ customElements.define('panel-group-item', PanelGroupItem)
 // panel
 const resetBtn = document.getElementById('resetBtn')
 const cardMaximizeBtn = document.getElementById('cardMaximizeBtn')
-const updateBtn = document.getElementById('updateBtn')
 const themeBtn = document.getElementById('darkMode').shadowRoot
 const autoLoginBtn = document.getElementById('autoLogin').shadowRoot
 
@@ -43,6 +44,7 @@ const a3 = document.getElementById('a3')
  * INITIALIZATION
  * ? getAllKeys -> checkStoredInfo -> updateUI(fill-form,set-theme) -> toggle header_icon or panel_maximize/minimize (if necessary)
  */
+console.info('popup.js')
 
 const toggleHeaderIcon = () => {
     if (document.body.classList.contains('dark')) {
@@ -85,6 +87,13 @@ const toggleCard = () => {
 const updateUI = (restoredSettings, onUpdated = () => {}) => {
     const { credentials, preferences } = restoredSettings
 
+    // common updates
+    document.querySelector(
+        '.card-container'
+    ).style = `transform: translateY(${credentialsForm.clientHeight}px)`
+    document.querySelector('#extVersion').textContent =
+        browser.runtime.getManifest().version
+
     // update theme checkbox
     themeBtn.querySelector('#darkMode').checked = preferences.darkMode
     themeBtn.querySelector('#panelGroupItemEndText').textContent =
@@ -112,7 +121,6 @@ const updateUI = (restoredSettings, onUpdated = () => {}) => {
         credentials.a3 === '' ||
         credentials.q3 === 'Security Question 3'
 
-    console.log(emptyFieldExists)
     if (emptyFieldExists) {
         toggleCard()
     }
@@ -155,11 +163,12 @@ const updateUI = (restoredSettings, onUpdated = () => {}) => {
         a2.disabled = false
         a3.disabled = false
     }
+
     onUpdated()
 }
 
 const checkStoredInfo = (storedInfo) => {
-    console.log('retrieved storage', storedInfo)
+    console.log('retrieve storage ✔', storedInfo)
     if (!storedInfo.preferences) {
         // Initialize storage then Update UI
         const credentials = {
@@ -179,34 +188,37 @@ const checkStoredInfo = (storedInfo) => {
         }
 
         updateUI({ credentials, preferences }, () => {
+            console.log('update ui: default ✔')
             setTimeout(() => {
                 document
                     .querySelector('.popup-loading')
                     .classList.toggle('popup-loading-hidden')
-                console.log('exiting loader...')
+                console.log('exit loader ✔')
+
+                console.groupEnd()
             }, 500)
         })
         storage.setItem({ credentials, preferences }).then(() => {
-            console.log('Initalized Storage.')
+            console.log('initalize default storage values ✔')
         })
     } else {
         updateUI(storedInfo, () => {
+            console.log('update ui: retrieved ✔')
             setTimeout(() => {
                 document
                     .querySelector('.popup-loading')
                     .classList.toggle('popup-loading-hidden')
-                console.log('exiting loader...')
+                console.log('exit loader ✔')
+
+                console.groupEnd()
             }, 500)
         })
     }
 }
 
-document.querySelector(
-    '.card-container'
-).style = `transform: translateY(${credentialsForm.clientHeight}px)`
 cardMaximizeBtn.onclick = toggleCard
-credentialsForm.onsubmit = toggleCard
 storage.getAllKeys().then(checkStoredInfo)
+console.groupCollapsed('@chore/init')
 
 /**
  * EVENT HANDLERS
@@ -243,42 +255,6 @@ const resetCredentialsForm = () => {
     a3.value = ''
     a3.placeholder = 'Security Question 3'
     a3.disabled = true
-}
-
-const checkForUpdates = (e) => {
-    const { shadowRoot } = e.target
-    shadowRoot.querySelector('.panel-group-item-title').textContent =
-        'Checking for updates...'
-    shadowRoot.querySelector('#panelGroupItemStartIcon').style =
-        'animation: rotate-svg-icon infinite 1s linear; fill: crimson;'
-
-    setTimeout(() => {
-        shadowRoot
-            .querySelector('use')
-            .setAttribute(
-                'href',
-                browser.runtime.getURL(`/assets/icons.svg#info`)
-            )
-        shadowRoot.querySelector(
-            '#panelGroupItemStartIcon'
-        ).style.animation = ''
-        shadowRoot.querySelector(
-            '#panelGroupItemStartIcon'
-        ).style.fill = 'var(--secondary-icon)'
-
-        const changlogsPanel = document.createElement('section')
-        changlogsPanel.setAttribute('class', 'panel')
-        changlogsPanel.setAttribute('id', 'panel-changelogs')
-
-        document
-            .querySelector('.panel-container')
-            .appendChild(changlogsPanel)
-
-        const header = new PanelHeader()
-        header.href = '#panel-updates'
-        header.title = 'Changelogs'
-        changlogsPanel.appendChild(header)
-    }, 2000)
 }
 
 const validateRollNumber = (e) => {
@@ -424,7 +400,7 @@ const resetForm = (e) => {
             rollno.value = ''
             resetCredentialsForm()
             storeCredentials()
-            logger('cleared data!')
+            logger('Successfully Cleared Data!')
             browser.tabs
                 .create({
                     url: 'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
@@ -436,7 +412,7 @@ const resetForm = (e) => {
             resetBtn.disabled = false
         },
         () => {
-            logger('cancelled')
+            logger('Cancelled.')
             resetBtn.disabled = false
         }
     )
@@ -449,5 +425,50 @@ a2.onblur = storeCredentials
 a3.onblur = storeCredentials
 themeBtn.getElementById('darkMode').onclick = toggleCheckBox
 autoLoginBtn.getElementById('autoLogin').onclick = toggleCheckBox
-updateBtn.onclick = checkForUpdates
 resetBtn.onclick = resetForm
+credentialsForm.onsubmit = (e) => {
+    e.preventDefault()
+    toggleCard()
+}
+
+/**
+ *
+ * TODO: WORK IN PROGRESS
+ */
+// eslint-disable-next-line no-unused-vars
+const checkForUpdates = (e) => {
+    const { shadowRoot } = e.target
+    shadowRoot.querySelector('.panel-group-item-title').textContent =
+        'Checking for updates...'
+    shadowRoot.querySelector('#panelGroupItemStartIcon').style =
+        'animation: rotate-svg-icon infinite 1s linear; fill: crimson;'
+
+    setTimeout(() => {
+        shadowRoot
+            .querySelector('use')
+            .setAttribute(
+                'href',
+                browser.runtime.getURL(`/assets/icons.svg#info`)
+            )
+        shadowRoot.querySelector(
+            '#panelGroupItemStartIcon'
+        ).style.animation = ''
+        shadowRoot.querySelector(
+            '#panelGroupItemStartIcon'
+        ).style.fill = 'var(--secondary-icon)'
+
+        const changlogsPanel = document.createElement('section')
+        changlogsPanel.setAttribute('class', 'panel')
+        changlogsPanel.setAttribute('id', 'panel-changelogs')
+
+        document
+            .querySelector('.panel-container')
+            .appendChild(changlogsPanel)
+
+        const header = new PanelHeader()
+        header.href = '#panel-updates'
+        header.title = 'Changelogs'
+        changlogsPanel.appendChild(header)
+    }, 2000)
+}
+// document.getElementById('updateBtn').onclick = checkForUpdates
