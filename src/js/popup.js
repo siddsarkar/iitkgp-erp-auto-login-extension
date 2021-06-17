@@ -231,10 +231,10 @@ const storeCredentials = () => {
         password: password.value,
         q1: a1.placeholder,
         q2: a2.placeholder,
-        q3: a2.placeholder,
+        q3: a3.placeholder,
         a1: a1.value,
-        a2: a1.value,
-        a3: a1.value
+        a2: a2.value,
+        a3: a3.value
     }
     storage.setItem({ credentials }).then(() => {
         console.log('updated Storage.')

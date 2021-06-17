@@ -13,7 +13,7 @@ answerDiv.addEventListener('change', (e) => console.log(e))
 function authStart(cred) {
     inject.focus()
     loginId.focus()
-    loginId.value = cred.username
+    loginId.value = cred.rollno
     loginId.blur()
     pass.value = cred.password
     setTimeout(() => {
@@ -32,10 +32,10 @@ function authStart(cred) {
     }, 1000)
 }
 
-browser.storage.local.get('authCredentials').then((data) => {
-    if (!data.authCredentials)
+browser.storage.local.get('credentials').then((data) => {
+    if (!data.credentials)
         return displayMessage('No Login Info Found!')
-    authStart(data.authCredentials)
+    authStart(data.credentials)
 })
 
 // eslint-disable-next-line no-unused-vars

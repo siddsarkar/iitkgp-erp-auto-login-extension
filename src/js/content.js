@@ -1,7 +1,7 @@
+import displayMessage from './helpers/displayMessage'
 import extractToken from './helpers/extractToken'
 import authRequest from './utils/authRequest'
 import getSecurityQues from './utils/getSecurityQues'
-import displayMessage from './helpers/displayMessage'
 
 console.log('execute_c_script')
 
@@ -10,15 +10,15 @@ const answerDiv = document.getElementById('answer_div')
 answerDiv.addEventListener('', (e) => console.log(e))
 
 browser.storage.local.get().then((res) => {
-    if (!res.authCredentials) {
+    if (!res.credentials) {
         displayMessage(
             'You have extension to automatic login. Please fill it',
             '#715100'
         )
     } else {
-        const { authCredentials } = res
+        const { credentials, preferences } = res
 
-        if (!authCredentials.autoLogin) {
+        if (!preferences.autoLogin) {
             return displayMessage(
                 'AutoLogin is turned off',
                 '#4a4a4f'
@@ -26,21 +26,21 @@ browser.storage.local.get().then((res) => {
         }
 
         if (
-            authCredentials.username === '' ||
-            authCredentials.password === '' ||
-            authCredentials.q1 === 'loading' ||
-            authCredentials.q2 === 'loading' ||
-            authCredentials.q3 === 'loading' ||
-            authCredentials.a1 === '' ||
-            authCredentials.a2 === '' ||
-            authCredentials.a3 === ''
+            credentials.rollno === '' ||
+            credentials.password === '' ||
+            credentials.q1 === 'Security Question 1' ||
+            credentials.q2 === 'Security Question 2' ||
+            credentials.q3 === 'Security Question 3' ||
+            credentials.a1 === '' ||
+            credentials.a2 === '' ||
+            credentials.a3 === ''
         ) {
             return displayMessage(
                 'Fill out credentials, in the extension!',
                 '#715100'
             )
         }
-        displayMessage('Logging you in..')
+        displayMessage('Logging you in! please wait...')
 
         const ssToken = extractToken(
             window.location.search,
@@ -52,19 +52,19 @@ browser.storage.local.get().then((res) => {
         )
         let ans
 
-        const fetching = getSecurityQues(authCredentials.username)
+        const fetching = getSecurityQues(credentials.rollno)
         fetching.then((str) => {
             if (str !== 'FALSE') {
-                if (str === authCredentials.q1) {
-                    ans = authCredentials.a1
-                } else if (str === authCredentials.q2) {
-                    ans = authCredentials.a2
+                if (str === credentials.q1) {
+                    ans = credentials.a1
+                } else if (str === credentials.q2) {
+                    ans = credentials.a2
                 } else {
-                    ans = authCredentials.a3
+                    ans = credentials.a3
                 }
                 const authenticating = authRequest({
-                    username: authCredentials.username,
-                    password: authCredentials.password,
+                    username: credentials.rollno,
+                    password: credentials.password,
                     answer: ans,
                     sessionToken: ssToken,
                     requestedUrl: rURL
@@ -80,11 +80,16 @@ browser.storage.local.get().then((res) => {
                         location.href = result.url
                     } else {
                         displayMessage(
-                            'Wrong Credentials set. Please update your credentials',
+                            'Wrong Security answers set! Please update your credentials',
                             '#a4000f'
                         )
                     }
                 })
+            } else {
+                displayMessage(
+                    'Invalid username/password set! Please update your credentials',
+                    '#a4000f'
+                )
             }
         })
     }
