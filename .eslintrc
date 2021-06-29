@@ -22,6 +22,6 @@
         "no-console": "off",
         "no-unsanitized/method": "error",
         "no-unsanitized/property": "error",
-        "prettier/prettier": ["error"]
+        "prettier/prettier": ["error", { "endOfLine": "auto" }]
     }
 }
