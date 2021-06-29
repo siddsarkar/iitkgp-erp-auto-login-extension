@@ -183,8 +183,8 @@ const checkStoredInfo = (storedInfo) => {
         }
 
         const preferences = {
-            darkMode: true,
-            autoLogin: false
+            darkMode: false,
+            autoLogin: true
         }
 
         updateUI({ credentials, preferences }, () => {
@@ -428,6 +428,7 @@ autoLoginBtn.getElementById('autoLogin').onclick = toggleCheckBox
 resetBtn.onclick = resetForm
 credentialsForm.onsubmit = (e) => {
     e.preventDefault()
+    logger(`You are all set! ${rollno.value}`, 'check')
     toggleCard()
 }
 

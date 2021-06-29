@@ -2,6 +2,7 @@ import displayMessage from './helpers/displayMessage'
 import extractToken from './helpers/extractToken'
 import authRequest from './utils/authRequest'
 import getSecurityQues from './utils/getSecurityQues'
+import storage from './utils/storage'
 
 console.log('execute_c_script')
 
@@ -9,7 +10,7 @@ console.log('execute_c_script')
 const answerDiv = document.getElementById('answer_div')
 answerDiv.addEventListener('', (e) => console.log(e))
 
-browser.storage.local.get().then((res) => {
+storage.getAllKeys().then((res) => {
     if (!res.credentials) {
         displayMessage(
             'You have extension to automatic login. Please fill it',
@@ -19,8 +20,9 @@ browser.storage.local.get().then((res) => {
         const { credentials, preferences } = res
 
         if (!preferences.autoLogin) {
+            browser.runtime.sendMessage({ action: 'auto_fill' })
             return displayMessage(
-                'AutoLogin is turned off',
+                'AutoLogin is turned off, Autofilling',
                 '#4a4a4f'
             )
         }

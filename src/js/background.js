@@ -45,6 +45,16 @@ function messageHandler(request, sender, sendResponse) {
             browser.runtime.getManifest().version
         ).then((res) => ({ ...res, action: request.action }))
     }
+    if (request.action === 'auto_fill') {
+        const { tab } = sender
+
+        console.log(sender)
+        browser.tabs
+            .executeScript(tab.id, {
+                file: 'js/autofill.js'
+            })
+            .then(() => console.log('Auto-fill Done'))
+    }
 }
 
 browser.runtime.onMessage.addListener(messageHandler)
