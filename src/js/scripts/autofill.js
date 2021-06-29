@@ -3,12 +3,9 @@ import displayMessage from '../helpers/displayMessage'
 const loginId = document.getElementById('user_id')
 const question = document.getElementById('question')
 const answer = document.getElementById('answer')
-const answerDiv = document.getElementById('answer_div')
 const pass = document.getElementById('password')
 const inject = document.getElementById('signin')
 // const loginBtn = document.getElementsByClassName('btn btn-primary')
-
-answerDiv.addEventListener('change', (e) => console.log(e))
 
 function authStart(cred) {
     inject.focus()

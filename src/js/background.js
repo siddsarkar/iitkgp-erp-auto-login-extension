@@ -48,7 +48,6 @@ function messageHandler(request, sender, sendResponse) {
     if (request.action === 'auto_fill') {
         const { tab } = sender
 
-        console.log(sender)
         browser.tabs
             .executeScript(tab.id, {
                 file: 'js/autofill.js'

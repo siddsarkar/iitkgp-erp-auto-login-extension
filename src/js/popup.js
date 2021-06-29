@@ -169,8 +169,10 @@ const updateUI = (restoredSettings, onUpdated = () => {}) => {
 
 const checkStoredInfo = (storedInfo) => {
     console.log('retrieve storage ✔', storedInfo)
+
     if (!storedInfo.preferences) {
         // Initialize storage then Update UI
+
         const credentials = {
             rollno: '',
             password: '',
@@ -185,6 +187,33 @@ const checkStoredInfo = (storedInfo) => {
         const preferences = {
             darkMode: false,
             autoLogin: true
+        }
+
+        if (storedInfo.authCredentials) {
+            const { authCredentials } = storedInfo
+            preferences.darkMode = authCredentials.dark
+            preferences.autoLogin = authCredentials.autoLogin
+
+            credentials.rollno = authCredentials.username
+            credentials.password = authCredentials.password
+            credentials.q1 =
+                authCredentials.q1 !== 'loading'
+                    ? authCredentials.q1
+                    : 'Security Question 1'
+            credentials.q2 =
+                authCredentials.q2 !== 'loading'
+                    ? authCredentials.q2
+                    : 'Security Question 2'
+            credentials.q3 =
+                authCredentials.q3 !== 'loading'
+                    ? authCredentials.q3
+                    : 'Security Question 3'
+
+            credentials.a1 = authCredentials.a1
+            credentials.a2 = authCredentials.a2
+            credentials.a3 = authCredentials.a3
+
+            storage.removeItem('authCredentials')
         }
 
         updateUI({ credentials, preferences }, () => {

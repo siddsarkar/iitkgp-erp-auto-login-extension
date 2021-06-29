@@ -12,9 +12,9 @@ export default {
             ...values
         })
     },
-    getAllKeys: () => browser.storage.local.get()
-
-    // removeItem: (key) => AsyncStorage.removeItem(key),
-    // multiGet: (keys) => AsyncStorage.multiGet(keys),
-    // flushGetRequests: () => AsyncStorage.flushGetRequests()
+    removeItem: async (key) => {
+        await browser.storage.local.remove(key)
+    },
+    getAllKeys: () => browser.storage.local.get(),
+    removeAllKeys: async () => browser.storage.local.clear()
 }

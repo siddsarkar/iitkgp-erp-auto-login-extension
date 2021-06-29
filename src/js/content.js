@@ -20,9 +20,8 @@ storage.getAllKeys().then((res) => {
         const { credentials, preferences } = res
 
         if (!preferences.autoLogin) {
-            browser.runtime.sendMessage({ action: 'auto_fill' })
             return displayMessage(
-                'AutoLogin is turned off, Autofilling',
+                'Automatic login is turned off!',
                 '#4a4a4f'
             )
         }
@@ -37,8 +36,12 @@ storage.getAllKeys().then((res) => {
             credentials.a2 === '' ||
             credentials.a3 === ''
         ) {
+            browser.runtime.sendMessage({
+                action: 'auto_fill'
+            })
+
             return displayMessage(
-                'Fill out credentials, in the extension!',
+                'Fill out credentials for automatic login!',
                 '#715100'
             )
         }
