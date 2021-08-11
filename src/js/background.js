@@ -40,10 +40,10 @@ const fetchUpdate = async (currentVersion = '1.0') => {
 /* eslint-disable no-unused-vars */
 function messageHandler(request, sender, sendResponse) {
     if (request.action === 'update_check') {
-        return fetchUpdate(
-            browser.runtime.getManifest().version
-        ).then((res) => ({ ...res, action: request.action }))
+        return fetchUpdate(chrome.runtime.getManifest().version).then(
+            (res) => ({ ...res, action: request.action })
+        )
     }
 }
 
-browser.runtime.onMessage.addListener(messageHandler)
+chrome.runtime.onMessage.addListener(messageHandler)

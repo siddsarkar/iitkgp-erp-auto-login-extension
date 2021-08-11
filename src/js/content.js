@@ -1,6 +1,7 @@
 import extractToken from './helpers/extractToken'
 import authRequest from './utils/authRequest'
 import getSecurityQues from './utils/getSecurityQues'
+import storage from './utils/storage'
 
 console.log('execute_c_script')
 
@@ -23,7 +24,7 @@ function displayMessage(message, color = '#45a1ff') {
     document.body.prepend(msg)
 }
 
-browser.storage.local.get().then((res) => {
+storage.getAllKeys().then((res) => {
     if (!res.authCredentials) {
         displayMessage(
             'You have extension to automatic login. Please fill it',

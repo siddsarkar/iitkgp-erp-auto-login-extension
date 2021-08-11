@@ -12,6 +12,7 @@
 
 import '../css/popup.scss'
 import getSecurityQues from './utils/getSecurityQues'
+import storage from './utils/storage'
 
 /** ***************
  * HTML ELEMENTS *
@@ -47,7 +48,7 @@ const cText = document.getElementById('copyright')
 const extVer = document.getElementById('ext-version')
 
 cText.innerText = `Copyright©${new Date().getFullYear()}`
-extVer.innerText = browser.runtime.getManifest().version
+extVer.innerText = chrome.runtime.getManifest().version
 
 /** **************
  * DEVELOP AREA *
@@ -95,7 +96,7 @@ document.querySelectorAll('.quick-link').forEach((element) => {
  * @description updates ext-storage on user interactions
  */
 function storeSettings() {
-    browser.storage.local.set({
+    storage.setItem({
         authCredentials: {
             username: usernameInput.value,
             password: passwordInput.value,
@@ -121,7 +122,7 @@ function logger(message, iconId = 'info') {
     logClass.className = iconId
     logIcon.setAttribute(
         'href',
-        browser.runtime.getURL(`/assets/icons.svg#${iconId}`)
+        chrome.runtime.getURL(`/assets/icons.svg#${iconId}`)
     )
 }
 
@@ -142,7 +143,7 @@ function updateUI(restoredSettings) {
         themeBtn.checked = true
         hIcon.setAttribute(
             'src',
-            browser.runtime.getURL(
+            chrome.runtime.getURL(
                 '/assets/images/header_icon_light.png'
             )
         )
@@ -341,8 +342,8 @@ function checkStoredSettings(storedSettings) {
             dark: false,
             autoLogin: true
         }
-        browser.storage.local
-            .set({ authCredentials })
+        storage
+            .setItem({ authCredentials })
             .then(() => updateUI({ authCredentials }), onError)
     } else {
         // updateUI with stored data
@@ -387,8 +388,8 @@ function resetHandler() {
         _a2.setAttribute('disabled', true)
         _a3.setAttribute('disabled', true)
 
-        browser.storage.local
-            .set({
+        storage
+            .setItem({
                 authCredentials: {
                     username: '',
                     password: '',
@@ -404,14 +405,9 @@ function resetHandler() {
             })
             .then(() => {
                 logger('Data Cleared!', 'check')
-                browser.tabs
-                    .create({
-                        url:
-                            'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
-                    })
-                    .then(() => {
-                        console.log('Successfully logged Out!')
-                    }, onError)
+                chrome.tabs.create({
+                    url: 'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
+                })
             })
     }
 
@@ -433,14 +429,14 @@ function toggleDark() {
         themeInfo.textContent = 'off'
         hIcon.setAttribute(
             'src',
-            browser.runtime.getURL('/assets/images/header_icon.png')
+            chrome.runtime.getURL('/assets/images/header_icon.png')
         )
     } else {
         themeInfo.textContent = 'on'
 
         hIcon.setAttribute(
             'src',
-            browser.runtime.getURL(
+            chrome.runtime.getURL(
                 '/assets/images/header_icon_light.png'
             )
         )
@@ -457,7 +453,7 @@ function updateCheckBox(curr, id) {
     const { authCredentials } = curr
 
     if (id === 'theme') {
-        browser.storage.local.set({
+        storage.setItem({
             authCredentials: {
                 ...authCredentials,
                 dark: !authCredentials.dark
@@ -466,7 +462,7 @@ function updateCheckBox(curr, id) {
 
         toggleDark()
     } else if (id === 'auto-login') {
-        browser.storage.local.set({
+        storage.setItem({
             authCredentials: {
                 ...authCredentials,
                 autoLogin: !authCredentials.autoLogin
@@ -503,7 +499,7 @@ function handleMessageResponse(response) {
             const whatsnew = document.createElement('p')
             whatsnew.id = 'update_checked'
             whatsnew.className = 'panel-card-label'
-            whatsnew.innerText = update.release_notes['en-US']
+            whatsnew.innerText = `v${update.version}`
 
             document
                 .getElementById('panel-update')
@@ -539,7 +535,8 @@ function testRoll() {
         logger('Enter a valid Roll No', 'cross')
         return
     }
-    const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
+    const re =
+        /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/ // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
     const OK = re.exec(usernameInput.value)
     if (!OK) {
         // console.error(usernameInput.value + " isn't a roll number!");
@@ -556,7 +553,7 @@ function testRoll() {
  * @param {string} msg any
  */
 function messageTab(action, msg = '') {
-    const sending = browser.runtime.sendMessage({
+    const sending = chrome.runtime.sendMessage({
         action,
         query: msg
     })
@@ -570,7 +567,7 @@ function messageTab(action, msg = '') {
  ********************* */
 
 // Initialize
-browser.storage.local.get().then(checkStoredSettings, onError)
+storage.getAllKeys(null).then(checkStoredSettings, onError)
 
 // Listen Events
 reset.addEventListener('click', resetHandler)
@@ -581,12 +578,12 @@ _a2.addEventListener('blur', storeSettings)
 _a3.addEventListener('blur', storeSettings)
 
 auto.onclick = () => {
-    const getData = browser.storage.local.get()
+    const getData = storage.getAllKeys()
     getData.then((data) => updateCheckBox(data, 'auto-login'))
 }
 
 themeBtn.onclick = () => {
-    const getData = browser.storage.local.get()
+    const getData = storage.getAllKeys()
     getData.then((data) => updateCheckBox(data, 'theme'))
 }
 
@@ -594,9 +591,42 @@ updateBtn.onclick = () => {
     if (document.getElementById('update_checked')) {
         document.getElementById('update_checked').remove()
         updateInfo.textContent = 'checking..'
-        messageTab('update_check')
+
+        chrome.runtime.requestUpdateCheck((status, details) => {
+            console.log({ status, details })
+
+            if (status === ('no_update' || 'throttled')) {
+                handleMessageResponse({
+                    action: 'update_check',
+                    message: 'You are on latest update!'
+                })
+            } else {
+                handleMessageResponse({
+                    type: 'warning',
+                    message: `Update Available - ${details.version}`,
+                    update: details
+                })
+            }
+        })
+        // messageTab('update_check')
     } else {
         updateInfo.textContent = 'checking..'
-        messageTab('update_check')
+        chrome.runtime.requestUpdateCheck((status, details) => {
+            console.log({ status, details })
+
+            if (status === ('no_update' || 'throttled')) {
+                handleMessageResponse({
+                    action: 'update_check',
+                    message: 'You are on latest update!'
+                })
+            } else {
+                handleMessageResponse({
+                    type: 'warning',
+                    message: `Update Available - ${details.version}`,
+                    update: details
+                })
+            }
+        })
+        // messageTab('update_check')
     }
 }
