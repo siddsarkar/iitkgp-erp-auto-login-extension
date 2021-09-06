@@ -16,6 +16,8 @@
   <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/reviews">Feedback</a>
 </p>
 
+<img src="/screenshots/cover.png">
+
 # ERP Auto Login - IITKGP
 
 Our default branch `master` is the source code to the recent stable release. Want to test beta versions? Head to the [`develop` branch](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/tree/develop) to view the latest updates and features before the official release.
