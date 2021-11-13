@@ -66,10 +66,18 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 Several Installation options are available:
 
--   From Official [AMO Website](https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/)
-    -   Click on `Add to firefox` on the extension page.
--   Manual Installation (Beta users)
-    -   [Download the latest release](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) (.xpi) file to your computer.
+-   Stable releases
+        <p align="left">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
+            <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
+          </a>
+          <a href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl">
+            <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="ERP Auto Login - IITKGP logo">
+          </a>
+        </p>
+
+-   Beta releases
+    -   [Click here](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) to download the latest (.xpi) from github to your computer.
     -   Open Add-on Manager from options (or) by pressing Ctrl/Cmd+Shift+A on Widows/Mac
     -   Click the gear icon gear icon in the upper-right area of the Add-on Manager Extensions panel.
     -   Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
