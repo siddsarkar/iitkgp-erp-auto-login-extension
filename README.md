@@ -66,7 +66,7 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 Several Installation options are available:
 
--   Stable releases
+-   Stable releases 
         <p align="left">
           <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
             <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
@@ -81,6 +81,8 @@ Several Installation options are available:
     -   Open Add-on Manager from options (or) by pressing Ctrl/Cmd+Shift+A on Widows/Mac
     -   Click the gear icon gear icon in the upper-right area of the Add-on Manager Extensions panel.
     -   Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
+
+> For android you can use extensions on the [Nightly](https://play.google.com/store/apps/details?id=org.mozilla.fenix&hl=en&gl=US) version of Firefox. [follow this article](https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/) to set it up.
 
 ## Bugs and feature requests
 
