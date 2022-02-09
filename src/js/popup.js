@@ -18,12 +18,15 @@ import logger from './components/logger'
 import PanelGroup from './components/panel/panelgroup'
 import PanelGroupItem from './components/panel/panelgroupitem'
 import PanelHeader from './components/panel/panelheader'
+import WebCrypto from './utils/crypto'
 import getSecurityQues from './utils/getSecurityQues'
 import storage from './utils/storage'
 
 customElements.define('panel-group', PanelGroup)
 customElements.define('panel-header', PanelHeader)
 customElements.define('panel-group-item', PanelGroupItem)
+
+const crypto = new WebCrypto()
 
 // panel
 const resetBtn = document.getElementById('resetBtn')
@@ -39,6 +42,7 @@ const password = document.getElementById('password')
 const a1 = document.getElementById('a1')
 const a2 = document.getElementById('a2')
 const a3 = document.getElementById('a3')
+const pin = document.getElementById('pin')
 
 /**
  * INITIALIZATION
@@ -141,6 +145,7 @@ const updateUI = (restoredSettings, onUpdated = () => {}) => {
     } else if (credentials.password === '') {
         logger('Enter Password', 'warning')
         password.removeAttribute('disabled')
+        pin.removeAttribute('disabled')
         password.addEventListener('keyup', () => {
             a1.removeAttribute('disabled')
             a2.removeAttribute('disabled')
@@ -186,7 +191,8 @@ const checkStoredInfo = (storedInfo) => {
 
         const preferences = {
             darkMode: false,
-            autoLogin: true
+            autoLogin: true,
+            requirePin: false
         }
 
         if (storedInfo.authCredentials) {
@@ -254,20 +260,72 @@ console.groupCollapsed('@chore/init')
  * ? keyup, formsubmit/reset, clicks
  */
 
-const storeCredentials = () => {
-    const credentials = {
+const storeCredentials = async () => {
+    let credentials = {
         rollno: rollno.value,
-        password: password.value,
         q1: a1.placeholder,
         q2: a2.placeholder,
-        q3: a3.placeholder,
-        a1: a1.value,
-        a2: a2.value,
-        a3: a3.value
+        q3: a3.placeholder
     }
-    storage.setItem({ credentials }).then(() => {
-        console.log('updated Storage.')
-    })
+    if (pin.value) {
+        let ans1
+        let ans2
+        let ans3
+        let pass
+        if (a1.value) {
+            ans1 = await crypto.encrypt(a1.value, pin.value)
+        }
+        if (a2.value) {
+            ans2 = await crypto.encrypt(a2.value, pin.value)
+        }
+        if (a3.value) {
+            ans3 = await crypto.encrypt(a3.value, pin.value)
+        }
+        if (password.value) {
+            pass = await crypto.encrypt(password.value, pin.value)
+        }
+        credentials = {
+            ...credentials,
+            password: pass,
+            a1: ans1,
+            a2: ans2,
+            a3: ans3
+        }
+        storage.getItem('preferences').then((preferences) => {
+            storage
+                .setItem({
+                    preferences: {
+                        ...preferences,
+                        requirePin: true
+                    },
+                    credentials
+                })
+                .then(() => {
+                    console.log('updated require pin.')
+                })
+        })
+    } else {
+        credentials = {
+            ...credentials,
+            password: password.value,
+            a1: a1.value,
+            a2: a2.value,
+            a3: a3.value
+        }
+        storage.getItem('preferences').then((preferences) => {
+            storage
+                .setItem({
+                    preferences: {
+                        ...preferences,
+                        requirePin: false
+                    },
+                    credentials
+                })
+                .then(() => {
+                    console.log('updated require pin.')
+                })
+        })
+    }
 }
 
 const resetCredentialsForm = () => {
@@ -340,6 +398,7 @@ const validateRollNumber = (e) => {
         getSecurityQues(r).then((q) => {
             if (q !== 'FALSE') {
                 password.removeAttribute('disabled')
+                pin.removeAttribute('disabled')
                 if (a1.placeholder === 'Security Question 1') {
                     a1.setAttribute('placeholder', q)
                     a1.removeAttribute('disabled')
