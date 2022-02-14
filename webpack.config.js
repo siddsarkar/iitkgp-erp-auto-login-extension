@@ -1,63 +1,84 @@
-const path = require('path')
-const CopyPlugin = require('copy-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('./node_modules/terser-webpack-plugin/dist');
 
-module.exports = {
-    stats: 'errors-only',
-    entry: {
-        background: './src/js/background.js',
-        content: './src/js/content.js',
-        popup: './src/js/popup.js',
-        autofill: './src/js/scripts/autofill.js'
-    },
-    output: {
-        path: path.join(__dirname, 'addon'),
-        filename: 'js/[name].js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
-        }),
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: '**/*',
-                    context: 'src/',
-                    globOptions: {
-                        ignore: ['**/sass/**', '**/js/**']
-                    }
-                },
-                {
-                    from: 'manifest.json'
-                }
-            ]
-        })
-    ],
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    mangle: false,
-                    compress: false,
-                    output: {
-                        beautify: true,
-                        indent_level: 2
-                    }
-                }
-            })
-        ]
-    }
-}
+module.exports = [
+	{
+		name: 'firefox',
+		devtool: false,
+		entry: {
+			background: __dirname + '/src/background.js',
+		},
+		output: {
+			path: path.join(__dirname, 'firefox'),
+			filename: '[name].js',
+		},
+		plugins: [
+			new CopyPlugin({
+				patterns: [
+					{
+						from: './src',
+					},
+					{
+						from: './manifests/manifest.firefox.json',
+						to: 'manifest.json',
+					},
+				],
+			}),
+		],
+		optimization: {
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						mangle: false,
+						compress: false,
+						output: {
+							beautify: true,
+							// eslint-disable-next-line camelcase
+							indent_level: 2,
+						},
+					},
+				}),
+			],
+		},
+	},
+	{
+		name: 'chrome',
+		devtool: false,
+		entry: {
+			background: __dirname + '/src/background.js',
+		},
+		output: {
+			path: path.join(__dirname, 'chrome'),
+			filename: '[name].js',
+		},
+		plugins: [
+			new CopyPlugin({
+				patterns: [
+					{
+						from: './src',
+					},
+					{
+						from: './manifests/manifest.chrome.json',
+						to: 'manifest.json',
+					},
+				],
+			}),
+		],
+		optimization: {
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						mangle: false,
+						compress: false,
+						output: {
+							beautify: true,
+							// eslint-disable-next-line camelcase
+							indent_level: 2,
+						},
+					},
+				}),
+			],
+		},
+	},
+];

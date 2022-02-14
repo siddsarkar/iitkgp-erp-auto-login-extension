@@ -1,38 +1,32 @@
 {
-    "name": "erp-auto-login-photon-ui",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
+    "private": true,
     "webExt": {
-        "sourceDir": "addon/",
-        "artifactsDir": "dist/"
+        "sourceDir": "firefox/"
     },
     "scripts": {
-        "watch": "webpack --mode development --watch --devtool source-map",
-        "watchExt": "web-ext run --firefox=firefoxdeveloperedition",
-        "build": "webpack --mode production",
-        "build:zip": "web-ext build",
-        "es:lint": "eslint . --fix",
-        "webExt:lint": "web-ext lint",
-        "format": "prettier --write ."
+        "fix": "eslint ./src --fix",
+        "dev:chrome": "concurrently --kill-others \"npx tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"npx webpack --config-name chrome --mode development --watch\"",
+        "dev:firefox": "concurrently --kill-others \"npx tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"npx webpack --config-name firefox --mode development --watch\"",
+        "build:chrome": "npx tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name chrome --mode production",
+        "build:firefox": "npx tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name firefox --mode production"
     },
+    "keywords": [
+        "browser-addon",
+        "erp-auto-login-iitkgp"
+    ],
+    "author": "Siddhartha Sarkar",
+    "license": "ISC",
     "devDependencies": {
-        "copy-webpack-plugin": "^10.2.4",
-        "css-loader": "^6.6.0",
-        "eslint": "^8.8.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-prettier": "^8.1.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-no-unsanitized": "^4.0.1",
-        "eslint-plugin-prettier": "^4.0.0",
-        "mini-css-extract-plugin": "^2.5.3",
-        "prettier": "^2.2.1",
-        "sass": "^1.32.8",
-        "sass-loader": "^12.4.0",
-        "terser-webpack-plugin": "^5.1.1",
-        "url-loader": "^4.1.1",
-        "web-ext": "^6.6.0",
-        "webpack": "^5.24.2",
-        "webpack-cli": "^4.5.0"
+        "concurrently": "latest",
+        "copy-webpack-plugin": "latest",
+        "eslint": "latest",
+        "eslint-config-xo": "latest",
+        "tailwindcss": "latest",
+        "webpack": "latest",
+        "webpack-cli": "latest"
+    },
+    "dependencies": {
+        "@tailwindcss/forms": "latest",
+        "postcss": "latest"
     }
 }
