@@ -33,6 +33,8 @@ const resetBtn = document.getElementById('resetBtn')
 const cardMaximizeBtn = document.getElementById('cardMaximizeBtn')
 const themeBtn = document.getElementById('darkMode').shadowRoot
 const autoLoginBtn = document.getElementById('autoLogin').shadowRoot
+const partialFillBtn =
+    document.getElementById('partialFill').shadowRoot
 
 // form
 const headerIcon = document.getElementById('formHeaderIcon')
@@ -108,6 +110,13 @@ const updateUI = (restoredSettings, onUpdated = () => {}) => {
         preferences.autoLogin
     autoLoginBtn.querySelector('#panelGroupItemEndText').textContent =
         preferences.autoLogin
+
+    // update autologin checkbox
+    partialFillBtn.querySelector('#partialFill').checked =
+        preferences.partialFill
+    partialFillBtn.querySelector(
+        '#panelGroupItemEndText'
+    ).textContent = preferences.partialFill
 
     if (preferences.darkMode) {
         toggleHeaderIcon()
@@ -192,7 +201,8 @@ const checkStoredInfo = (storedInfo) => {
         const preferences = {
             darkMode: false,
             autoLogin: true,
-            requirePin: false
+            requirePin: false,
+            partialFill: true
         }
 
         if (storedInfo.authCredentials) {
@@ -508,11 +518,13 @@ const resetForm = (e) => {
 
 rollno.onkeyup = validateRollNumber
 password.onblur = storeCredentials
+pin.onblur = storeCredentials
 a1.onblur = storeCredentials
 a2.onblur = storeCredentials
 a3.onblur = storeCredentials
 themeBtn.getElementById('darkMode').onclick = toggleCheckBox
 autoLoginBtn.getElementById('autoLogin').onclick = toggleCheckBox
+partialFillBtn.getElementById('partialFill').onclick = toggleCheckBox
 resetBtn.onclick = resetForm
 credentialsForm.onsubmit = (e) => {
     e.preventDefault()

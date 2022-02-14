@@ -13,9 +13,7 @@ export default function logger(
     logText.textContent = message
     logIcon.setAttribute(
         'href',
-        browser.runtime.getURL(
-            `/assets/icons.svg#${iconId || 'info'}`
-        )
+        chrome.runtime.getURL(`/assets/icons.svg#${iconId || 'info'}`)
     )
 
     if (actions) {
