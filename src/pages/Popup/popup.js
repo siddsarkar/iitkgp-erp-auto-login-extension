@@ -3,8 +3,8 @@ function logger(
 	message,
 	type = 'info',
 	actions = false,
-	onClickYes = () => { },
-	onclickCancel = () => { },
+	onClickYes = () => {},
+	onclickCancel = () => {},
 ) {
 	const log = document.getElementById('log');
 	const logIcon = document.getElementById('logIcon');
@@ -38,17 +38,13 @@ function logger(
 	logText.textContent = message;
 	logIcon.setAttribute(
 		'href',
-		chrome.runtime.getURL(
-			`/assets/sprite.svg#${iconId || 'info'}`,
-		),
+		chrome.runtime.getURL(`/assets/sprite.svg#${iconId || 'info'}`),
 	);
 
 	statusText.textContent = message;
 	statusIcon.setAttribute(
 		'href',
-		chrome.runtime.getURL(
-			`/assets/sprite.svg#${iconId || 'info'}`,
-		),
+		chrome.runtime.getURL(`/assets/sprite.svg#${iconId || 'info'}`),
 	);
 
 	if (actions) {
@@ -81,7 +77,9 @@ function logger(
 }
 
 function ERP(roll) {
-	if (!/^[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}$/.exec(roll)) {
+	if (
+		!/^[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}$/.exec(roll)
+	) {
 		throw new Error('Please input a valid Roll Number!');
 	}
 
@@ -130,7 +128,11 @@ function ERP(roll) {
 
 		load: {
 			value(user) {
-				const {username: id, password: pass, securityQuestions: ques} = user;
+				const {
+					username: id,
+					password: pass,
+					securityQuestions: ques,
+				} = user;
 
 				if (id) {
 					username = id;
@@ -233,9 +235,9 @@ function ERP(roll) {
 	});
 
 	/**
-   * Logout user
-   * @returns redirected url
-   */
+     * Logout user
+     * @returns redirected url
+     */
 	this.logout = async function () {
 		const url = 'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm';
 		const response = await processRequest(new Request(url));
@@ -248,10 +250,10 @@ function ERP(roll) {
 	};
 
 	/**
-   * Get user login status
-   * @param {string} requestedUrl url to load
-   * @returns login status
-   */
+     * Get user login status
+     * @param {string} requestedUrl url to load
+     * @returns login status
+     */
 	this.isLoggedIn = async function (requestedUrl) {
 		if (!requestedUrl) {
 			requestedUrl = 'https://erp.iitkgp.ac.in/IIT_ERP3/';
@@ -266,12 +268,13 @@ function ERP(roll) {
 	};
 
 	/**
-   * Authentication request
-   * @param {{username:string,password:string,answer:string,requestedUrl:string,sessionToken:string}} authcred login credentials
-   * @returns redirected url
-   */
+     * Authentication request
+     * @param {{username:string,password:string,answer:string,requestedUrl:string,sessionToken:string}} authcred login credentials
+     * @returns redirected url
+     */
 	this.authRequest = async function (authcred) {
-		const {username, password, answer, sessionToken, requestedUrl} = authcred;
+		const {username, password, answer, sessionToken, requestedUrl}
+            = authcred;
 
 		if (!username || !password || !answer) {
 			throw new Error('Username or Password or Answer is missing!');
@@ -293,7 +296,9 @@ function ERP(roll) {
 
 		console.log('req_body:', body);
 
-		const response = await processRequest(new Request(url, {method, body}));
+		const response = await processRequest(
+			new Request(url, {method, body}),
+		);
 
 		if (response.redirected) {
 			return response.url;
@@ -303,10 +308,10 @@ function ERP(roll) {
 	};
 
 	/**
-   * Fetch a security question for rollno
-   * @param {string} iitkgploginid institute login id
-   * @returns security question
-   */
+     * Fetch a security question for rollno
+     * @param {string} iitkgploginid institute login id
+     * @returns security question
+     */
 	this.getSecurityQues = async function (iitkgploginid) {
 		/* Validate arguments */
 		if (!iitkgploginid) {
@@ -314,20 +319,22 @@ function ERP(roll) {
 		}
 
 		const url
-			= 'https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm';
+            = 'https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm';
 		const method = 'POST';
 		const body = `user_id=${iitkgploginid}`;
 
-		const response = await processRequest(new Request(url, {method, body}));
+		const response = await processRequest(
+			new Request(url, {method, body}),
+		);
 
 		return response ? response.text() : 'FALSE';
 	};
 
 	/**
-   * Global http request handler
-   * @param {Request} request a request object
-   * @returns fetch response
-   */
+     * Global http request handler
+     * @param {Request} request a request object
+     * @returns fetch response
+     */
 	const processRequest = async function (request) {
 		let ts = Date.now();
 		const {url, method} = request;
@@ -336,7 +343,9 @@ function ERP(roll) {
 		const response = await nativeFetch(request);
 		ts -= Date.now();
 
-		console.log(`${method + response.status}: ${-ts}ms ${pathname + search}`);
+		console.log(
+			`${method + response.status}: ${-ts}ms ${pathname + search}`,
+		);
 
 		if (response.ok && response.status === 200) {
 			return response;
@@ -346,13 +355,16 @@ function ERP(roll) {
 	};
 
 	/**
-   * Fetch wrapper
-   * @param {Request} request new Request() instance
-   * @returns Promise<Response>
-   */
+     * Fetch wrapper
+     * @param {Request} request new Request() instance
+     * @returns Promise<Response>
+     */
 	const nativeFetch = function (request) {
 		if (request.method === 'POST') {
-			request.headers.set('Content-type', 'application/x-www-form-urlencoded');
+			request.headers.set(
+				'Content-type',
+				'application/x-www-form-urlencoded',
+			);
 		}
 
 		return fetch(request);
@@ -360,8 +372,7 @@ function ERP(roll) {
 }
 
 function WebCrypto() {
-	const buffToBase64 = buff =>
-		btoa(String.fromCharCode.apply(null, buff));
+	const buffToBase64 = buff => btoa(String.fromCharCode.apply(null, buff));
 	const base64ToBuff = b64 =>
 		Uint8Array.from(atob(b64), c => c.charCodeAt(null));
 
@@ -370,12 +381,12 @@ function WebCrypto() {
 	const bytes = {salt: 16, iv: 12};
 
 	/**
-	 * Returns a key generated from password,
-	 * use it as input to the deriveKey method.
-	 *
-	 * @param {string|number} password password for encryption/decryption
-	 * @returns a key
-	 */
+     * Returns a key generated from password,
+     * use it as input to the deriveKey method.
+     *
+     * @param {string|number} password password for encryption/decryption
+     * @returns a key
+     */
 	function getKeyFromPassword(password) {
 		return window.crypto.subtle.importKey(
 			'raw',
@@ -387,13 +398,13 @@ function WebCrypto() {
 	}
 
 	/**
-	 * Given some key from password and some random salt,
-	 * returns a derived AES-GCM key using PBKDF2.
-	 *
-	 * @param {CryptoKey} keyFromPassword Key generated from password
-	 * @param {Uint8Array} salt random generated salt
-	 * @returns derived key
-	 */
+     * Given some key from password and some random salt,
+     * returns a derived AES-GCM key using PBKDF2.
+     *
+     * @param {CryptoKey} keyFromPassword Key generated from password
+     * @param {Uint8Array} salt random generated salt
+     * @returns derived key
+     */
 	function getKey(keyFromPassword, salt) {
 		return window.crypto.subtle.deriveKey(
 			{
@@ -410,23 +421,19 @@ function WebCrypto() {
 	}
 
 	/**
-	 * Derive a key from a password supplied by the user,
-	 * use the key to encrypt the secret data,
-	 * return the combined encrypted data as string.
-	 *
-	 * @param {string|number} secret secret data to encrypt
-	 * @param {string|number} password password for encryption
-	 * @returns encrypted string
-	 */
+     * Derive a key from a password supplied by the user,
+     * use the key to encrypt the secret data,
+     * return the combined encrypted data as string.
+     *
+     * @param {string|number} secret secret data to encrypt
+     * @param {string|number} password password for encryption
+     * @returns encrypted string
+     */
 	this.encrypt = async (secret, password) => {
 		const keyFromPassword = await getKeyFromPassword(password);
-		const salt = window.crypto.getRandomValues(
-			new Uint8Array(bytes.salt),
-		);
+		const salt = window.crypto.getRandomValues(new Uint8Array(bytes.salt));
 		const key = await getKey(keyFromPassword, salt);
-		const iv = window.crypto.getRandomValues(
-			new Uint8Array(bytes.iv),
-		);
+		const iv = window.crypto.getRandomValues(new Uint8Array(bytes.iv));
 		const encoded = enc.encode(secret);
 
 		const ciphertext = await window.crypto.subtle.encrypt(
@@ -451,41 +458,35 @@ function WebCrypto() {
 	};
 
 	/**
-	 * Derive a key from a password supplied by the user,
-	 * use the key to decrypt the ciphertext.
-	 * if the ciphertext was decrypted successfully,
-	 *   return the decrypted value.
-	 * if there was an error decrypting,
-	 *   throw an error message.
-	 *
-	 * @param {string} encrypted encrypted base64 string
-	 * @param {string|number} password password for the encrypted data
-	 * @returns decrypted data as string
-	 */
+     * Derive a key from a password supplied by the user,
+     * use the key to decrypt the ciphertext.
+     * if the ciphertext was decrypted successfully,
+     *   return the decrypted value.
+     * if there was an error decrypting,
+     *   throw an error message.
+     *
+     * @param {string} encrypted encrypted base64 string
+     * @param {string|number} password password for the encrypted data
+     * @returns decrypted data as string
+     */
 	this.decrypt = async (encrypted, password) => {
 		const encryptedBuffer = base64ToBuff(encrypted);
 		const salt = encryptedBuffer.slice(0, bytes.salt);
-		const iv = encryptedBuffer.slice(
-			bytes.salt,
-			bytes.salt + bytes.iv,
-		);
-		const ciphertext = encryptedBuffer.slice(
-			bytes.salt + bytes.iv,
-		);
+		const iv = encryptedBuffer.slice(bytes.salt, bytes.salt + bytes.iv);
+		const ciphertext = encryptedBuffer.slice(bytes.salt + bytes.iv);
 
 		const keyFromPassword = await getKeyFromPassword(password);
 		const key = await getKey(keyFromPassword, salt);
 
 		try {
-			const decryptedEncoded
-				= await window.crypto.subtle.decrypt(
-					{
-						name: 'AES-GCM',
-						iv,
-					},
-					key,
-					ciphertext,
-				);
+			const decryptedEncoded = await window.crypto.subtle.decrypt(
+				{
+					name: 'AES-GCM',
+					iv,
+				},
+				key,
+				ciphertext,
+			);
 
 			const decrypted = dec.decode(decryptedEncoded);
 			return decrypted;
@@ -499,21 +500,26 @@ const toggleCheckBox = e => {
 	const {target} = e;
 	chrome.storage.local.get(['authCredentials'], result => {
 		if (result.authCredentials) {
-			console.log(`curr ${target.id}:`, result.authCredentials[target.id]);
-			chrome.storage.local.set({
-				authCredentials: {
-					...result.authCredentials,
-					[target.id]: !result.authCredentials[target.id],
+			console.log(
+				`curr ${target.id}:`,
+				result.authCredentials[target.id],
+			);
+			chrome.storage.local.set(
+				{
+					authCredentials: {
+						...result.authCredentials,
+						[target.id]: !result.authCredentials[target.id],
+					},
 				},
-			},
-			() => {
-				console.log(
-					`set ${target.id} to:`,
-					!result.authCredentials[target.id],
-				);
+				() => {
+					console.log(
+						`set ${target.id} to:`,
+						!result.authCredentials[target.id],
+					);
 
-				target.checked = !result.authCredentials[target.id];
-			});
+					target.checked = !result.authCredentials[target.id];
+				},
+			);
 		}
 	});
 };
@@ -523,7 +529,11 @@ chrome.storage.local.get(['theme', 'bg'], result => {
 	const themeSelect = document.getElementById('theme_select');
 	const themeBg = document.getElementById('theme-bg');
 
-	if (result.theme === 'dark' || (!('theme' in result) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+	if (
+		result.theme === 'dark'
+        || (!('theme' in result)
+            && window.matchMedia('(prefers-color-scheme: dark)').matches)
+	) {
 		document.documentElement.classList.add('dark');
 		themeSelect.value = 'dark';
 	} else {
@@ -586,7 +596,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		// Extras
 		const container = document.querySelector('.box-container');
-		const formToggleBtns = document.querySelectorAll('.left-button,.right-button');
+		const formToggleBtns = document.querySelectorAll(
+			'.left-button,.right-button',
+		);
 
 		username.value = authCredentials.username || '';
 		password.value = authCredentials.password || '';
@@ -631,7 +643,15 @@ window.addEventListener('DOMContentLoaded', () => {
 			a3.disabled = false;
 		}
 
-		const emptyFieldExists = authCredentials.username === '' || authCredentials.password === '' || authCredentials.a1 === '' || authCredentials.q1 === 'Your erp question 1' || authCredentials.a2 === '' || authCredentials.q2 === 'Your erp question 2' || authCredentials.a3 === '' || authCredentials.q3 === 'Your erp question 2';
+		const emptyFieldExists
+            = authCredentials.username === ''
+            || authCredentials.password === ''
+            || authCredentials.a1 === ''
+            || authCredentials.q1 === 'Your erp question 1'
+            || authCredentials.a2 === ''
+            || authCredentials.q2 === 'Your erp question 2'
+            || authCredentials.a3 === ''
+            || authCredentials.q3 === 'Your erp question 2';
 
 		if (emptyFieldExists) {
 			container.classList.toggle('right-open');
@@ -698,7 +718,9 @@ window.addEventListener('DOMContentLoaded', () => {
 					a2: ans2,
 					a3: ans3,
 				};
-				chrome.storage.local.set({authCredentials: credentials}, () => location.reload());
+				chrome.storage.local.set({authCredentials: credentials}, () =>
+					location.reload(),
+				);
 			} else {
 				credentials = {
 					...credentials,
@@ -708,7 +730,9 @@ window.addEventListener('DOMContentLoaded', () => {
 					a2: a2.value,
 					a3: a3.value,
 				};
-				chrome.storage.local.set({authCredentials: credentials}, () => location.reload());
+				chrome.storage.local.set({authCredentials: credentials}, () =>
+					location.reload(),
+				);
 			}
 		});
 
@@ -735,7 +759,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		username.addEventListener('keyup', _ => {
 			if (username.value.length !== 9) {
-				if (username.value.length === 8 || username.value.length === 10) {
+				if (
+					username.value.length === 8
+                    || username.value.length === 10
+				) {
 					questions.forEach((q, i) => {
 						q.placeholder = `Your erp question ${i + 1}`;
 						q.value = '';
@@ -752,7 +779,8 @@ window.addEventListener('DOMContentLoaded', () => {
 				return;
 			}
 
-			const re = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/; // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
+			const re
+                = /[0-9]{2}[a-z|A-Z]{2}[0-9|a-z|A-Z]{1}[a-z|A-Z|0-9]{2}[0-9]{2}/; // ? regex for IITKGP ROLL-NUMBERS (18mi10018-19mi3pe03)
 			const OK = re.exec(username.value);
 
 			if (OK) {
@@ -784,65 +812,3 @@ window.addEventListener('DOMContentLoaded', () => {
 		}, 500);
 	});
 });
-
-/**
-
-{
-    "authCredentials": {
-        "a1": "facebook",
-        "a2": "tabletennis",
-        "a3": "lenovo",
-        "autoLogin": true,
-        "dark": true,
-        "password": "Sidking@791",
-        "q1": "My favorite book",
-        "q2": "My favorite sport",
-        "q3": "My best laptop brand",
-        "username": "18mi31033"
-    }
-}
-{
-    "author": "Siddhartha Sarkar",
-    "background": {
-        "scripts": [
-            "js/background.js"
-        ]
-    },
-    "browser_action": {
-        "default_icon": "assets/images/ext_icon.png",
-        "default_popup": "popup.html",
-        "default_title": "ERP Auto Login",
-        "theme_icons": [
-            {
-                "dark": "assets/images/ext_icon_dark.png",
-                "light": "assets/images/ext_icon.png",
-                "size": 256
-            }
-        ]
-    },
-    "content_scripts": [
-        {
-            "js": [
-                "js/content.js"
-            ],
-            "matches": [
-                "*://erp.iitkgp.ac.in/SSOAdministration/login.htm*"
-            ]
-        }
-    ],
-    "description": "Auto Login to erp.iitkgp.ac.in for IITKGPians by IITKGPian",
-    "homepage_url": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension",
-    "icons": {
-        "256": "assets/images/ext_icon.png"
-    },
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhQCWJFPZQVDgDUHS++BTiIhSJ9TDDSVA2vmPAyATd7ewwtPSzTv1cJXEhQWhUTeB0DbxCR2VGLP1Gkrw5IJ2l9H6VZYL+hLuG4VFkjjR9qOd0aUxpcI6vLYLb7/H8a2q7FpzrtorpH8RSz8xHqtxx+tzndSrYy7BDp3+hs78hPuZmvzKxrUnaa1cVPgMjkDJjSRW7DilZjYfVGKGAtBY2eX+CTiAb9HooPBo/sliAGylFTjCvs4c2U+i6wvc4/PxsC/j5voo1mToIzoRdeKElCDklJOXHt9qUePabtLHtv9TKI1uCz7bFIjgBILF6mn5hng6OEQNogf4EnexVFfGYQIDAQAB",
-    "manifest_version": 2,
-    "name": "ERP Auto Login - IITKGP",
-    "permissions": [
-        "storage",
-        "https://erp.iitkgp.ac.in/"
-    ],
-    "update_url": "https://clients2.google.com/service/update2/crx",
-    "version": "5.0.0"
-}
- */
