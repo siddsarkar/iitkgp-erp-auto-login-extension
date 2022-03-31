@@ -66,15 +66,15 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 Several Installation options are available:
 
--   Stable releases 
-        <p align="left">
-          <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
-            <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
-          </a>
-          <a href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl">
-            <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="ERP Auto Login - IITKGP logo">
-          </a>
-        </p>
+-   Stable releases
+    <p align="left">
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
+    <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
+    </a>
+    <a href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl">
+    <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="ERP Auto Login - IITKGP logo">
+    </a>
+    </p>
 
 -   Beta releases
     -   [Click here](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) to download the latest (.xpi) from github to your computer.

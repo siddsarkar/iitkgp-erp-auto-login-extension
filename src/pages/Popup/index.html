@@ -7,6 +7,12 @@
         <title>Document</title>
         <link href="../output.css" rel="stylesheet" />
         <style>
+            body {
+                font-family: system-ui, sans-serif;
+                font-weight: 300;
+                font-size: 13px;
+                line-height: 1.7;
+            }
             .pride-theme {
                 background: rgb(10, 17, 23) url("../../assets/images/bg.jpg")
                     fixed center;
@@ -49,7 +55,7 @@
                             <p class="panel-group-label">Quick Links</p>
                             <hr class="panel-group-divider" />
                             <a
-                                href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+                                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="panel-group-item"
@@ -73,7 +79,7 @@
                                 </div>
                             </a>
                             <a
-                                href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+                                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="panel-group-item"
@@ -97,7 +103,7 @@
                                 </div>
                             </a>
                             <a
-                                href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
+                                href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="panel-group-item"
@@ -121,7 +127,7 @@
                                 </div>
                             </a>
                             <a
-                                href="https://erp.iitkgp.ac.in/SSOAdministration/login.htm?requestedUrl=https://erp.iitkgp.ac.in/TrainingPlacementSSO/Notice.jsp"
+                                href="https://erp.iitkgp.ac.in/TrainingPlacementSSO/Notice.jsp"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="panel-group-item"
@@ -615,10 +621,10 @@
                             <hr class="panel-group-divider" />
                             <div class="relative">
                                 <div
-                                    class="absolute flex border border-transparent left-0 top-0 h-full w-10"
+                                    class="absolute left-0 top-0 flex h-full w-10 border border-transparent"
                                 >
                                     <div
-                                        class="flex items-center justify-center rounded-tl rounded-bl text-gray-600 text-lg h-full w-full"
+                                        class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
                                     >
                                         <svg
                                             class="h-4 w-4 fill-slate-900 dark:fill-slate-200"
@@ -632,7 +638,7 @@
                                 <select
                                     name="theme_select"
                                     id="theme_select"
-                                    class="pl-[40px] text-xs font-semibold bg-transparent ring-0 outline-none border-0 shadow-none focus:border-0 focus:outline-none focus:ring-0"
+                                    class="border-0 bg-transparent pl-[40px] text-xs shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
                                 >
                                     <option value="" disabled>
                                         -- select theme --
@@ -676,7 +682,7 @@
                     alt="ext-logo"
                 />
                 <div style="flex-grow: 1">
-                    <h1>ERP Auto Login - IITKGP</h1>
+                    <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
                     <small class="text-gray-600 dark:text-gray-400"
                         >Copyright © 2022.</small
                     >
@@ -688,7 +694,7 @@
           <span>Add User</span>
           </button> -->
             </div>
-            <div class="box2-side">
+            <div class="box2-side items-center justify-center">
                 <button class="left-button box-toggle-btn">
                     <svg>
                         <use href="../../assets/sprite.svg#chevron-left"></use>
@@ -696,26 +702,29 @@
                     <span>Back</span>
                 </button>
             </div>
-            <form class="box2-content mb-0 space-y-4" id="form_add_user">
-                <div class="info" id="log">
+            <form
+                class="box2-content bottom-0 left-0 right-0 mb-0 space-y-4 bg-white shadow-sm"
+                id="form_add_user"
+            >
+                <div class="warning" id="log">
                     <svg>
                         <use
                             href="../../assets/sprite.svg#info"
                             id="logIcon"
                         ></use>
                     </svg>
-                    <p id="logText"></p>
+                    <span id="logText"></span>
 
                     <!-- ACTIONS BUTTONS ! -->
-                    <!-- <div class="action">Yes Clear</div> -->
+                    <!-- <div class="action">Yes</div> -->
                 </div>
-                <div>
+                <div class="space-y-1">
                     <div>
-                        <label for="username" class="form-group-label"
+                        <label class="form-textbox-label" for="username"
                             >Login Info</label
                         >
-                        <div class="form-group-input">
-                            <div>
+                        <div class="form-textbox flex w-full flex-row gap-1">
+                            <div class="w-full">
                                 <div>
                                     <svg>
                                         <use
@@ -723,32 +732,37 @@
                                         ></use>
                                     </svg>
                                 </div>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autofocus="true"
+                                    autocomplete="username"
+                                    placeholder="Your iitkgp roll no"
+                                    required
+                                />
                             </div>
-                            <!-- pattern="^[0-9]{2}[a-z|A-Z]{2}[0-9|a-zA-Z][a-z|A-Z0-9]{2}[0-9]{2}$" -->
-                            <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                maxlength="9"
-                                minlength="9"
-                                autocomplete="username"
-                                placeholder="Your iitkgp roll no"
-                                required
-                                disabled
-                            />
+
+                            <button
+                                id="username_submit_button"
+                                class="svg-btn-primary"
+                            >
+                                <svg class="h-4 w-4">
+                                    <use
+                                        href="../../assets/sprite.svg#chevron-right"
+                                    ></use>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div>
-                        <label for="password" class="form-group-label"></label>
-                        <div class="form-group-input">
+                    <div class="form-textbox">
+                        <div>
                             <div>
-                                <div>
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#key"
-                                        ></use>
-                                    </svg>
-                                </div>
+                                <svg>
+                                    <use
+                                        href="../../assets/sprite.svg#key"
+                                    ></use>
+                                </svg>
                             </div>
                             <input
                                 id="password"
@@ -763,19 +777,15 @@
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <label for="question_one" class="form-group-label"
-                            >Security Questions</label
-                        >
-                        <div class="form-group-input">
+                    <div class="form-textbox">
+                        <label for="question_one">Security Questions</label>
+                        <div>
                             <div>
-                                <div>
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#help"
-                                        ></use>
-                                    </svg>
-                                </div>
+                                <svg>
+                                    <use
+                                        href="../../assets/sprite.svg#help"
+                                    ></use>
+                                </svg>
                             </div>
                             <input
                                 id="question_one"
@@ -788,20 +798,15 @@
                             />
                         </div>
                     </div>
-                    <div>
-                        <label
-                            for="question_two"
-                            class="form-group-label"
-                        ></label>
-                        <div class="form-group-input">
+                    <div class="form-textbox">
+                        <label for="question_two"></label>
+                        <div>
                             <div>
-                                <div>
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#help"
-                                        ></use>
-                                    </svg>
-                                </div>
+                                <svg>
+                                    <use
+                                        href="../../assets/sprite.svg#help"
+                                    ></use>
+                                </svg>
                             </div>
                             <input
                                 id="question_two"
@@ -814,20 +819,15 @@
                             />
                         </div>
                     </div>
-                    <div>
-                        <label
-                            for="question_three"
-                            class="form-group-label"
-                        ></label>
-                        <div class="form-group-input">
+                    <div class="form-textbox">
+                        <label for="question_three"></label>
+                        <div>
                             <div>
-                                <div>
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#help"
-                                        ></use>
-                                    </svg>
-                                </div>
+                                <svg>
+                                    <use
+                                        href="../../assets/sprite.svg#help"
+                                    ></use>
+                                </svg>
                             </div>
                             <input
                                 id="question_three"
@@ -841,19 +841,13 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <label for="pin" class="form-group-label"
-                        >Require PIN? (Optional)</label
-                    >
-                    <div class="form-group-input">
+                <div class="form-textbox">
+                    <label for="pin">Require PIN? (Optional)</label>
+                    <div>
                         <div>
-                            <div>
-                                <svg>
-                                    <use
-                                        href="../../assets/sprite.svg#lock"
-                                    ></use>
-                                </svg>
-                            </div>
+                            <svg>
+                                <use href="../../assets/sprite.svg#lock"></use>
+                            </svg>
                         </div>
                         <input
                             maxlength="4"
@@ -868,36 +862,36 @@
                     </div>
                 </div>
                 <!-- <div class="flex flex-col gap-2">
-          <div class="flex items-center">
-            <input
-              id="autologin-check"
-              name="autologin-check"
-              type="checkbox"
-              class=""
-            />
-            <label
-              for="autologin-check"
-              class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
-              >Turn on autofill (or) autologin.
-            </label>
-          </div>
-          <div class="flex items-center">
-            <input
-              id="terms-and-privacy"
-              name="terms-and-privacy"
-              type="checkbox"
-              class=""
-            />
-            <label
-              for="terms-and-privacy"
-              class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
-              >I agree to the
-              <a href="#" class="link-text">Terms</a>
-              and
-              <a href="#" class="link-text">Privacy Policy</a>.
-            </label>
-          </div>
-        </div> -->
+                    <div class="flex items-center justify-center">
+                        <input
+                            id="autologin-check"
+                            name="autologin-check"
+                            type="checkbox"
+                            class=""
+                        />
+                        <label
+                            for="autologin-check"
+                            class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
+                            >Turn on autofill (or) autologin.
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <input
+                            id="terms-and-privacy"
+                            name="terms-and-privacy"
+                            type="checkbox"
+                            class=""
+                        />
+                        <label
+                            for="terms-and-privacy"
+                            class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
+                            >I agree to the
+                            <a href="#" class="link-text">Terms</a>
+                            and
+                            <a href="#" class="link-text">Privacy Policy</a>.
+                        </label>
+                    </div>
+                </div> -->
                 <div class="flex flex-col gap-2">
                     <button
                         id="submit_form"

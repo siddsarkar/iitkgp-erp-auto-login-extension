@@ -4,11 +4,12 @@
         "sourceDir": "firefox/"
     },
     "scripts": {
-        "fix": "eslint ./src --fix",
-        "dev:chrome": "concurrently --kill-others \"npx tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"npx webpack --config-name chrome --mode development --watch\"",
-        "dev:firefox": "concurrently --kill-others \"npx tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"npx webpack --config-name firefox --mode development --watch\"",
-        "build:chrome": "npx tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name chrome --mode production",
-        "build:firefox": "npx tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name firefox --mode production"
+        "fix": "concurrently \"eslint ./src --fix\" \"prettier --write .\"",
+        "dev:chrome": "concurrently --kill-others \"tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"webpack --config-name chrome --mode development --watch\"",
+        "dev:firefox": "concurrently --kill-others \"tailwindcss -i ./style.css -o ./src/pages/output.css --watch\" \"webpack --config-name firefox --mode development --watch\"",
+        "build:chrome": "tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name chrome --mode production",
+        "build:firefox": "tailwindcss -i ./style.css -o ./src/pages/output.css --minify && webpack --config-name firefox --mode production",
+        "prepare": "husky install"
     },
     "keywords": [
         "browser-addon",
@@ -17,16 +18,20 @@
     "author": "Siddhartha Sarkar",
     "license": "ISC",
     "devDependencies": {
+        "@tailwindcss/forms": "latest",
         "concurrently": "latest",
         "copy-webpack-plugin": "latest",
         "eslint": "latest",
-        "eslint-config-xo": "latest",
+        "husky": "latest",
+        "lint-staged": "latest",
+        "postcss": "latest",
+        "prettier": "latest",
+        "prettier-plugin-tailwindcss": "latest",
         "tailwindcss": "latest",
         "webpack": "latest",
         "webpack-cli": "latest"
     },
-    "dependencies": {
-        "@tailwindcss/forms": "latest",
-        "postcss": "latest"
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
     }
 }

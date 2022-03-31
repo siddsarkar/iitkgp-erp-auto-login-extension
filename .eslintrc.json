@@ -1,12 +1,11 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
+        "es6": true,
+        "node": true,
         "webextensions": true
     },
-    "extends": [
-        "xo"
-    ],
+    "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": "latest"
     },
