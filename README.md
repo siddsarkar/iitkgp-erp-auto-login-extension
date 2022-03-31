@@ -117,7 +117,7 @@ Our default branch `master` is the source code to the recent stable release. Wan
         web-ext run # run the extension for firefox
         web-ext run -t chromium # (or) run the extension for chrome
         ```
-    7. Check that the extension is loaded by opening the extensions page ([in Firefox](about:addons) or [in Chrome](chrome://extensions/)).
+    7. Check that the extension is loaded by opening the extensions page in Firefox `about:addons` or in Chrome `chrome://extensions/`.
 
 ## Bugs and feature requests
 
