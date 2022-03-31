@@ -183,37 +183,40 @@ window.addEventListener("DOMContentLoaded", () => {
         a3.placeholder = authCredentials.q3 || "Your erp question 3";
         autologinToggleBtn.checked = authCredentials.autoLogin;
 
-        if (authCredentials.requirePin) {
-            pin.style.display = "none";
-            const smallText = document.createElement("small");
-            smallText.style = "margin-left: 50px";
-            smallText.innerText = "PIN is set!";
-            pin.after(smallText);
-        }
-
         if (authCredentials.username === "") {
             logger("Enter Roll Number");
             username.removeAttribute("disabled");
-        } else if (authCredentials.password === "") {
-            logger("Enter Password", "warning");
-            password.removeAttribute("disabled");
-            password.addEventListener("keyup", () => {
-                a1.removeAttribute("disabled");
-                a2.removeAttribute("disabled");
-                a3.removeAttribute("disabled");
-                logger("Enter security answers!", "warning");
-            });
-            password.removeEventListener("keyup", null);
-        } else if (a1.value !== "" && a2.value !== "" && a3.value !== "") {
-            a1.disabled = true;
-            a2.disabled = true;
-            a3.disabled = true;
-            logger(`You are all set! ${authCredentials.username}`, "success");
+            usernameSubmitBtn.removeAttribute("disabled");
+            // } else if (authCredentials.password === "") {
+            // logger("Enter Password", "warning");
+            // password.removeAttribute("disabled");
+            // password.addEventListener("keyup", () => {
+            //     a1.removeAttribute("disabled");
+            //     a2.removeAttribute("disabled");
+            //     a3.removeAttribute("disabled");
+            //     logger("Enter security answers!", "warning");
+            // });
+            // password.removeEventListener("keyup", null);
+            // } else if (a1.value !== "" && a2.value !== "" && a3.value !== "") {
+            // a1.disabled = true;
+            // a2.disabled = true;
+            // a3.disabled = true;
+            // logger(`You are all set! ${authCredentials.username}`, "success");
+            // } else {
+            // logger("Fill security answers!", "warning");
+            // a1.disabled = false;
+            // a2.disabled = false;
+            // a3.disabled = false;
         } else {
-            logger("Fill security answers!", "warning");
-            a1.disabled = false;
-            a2.disabled = false;
-            a3.disabled = false;
+            logger(`You are all set! ${authCredentials.username}`, "success");
+
+            pin.style.display = "none";
+            const smallText = document.createElement("small");
+            smallText.style = "margin-left: 50px";
+            if (authCredentials.requirePin) smallText.innerText = "PIN is set !";
+            else smallText.innerText = "PIN is NOT set !";
+
+            pin.after(smallText);
         }
 
         const emptyFieldExists =
