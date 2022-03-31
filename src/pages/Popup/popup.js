@@ -1,3 +1,6 @@
+import WebCrypto from "../../../libs/crypto";
+import ERP from "../../../libs/erp";
+
 // eslint-disable-next-line max-params
 function logger(
     message,
@@ -36,10 +39,7 @@ function logger(
     }
 
     logText.textContent = message;
-    logIcon.setAttribute(
-        "href",
-        chrome.runtime.getURL(`/assets/sprite.svg#${iconId || "info"}`)
-    );
+    logIcon.setAttribute("href", chrome.runtime.getURL(`/assets/sprite.svg#${iconId || "info"}`));
 
     statusText.textContent = message;
     statusIcon.setAttribute(
@@ -76,428 +76,11 @@ function logger(
     }
 }
 
-function ERP(roll) {
-    let username = roll || "";
-    let password = "";
-    const securityQuestions = {};
-
-    this.onGetSecurityQues = function (question) {
-        console.log({ question });
-    };
-
-    Object.defineProperties(this, {
-        username: {
-            get() {
-                return username;
-            },
-        },
-
-        // eslint-disable-next-line accessor-pairs
-        password: {
-            set(pass) {
-                password = pass;
-            },
-        },
-
-        securityQuestions: {
-            set(ques) {
-                if (ques instanceof Object) {
-                    for (const q in ques) {
-                        if (Object.keys(securityQuestions).includes(q)) {
-                            securityQuestions[q] = ques[q];
-                        }
-                    }
-                }
-            },
-            get() {
-                return securityQuestions;
-            },
-        },
-
-        data: {
-            get() {
-                return { username, password, securityQuestions };
-            },
-        },
-
-        load: {
-            value(user) {
-                const {
-                    username: id,
-                    password: pass,
-                    securityQuestions: ques,
-                } = user;
-
-                if (id) {
-                    username = id;
-                }
-
-                if (pass) {
-                    password = pass;
-                }
-
-                if (ques) {
-                    for (const q in ques) {
-                        if (Object.prototype.hasOwnProperty.call(ques, q)) {
-                            securityQuestions[q] = ques[q];
-                        }
-                    }
-                }
-
-                console.info("user loaded:", {
-                    username,
-                    password,
-                    securityQuestions,
-                });
-            },
-        },
-
-        getAllSecurityQues: {
-            async value() {
-                if (Object.keys(securityQuestions).length >= 3) {
-                    return Object.keys(securityQuestions);
-                }
-
-                let question;
-                try {
-                    question = await this.getSecurityQues(username);
-                } catch (error) {
-                    console.error(error);
-                    return false;
-                }
-
-                if (question === "FALSE") {
-                    console.error(new Error("Invalid username"));
-                    return false;
-                }
-
-                if (Object.keys(securityQuestions).length < 3) {
-                    if (!Object.keys(securityQuestions).includes(question)) {
-                        this.onGetSecurityQues(question);
-                    }
-
-                    securityQuestions[question] = "";
-                    await this.getAllSecurityQues();
-                }
-
-                return Object.keys(securityQuestions);
-            },
-        },
-
-        login: {
-            async value(options) {
-                let { sessionToken, requestedUrl } = options || {};
-
-                /* Set a default target url */
-                if (!requestedUrl) {
-                    requestedUrl = "https://erp.iitkgp.ac.in/IIT_ERP3/";
-                }
-
-                /* Check login status */
-                const isLoggedIn = await this.isLoggedIn(requestedUrl);
-                console.log({ isLoggedIn });
-                if (isLoggedIn) {
-                    return requestedUrl;
-                }
-
-                /* Get security question */
-                let question;
-                try {
-                    question = await this.getSecurityQues(username);
-                } catch (error) {
-                    console.error(error);
-                    return false;
-                }
-
-                console.log("authSecurityQues:", question);
-
-                /* Pick answer to the security question */
-                const answer = securityQuestions[question] || "";
-
-                /* Request for login */
-                const redirectedUrl = await this.authRequest({
-                    username,
-                    password,
-                    answer,
-                    sessionToken,
-                    requestedUrl,
-                });
-
-                return redirectedUrl;
-            },
-        },
-    });
-
-    /**
-     * Logout user
-     * @returns redirected url
-     */
-    this.logout = async function () {
-        const url = "https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm";
-        const response = await processRequest(new Request(url));
-
-        if (response.redirected) {
-            return response.url;
-        }
-
-        Promise.reject(new Error("Logout failed"));
-    };
-
-    /**
-     * Get user login status
-     * @param {string} requestedUrl url to load
-     * @returns login status
-     */
-    this.isLoggedIn = async function (requestedUrl) {
-        if (!requestedUrl) {
-            requestedUrl = "https://erp.iitkgp.ac.in/IIT_ERP3/";
-        }
-
-        const res = await processRequest(new Request(requestedUrl));
-        if (!res.redirected) {
-            return true;
-        }
-
-        return false;
-    };
-
-    /**
-     * Authentication request
-     * @param {{username:string,password:string,answer:string,requestedUrl:string,sessionToken:string}} authcred login credentials
-     * @returns redirected url
-     */
-    this.authRequest = async function (authcred) {
-        const { username, password, answer, sessionToken, requestedUrl } =
-            authcred;
-
-        if (!username || !password || !answer) {
-            throw new Error("Username or Password or Answer is missing!");
-        }
-
-        let body = `user_id=${username}&password=${password}&answer=${answer}`;
-        if (sessionToken) {
-            body += `&sessionToken=${sessionToken}`;
-        }
-
-        if (requestedUrl) {
-            body += `&requestedUrl=${requestedUrl}`;
-        } else {
-            body += "&requestedUrl=https://erp.iitkgp.ac.in/IIT_ERP3/";
-        }
-
-        const url = "https://erp.iitkgp.ac.in/SSOAdministration/auth.htm";
-        const method = "POST";
-
-        console.log("req_body:", body);
-
-        const response = await processRequest(
-            new Request(url, { method, body })
-        );
-
-        if (response.redirected) {
-            return response.url;
-        }
-
-        Promise.reject(new Error("Invalid credentials"));
-    };
-
-    /**
-     * Fetch a security question for rollno
-     * @param {string} iitkgploginid institute login id
-     * @returns security question
-     */
-    this.getSecurityQues = async function (iitkgploginid) {
-        /* Validate arguments */
-        if (!iitkgploginid) {
-            throw new Error("Please provide login id");
-        }
-
-        const url =
-            "https://erp.iitkgp.ac.in/SSOAdministration/getSecurityQues.htm";
-        const method = "POST";
-        const body = `user_id=${iitkgploginid}`;
-
-        const response = await processRequest(
-            new Request(url, { method, body })
-        );
-
-        return response ? response.text() : "FALSE";
-    };
-
-    /**
-     * Global http request handler
-     * @param {Request} request a request object
-     * @returns fetch response
-     */
-    const processRequest = async function (request) {
-        let ts = Date.now();
-        const { url, method } = request;
-        const { pathname, search } = new URL(url);
-
-        const response = await nativeFetch(request);
-        ts -= Date.now();
-
-        console.log(
-            `${method + response.status}: ${-ts}ms ${pathname + search}`
-        );
-
-        if (response.ok && response.status === 200) {
-            return response;
-        }
-
-        Promise.reject(new Error("Api returned status:", status));
-    };
-
-    /**
-     * Fetch wrapper
-     * @param {Request} request new Request() instance
-     * @returns Promise<Response>
-     */
-    const nativeFetch = function (request) {
-        if (request.method === "POST") {
-            request.headers.set(
-                "Content-type",
-                "application/x-www-form-urlencoded"
-            );
-        }
-
-        return fetch(request);
-    };
-}
-
-function WebCrypto() {
-    const buffToBase64 = (buff) => btoa(String.fromCharCode.apply(null, buff));
-    const base64ToBuff = (b64) =>
-        Uint8Array.from(atob(b64), (c) => c.charCodeAt(null));
-
-    const enc = new TextEncoder();
-    const dec = new TextDecoder();
-    const bytes = { salt: 16, iv: 12 };
-
-    /**
-     * Returns a key generated from password,
-     * use it as input to the deriveKey method.
-     *
-     * @param {string|number} password password for encryption/decryption
-     * @returns a key
-     */
-    function getKeyFromPassword(password) {
-        return window.crypto.subtle.importKey(
-            "raw",
-            enc.encode(password),
-            { name: "PBKDF2" },
-            false,
-            ["deriveBits", "deriveKey"]
-        );
-    }
-
-    /**
-     * Given some key from password and some random salt,
-     * returns a derived AES-GCM key using PBKDF2.
-     *
-     * @param {CryptoKey} keyFromPassword Key generated from password
-     * @param {Uint8Array} salt random generated salt
-     * @returns derived key
-     */
-    function getKey(keyFromPassword, salt) {
-        return window.crypto.subtle.deriveKey(
-            {
-                name: "PBKDF2",
-                salt,
-                iterations: 100000,
-                hash: "SHA-256",
-            },
-            keyFromPassword,
-            { name: "AES-GCM", length: 256 },
-            true,
-            ["encrypt", "decrypt"]
-        );
-    }
-
-    /**
-     * Derive a key from a password supplied by the user,
-     * use the key to encrypt the secret data,
-     * return the combined encrypted data as string.
-     *
-     * @param {string|number} secret secret data to encrypt
-     * @param {string|number} password password for encryption
-     * @returns encrypted string
-     */
-    this.encrypt = async (secret, password) => {
-        const keyFromPassword = await getKeyFromPassword(password);
-        const salt = window.crypto.getRandomValues(new Uint8Array(bytes.salt));
-        const key = await getKey(keyFromPassword, salt);
-        const iv = window.crypto.getRandomValues(new Uint8Array(bytes.iv));
-        const encoded = enc.encode(secret);
-
-        const ciphertext = await window.crypto.subtle.encrypt(
-            {
-                name: "AES-GCM",
-                iv,
-            },
-            key,
-            encoded
-        );
-
-        const cipher = new Uint8Array(ciphertext);
-        const buffer = new Uint8Array(
-            salt.byteLength + iv.byteLength + cipher.byteLength
-        );
-        buffer.set(salt, 0);
-        buffer.set(iv, salt.byteLength);
-        buffer.set(cipher, salt.byteLength + iv.byteLength);
-
-        const encrypted = buffToBase64(buffer);
-        return encrypted;
-    };
-
-    /**
-     * Derive a key from a password supplied by the user,
-     * use the key to decrypt the ciphertext.
-     * if the ciphertext was decrypted successfully,
-     *   return the decrypted value.
-     * if there was an error decrypting,
-     *   throw an error message.
-     *
-     * @param {string} encrypted encrypted base64 string
-     * @param {string|number} password password for the encrypted data
-     * @returns decrypted data as string
-     */
-    this.decrypt = async (encrypted, password) => {
-        const encryptedBuffer = base64ToBuff(encrypted);
-        const salt = encryptedBuffer.slice(0, bytes.salt);
-        const iv = encryptedBuffer.slice(bytes.salt, bytes.salt + bytes.iv);
-        const ciphertext = encryptedBuffer.slice(bytes.salt + bytes.iv);
-
-        const keyFromPassword = await getKeyFromPassword(password);
-        const key = await getKey(keyFromPassword, salt);
-
-        try {
-            const decryptedEncoded = await window.crypto.subtle.decrypt(
-                {
-                    name: "AES-GCM",
-                    iv,
-                },
-                key,
-                ciphertext
-            );
-
-            const decrypted = dec.decode(decryptedEncoded);
-            return decrypted;
-        } catch (e) {
-            throw new Error(e);
-        }
-    };
-}
-
 const toggleCheckBox = (e) => {
     const { target } = e;
     chrome.storage.local.get(["authCredentials"], (result) => {
         if (result.authCredentials) {
-            console.log(
-                `curr ${target.id}:`,
-                result.authCredentials[target.id]
-            );
+            console.log(`curr ${target.id}:`, result.authCredentials[target.id]);
             chrome.storage.local.set(
                 {
                     authCredentials: {
@@ -506,10 +89,7 @@ const toggleCheckBox = (e) => {
                     },
                 },
                 () => {
-                    console.log(
-                        `set ${target.id} to:`,
-                        !result.authCredentials[target.id]
-                    );
+                    console.log(`set ${target.id} to:`, !result.authCredentials[target.id]);
 
                     target.checked = !result.authCredentials[target.id];
                 }
@@ -525,12 +105,10 @@ chrome.storage.local.get(["theme", "bg"], (result) => {
 
     if (
         result.theme === "dark" ||
-        (!("theme" in result) &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        (!("theme" in result) && window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
         document.documentElement.classList.add("dark");
-        document.querySelector(".spinner-wrapper").style.backgroundColor =
-            "#191919";
+        document.querySelector(".spinner-wrapper").style.backgroundColor = "#191919";
         themeSelect.value = "dark";
     } else {
         document.documentElement.classList.remove("dark");
@@ -583,9 +161,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const formResetBtn = document.getElementById("reset_form");
         const formSubmitBtn = document.getElementById("submit_form");
         const username = document.getElementById("username");
-        const usernameSubmitBtn = document.getElementById(
-            "username_submit_button"
-        );
+        const usernameSubmitBtn = document.getElementById("username_submit_button");
         const password = document.getElementById("password");
         const a1 = document.getElementById("question_one");
         const a2 = document.getElementById("question_two");
@@ -595,9 +171,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // Extras
         const container = document.querySelector(".box-container");
-        const formToggleBtns = document.querySelectorAll(
-            ".left-button,.right-button"
-        );
+        const formToggleBtns = document.querySelectorAll(".left-button,.right-button");
 
         username.value = authCredentials.username || "";
         password.value = authCredentials.password || "";
@@ -717,9 +291,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     a2: ans2,
                     a3: ans3,
                 };
-                chrome.storage.local.set({ authCredentials: credentials }, () =>
-                    location.reload()
-                );
+                chrome.storage.local.set({ authCredentials: credentials }, () => location.reload());
             } else {
                 credentials = {
                     ...credentials,
@@ -729,9 +301,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     a2: a2.value,
                     a3: a3.value,
                 };
-                chrome.storage.local.set({ authCredentials: credentials }, () =>
-                    location.reload()
-                );
+                chrome.storage.local.set({ authCredentials: credentials }, () => location.reload());
             }
         });
 
@@ -760,10 +330,7 @@ window.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             if (username.value.length !== 9) {
-                if (
-                    username.value.length === 8 ||
-                    username.value.length === 10
-                ) {
+                if (username.value.length === 8 || username.value.length === 10) {
                     questions.forEach((q, i) => {
                         q.placeholder = `Your erp question ${i + 1}`;
                         q.value = "";
