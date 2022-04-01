@@ -169,6 +169,4 @@ To the extent possible under law, [Siddhartha Sarkar](https://github.com/siddsar
 
 [**Siddhartha Sarkar**](https://siddsarkar.github.io)
 
-<a href="https://www.buymeacoffee.com/siddsarkar" target="_blank">
-<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;" >
-</a>
+[![Buy Me A Coffee](https://img.shields.io/badge/%E2%98%95-buymeacofee-yellow)](https://www.buymeacoffee.com/siddsarkar)

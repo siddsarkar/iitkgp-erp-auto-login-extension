@@ -1,3 +1,4 @@
 node_modules
 chrome
 firefox
+src/pages/*.css
