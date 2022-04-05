@@ -6,19 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ERP Auto Login - IITKGP</title>
         <link href="../output.css" rel="stylesheet" />
-        <style>
-            body {
-                font-family: system-ui, sans-serif;
-                font-weight: 300;
-                font-size: 13px;
-                line-height: 1.7;
-            }
-            .pride-theme {
-                background: rgb(10, 17, 23) url("../../assets/images/bg.jpg") fixed center;
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-        </style>
     </head>
 
     <body>
@@ -27,29 +14,52 @@
                 <main class="panel-container">
                     <section id="panel-home" class="panel">
                         <!-- <div>
-                        <p class="panel-group-label">Select User</p>
-                        <hr class="panel-group-divider" />
-                        <div class="relative">
-                            <div
-                            class="absolute flex border border-transparent left-0 top-0 h-full w-10"
-                            >
-                            <div
-                                class="flex items-center justify-center rounded-tl rounded-bl text-gray-600 text-lg h-full w-full"
-                            >
-                                <svg class="h-4 w-4 fill-current">
-                                <use href="../../assets/sprite.svg#user"></use>
-                                </svg>
+                            <p class="panel-group-label">Select User</p>
+                            <hr class="panel-group-divider" />
+                            <div class="relative">
+                                <div
+                                    class="absolute left-0 top-0 flex h-full w-10 border border-transparent"
+                                >
+                                    <div
+                                        class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
+                                    >
+                                        <svg class="h-4 w-4 fill-current">
+                                            <use href="../../assets/sprite.svg#user"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <select
+                                    name="user_select"
+                                    id="user_select"
+                                    class="border-0 bg-transparent pl-[40px] text-xs font-semibold shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
+                                >
+                                    <option value="" disabled>-- select user --</option>
+                                </select>
                             </div>
-                            </div>
-                            <select
-                            name="user_select"
-                            id="user_select"
-                            class="pl-[40px] text-xs font-semibold bg-transparent ring-0 outline-none border-0 shadow-none focus:border-0 focus:outline-none focus:ring-0"
-                            >
-                            <option value="" disabled>-- select user --</option>
-                            </select>
-                        </div>
                         </div> -->
+                        <!-- <div>
+                            <p class="panel-group-label">Tools</p>
+                            <hr class="panel-group-divider" />
+                            <div class="panel-group-item">
+                                <div class="panel-group-item-start">
+                                    <svg>
+                                        <use href="../../assets/sprite.svg#form-check"></use>
+                                    </svg>
+                                </div>
+                                <label for="autoFeedBack" class="panel-group-item-middle">
+                                    <h2>Fill Feedback</h2>
+                                    <small>click to execute the fill-script</small>
+                                </label>
+                                <div class="panel-group-item-end">
+                                    <div class="panel-group-item-end">
+                                        <svg>
+                                            <use href="../../assets/sprite.svg#terminal"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
                         <div>
                             <p class="panel-group-label">Quick Links</p>
                             <hr class="panel-group-divider" />
@@ -113,7 +123,7 @@
                                     </svg>
                                 </div>
                             </a>
-                            <a
+                            <!-- <a
                                 href="https://erp.iitkgp.ac.in/TrainingPlacementSSO/Notice.jsp"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -132,7 +142,7 @@
                                         <use href="../../assets/sprite.svg#external-link"></use>
                                     </svg>
                                 </div>
-                            </a>
+                            </a> -->
                             <!-- <a
                                 href="https://erp.iitkgp.ac.in/IIT_ERP3/showext.htm?link=email"
                                 target="_blank"
@@ -291,10 +301,7 @@
                         </div>
                         <div>
                             <p class="panel-group-label">Status</p>
-                            <button
-                                id="status"
-                                class="right-button panel-group-item box-toggle-btn-panel-item"
-                            >
+                            <button id="status" class="right-button box-toggle-btn-panel-item">
                                 <svg>
                                     <use
                                         id="statusIcon"
@@ -528,6 +535,19 @@
                                     <input type="checkbox" name="autologin" id="autoLogin" />
                                 </div>
                             </div>
+                            <!-- <div class="panel-group-item">
+                                <div class="panel-group-item-start">
+                                    <svg>
+                                        <use href="../../assets/sprite.svg#form-check"></use>
+                                    </svg>
+                                </div>
+                                <label for="fillFeedback" class="panel-group-item-middle">
+                                    <h2>Feedback Form (fill-only)</h2>
+                                </label>
+                                <div class="panel-group-item-end">
+                                    <input type="checkbox" name="fillFeedback" id="fillFeedback" />
+                                </div>
+                            </div> -->
                         </div>
                         <div>
                             <p class="panel-group-label">Select Theme</p>
@@ -573,16 +593,33 @@
                 </main>
             </div>
             <div class="box1-side">
-                <img
-                    class="ml-4 mr-2"
-                    width="60px"
+                <div class="relative flex w-full items-center justify-between gap-2 pl-2 pr-3">
+                    <div
+                        class="relative -ml-7 h-20 w-20 rounded-full bg-sky-500/40 p-4 dark:bg-slate-200"
+                    >
+                        <div
+                            class="absolute left-5 h-12 w-12 bg-[url('../../assets/images/iitkgp-logo.svg')] bg-contain bg-no-repeat"
+                        ></div>
+                    </div>
+                    <!-- <img
+                    class="w-12"
                     src="../../assets/images/iitkgp-logo.svg"
                     alt="ext-logo"
-                />
-                <div style="flex-grow: 1">
-                    <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
-                    <small class="text-gray-600 dark:text-gray-400">Copyright © 2022.</small>
+                /> -->
+                    <div for="theme" class="ml-2 flex flex-col text-center">
+                        <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
+                        <small class="text-gray-600 dark:text-gray-400">Copyright © 2022.</small>
+                    </div>
+
+                    <div
+                        class="relative -mr-7 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full p-4 hover:bg-gray-400/30 dark:hover:bg-gray-400/40"
+                    >
+                        <svg class="h-5 w-5 fill-slate-600 dark:fill-slate-400">
+                            <use href="../../assets/sprite.svg#external-link"></use>
+                        </svg>
+                    </div>
                 </div>
+
                 <!-- <button class="right-button box-toggle-btn">
           <svg>
             <use href="../../assets/sprite.svg#add"></use>
@@ -590,18 +627,15 @@
           <span>Add User</span>
           </button> -->
             </div>
-            <div class="box2-side items-center justify-center">
+            <div class="box2-side">
                 <button class="left-button box-toggle-btn">
                     <svg>
                         <use href="../../assets/sprite.svg#chevron-left"></use>
                     </svg>
-                    <span>Back</span>
+                    <span>Back&emsp;</span>
                 </button>
             </div>
-            <form
-                class="box2-content bottom-0 left-0 right-0 mb-0 space-y-4 bg-white shadow-sm"
-                id="form_add_user"
-            >
+            <form class="box2-content" id="form_add_user">
                 <div class="warning" id="log">
                     <svg>
                         <use href="../../assets/sprite.svg#info" id="logIcon"></use>
@@ -613,7 +647,9 @@
                 </div>
                 <div class="space-y-1">
                     <div>
-                        <label class="form-textbox-label" for="username">Login Info</label>
+                        <label class="form-textbox-label required-asterisk" for="username"
+                            >Login Info</label
+                        >
                         <div class="form-textbox flex w-full flex-row gap-1">
                             <div class="w-full">
                                 <div>
@@ -666,7 +702,9 @@
                 </div>
                 <div>
                     <div class="form-textbox">
-                        <label for="question_one">Security Questions</label>
+                        <label class="form-textbox-label required-asterisk" for="question_one"
+                            >Security Questions</label
+                        >
                         <div>
                             <div>
                                 <svg>
@@ -724,7 +762,7 @@
                     </div>
                 </div>
                 <div class="form-textbox">
-                    <label for="pin">Require PIN? (Optional)</label>
+                    <label for="pin">Require PIN ?</label>
                     <div>
                         <div>
                             <svg>
@@ -790,8 +828,31 @@
                 </div>
             </form>
         </div>
-        <div id="loader" class="spinner-wrapper z-50">
-            <div class="spinner"></div>
+
+        <div
+            id="loader"
+            class="absolute inset-0 flex items-center justify-center bg-white dark:bg-[#191919]"
+        >
+            <svg
+                class="relative h-5 w-5 animate-[spin_0.2s_linear_infinite]"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+            >
+                <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                ></circle>
+                <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+            </svg>
         </div>
         <script src="popup.js"></script>
     </body>
