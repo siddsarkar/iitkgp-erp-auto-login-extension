@@ -103,12 +103,15 @@ chrome.storage.local.get(["theme", "bg"], (result) => {
     const themeSelect = document.getElementById("theme_select");
     const themeBg = document.getElementById("theme-bg");
 
+    let isDark = false;
+    let isBgEnabled = false;
+
     if (
         result.theme === "dark" ||
         (!("theme" in result) && window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
+        isDark = true;
         document.documentElement.classList.add("dark");
-        document.querySelector(".spinner-wrapper").style.backgroundColor = "#191919";
         themeSelect.value = "dark";
     } else {
         document.documentElement.classList.remove("dark");
@@ -116,18 +119,49 @@ chrome.storage.local.get(["theme", "bg"], (result) => {
     }
 
     if (result.bg === "yes") {
-        document.body.classList.toggle("pride-theme");
+        isBgEnabled = true;
+
+        if (isDark) {
+            document.body.classList.toggle("bg-theme-dark");
+        } else {
+            document.body.classList.toggle("bg-theme");
+        }
         themeBg.checked = true;
     } else {
         themeBg.checked = false;
     }
 
     themeBg.onchange = (ev) => {
-        document.body.classList.toggle("pride-theme");
+        if (ev.target.checked) {
+            isBgEnabled = true;
+
+            if (isDark) {
+                document.body.classList.toggle("bg-theme-dark");
+            } else {
+                document.body.classList.toggle("bg-theme");
+            }
+        } else {
+            isBgEnabled = false;
+            document.body.classList.remove("bg-theme");
+            document.body.classList.remove("bg-theme-dark");
+        }
         chrome.storage.local.set({ bg: ev.target.checked ? "yes" : "no" });
     };
 
     themeSelect.onchange = (ev) => {
+        isDark = ev.target.value === "dark";
+
+        if (isBgEnabled) {
+            document.body.classList.remove("bg-theme");
+            document.body.classList.remove("bg-theme-dark");
+
+            if (isDark) {
+                document.body.classList.toggle("bg-theme-dark");
+            } else {
+                document.body.classList.toggle("bg-theme");
+            }
+        }
+
         document.documentElement.classList.toggle("dark");
         chrome.storage.local.set({ theme: ev.target.value });
     };
