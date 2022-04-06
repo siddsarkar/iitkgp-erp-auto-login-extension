@@ -2,23 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.spinner-wrapper {
-    @apply absolute inset-0 flex items-center justify-center bg-white;
-}
-.spinner {
-    /* animation: sk-scaleout 1s infinite ease-in-out; */
-    @apply absolute h-[40px] w-[40px] animate-pulse rounded-full bg-gray-500 dark:bg-slate-400;
-}
-@keyframes sk-scaleout {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0;
-    }
-}
-
 .bg-theme {
     background: rgb(181, 214, 243) url("../../assets/images/bg.jpg") fixed center;
     background-size: cover;
@@ -56,12 +39,16 @@
     select {
         @apply w-full cursor-pointer rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:cursor-not-allowed disabled:bg-black/10 dark:disabled:bg-[#4A4A4A]/80;
     }
+
     [type="checkbox"],
     [type="radio"] {
         @apply h-4 w-4 rounded-full border-gray-300 bg-white/20 text-indigo-600 focus:ring-1 focus:ring-indigo-500 focus:ring-offset-0;
     }
 
-    /* .bg-card-blur {
+    /*
+    with blur
+    */
+    /* .bg-card {
         @apply bg-white/40 backdrop-blur-md dark:bg-[#242526]/40;
     } */
     .bg-card {
@@ -120,28 +107,13 @@
     }
     .form-textbox > label,
     .form-textbox-label {
-        @apply mb-1 
-        block 
-        text-sm 
-        font-medium 
-        text-gray-700 
-        dark:text-gray-200;
+        @apply mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200;
     }
     .form-textbox > div {
         @apply relative w-full;
     }
     .form-textbox > div > div {
-        @apply absolute 
-        left-0 
-        top-0 
-        flex 
-        h-full 
-        w-10 
-        items-center 
-        justify-center 
-        border-r-[1px] 
-        border-gray-300 
-        dark:border-gray-300/40;
+        @apply absolute left-0 top-0 flex h-full w-10 items-center justify-center border-r-[1px] border-gray-300 dark:border-gray-300/40;
     }
     .form-textbox > div > div > svg {
         @apply h-4 w-4 
@@ -149,13 +121,7 @@
         dark:fill-slate-200;
     }
     .form-textbox > div > input {
-        @apply w-full 
-        border-gray-300 
-        pl-12 text-xs 
-        placeholder-gray-400 
-        disabled:shadow-none
-        dark:border-gray-300/40 
-        dark:bg-white/5;
+        @apply w-full border-gray-300 pl-12 text-xs placeholder-gray-400 disabled:shadow-none dark:border-gray-300/40 dark:bg-white/5;
     }
 
     /*
@@ -163,17 +129,7 @@
   */
 
     .info {
-        @apply flex 
-        h-full
-        max-h-8
-        items-center
-        gap-2 
-        rounded-md 
-        bg-slate-400
-        py-2
-        px-3
-        font-normal
-        text-black;
+        @apply flex h-full max-h-8 items-center gap-2 rounded-md bg-slate-400 py-2 px-3 font-normal text-black;
     }
     .info > svg {
         @apply h-4 w-4 fill-current;
@@ -198,46 +154,21 @@
    Components
   */
     .link-text {
-        @apply text-indigo-600 
-        hover:text-indigo-500 
-        dark:text-indigo-400 
-        dark:hover:text-indigo-500;
+        @apply text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-500;
     }
     .svg-btn-primary,
     .svg-btn-secondary {
-        @apply inline-flex 
-        items-center 
-        justify-center 
-        gap-2 
-        rounded-md 
-        border 
-        border-transparent 
-        bg-indigo-600 
-        py-2 
-        px-4 
-        text-xs 
-        font-medium 
-        text-white 
-        shadow-sm  
-        disabled:cursor-not-allowed
-        disabled:bg-indigo-300;
+        @apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-xs font-medium text-white shadow-sm disabled:cursor-not-allowed disabled:bg-indigo-300;
     }
     .svg-btn-primary > svg,
     .svg-btn-secondary > svg {
         @apply h-4   w-4  fill-white;
     }
     .svg-btn-secondary {
-        @apply bg-gray-600/40 
-        text-gray-900 
-        hover:bg-gray-600/30 
-        dark:bg-slate-700 
-        dark:text-gray-300;
+        @apply bg-gray-600/40 text-gray-900 hover:bg-gray-600/30 dark:bg-slate-700 dark:text-gray-300;
     }
     .svg-btn-secondary > svg {
-        @apply h-4 
-        w-4 
-        fill-gray-900 
-        dark:fill-gray-300;
+        @apply h-4 w-4 fill-gray-900 dark:fill-gray-300;
     }
 
     /* 
