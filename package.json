@@ -1,4 +1,9 @@
 {
+    "name": "iitkgp-erp-auto-login-extension",
+    "version": "1.0.0",
+    "repository": "https://github.com/siddsarkar/iitkgp-erp-auto-login-extension.git",
+    "author": "Siddhartha Sarkar <siddsarkar7@gmail.com>",
+    "license": "MIT",
     "private": true,
     "webExt": {
         "sourceDir": "firefox/"
@@ -15,13 +20,12 @@
         "browser-addon",
         "erp-auto-login-iitkgp"
     ],
-    "author": "Siddhartha Sarkar",
-    "license": "ISC",
     "devDependencies": {
         "@tailwindcss/forms": "latest",
         "concurrently": "latest",
         "copy-webpack-plugin": "latest",
         "eslint": "latest",
+        "glob": "latest",
         "husky": "latest",
         "lint-staged": "latest",
         "postcss": "latest",

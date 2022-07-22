@@ -1,13 +1,19 @@
 const path = require("path");
+const glob = require("glob");
 const CopyPlugin = require("copy-webpack-plugin");
 const TerserPlugin = require("./node_modules/terser-webpack-plugin/dist");
 
 const config = {
     devtool: false,
+    stats: "minimal",
     entry: {
         background: __dirname + "/src/background.js",
         content: __dirname + "/src/content.js",
-        "pages/Popup/popup": __dirname + "/src/pages/Popup/popup.js",
+
+        // pages
+        ...Object.fromEntries(
+            glob.sync("src/pages/**/*.js").map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`])
+        ),
     },
     optimization: {
         minimizer: [
@@ -21,7 +27,6 @@ const config = {
                     output: {
                         comments: false,
                         beautify: true,
-                        // eslint-disable-next-line camelcase
                         indent_level: 2,
                     },
                 },
@@ -29,6 +34,15 @@ const config = {
         ],
     },
 };
+
+const copyPatterns = [
+    {
+        from: "./src",
+        globOptions: {
+            ignore: ["**/*.js"],
+        },
+    },
+];
 
 const chromeConfig = {
     ...config,
@@ -40,12 +54,7 @@ const chromeConfig = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {
-                    from: "./src",
-                    globOptions: {
-                        ignore: ["**/*.js"],
-                    },
-                },
+                ...copyPatterns,
                 {
                     from: "./manifests/manifest.chrome.json",
                     to: "manifest.json",
@@ -61,12 +70,7 @@ const firefoxConfig = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {
-                    from: "./src",
-                    globOptions: {
-                        ignore: ["**/*.js"],
-                    },
-                },
+                ...copyPatterns,
                 {
                     from: "./manifests/manifest.firefox.json",
                     to: "manifest.json",

@@ -17,8 +17,8 @@
 @layer base {
     * {
         scrollbar-width: none;
-        -webkit-font-smoothing: auto;
-        -moz-osx-font-smoothing: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         scroll-behavior: auto !important;
     }
 
@@ -60,8 +60,8 @@
     }
 
     /* 
-  main layout (full popup)
-  */
+    main layout (full popup)
+    */
     .box-container {
         @apply mx-auto flex h-full w-full flex-col items-stretch;
     }
@@ -99,9 +99,10 @@
     .box2-content {
         @apply bg-card bottom-0 left-0 right-0 mb-0 flex flex-[0] flex-col justify-center space-y-4 opacity-0 shadow-sm;
     }
+
     /*
-  Form
-  */
+    Form
+    */
     .form-textbox {
         @apply flex flex-col;
     }
@@ -125,8 +126,8 @@
     }
 
     /*
-  Message
-  */
+    Message
+    */
 
     .info {
         @apply flex h-full max-h-8 items-center gap-2 rounded-md bg-slate-400 py-2 px-3 font-normal text-black;
