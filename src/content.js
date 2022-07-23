@@ -136,7 +136,7 @@ async function exec(res) {
                 password = await c.decrypt(authCredentials.password, pin);
             } catch (_) {
                 return displayMessage(
-                    "Invorrect PIN!, Please reset if forgot or refresh page to retry.",
+                    "Incorrect PIN!, Please reset if forgot or refresh page to retry.",
                     "#a4000f"
                 );
             }
