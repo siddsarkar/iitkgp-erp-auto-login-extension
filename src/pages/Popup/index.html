@@ -1,194 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ERP Auto Login - IITKGP</title>
-        <link href="../output.css" rel="stylesheet" />
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ERP Auto Login - IITKGP</title>
+  </head>
 
-    <body>
-        <div class="box-container">
-            <div class="box1-content">
-                <main class="panel-container">
-                    <section id="panel-home" class="panel">
-                        <!-- <div>
-                            <p class="panel-group-label">Select User</p>
-                            <hr class="panel-group-divider" />
-                            <div class="relative">
-                                <div
-                                    class="absolute left-0 top-0 flex h-full w-10 border border-transparent"
-                                >
-                                    <div
-                                        class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
-                                    >
-                                        <svg class="h-4 w-4 fill-current">
-                                            <use href="../../assets/sprite.svg#user"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <select
-                                    name="user_select"
-                                    id="user_select"
-                                    class="border-0 bg-transparent pl-[40px] text-xs font-semibold shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
-                                >
-                                    <option value="" disabled>-- select user --</option>
-                                </select>
-                            </div>
-                        </div> -->
-                        <!-- <div>
-                            <p class="panel-group-label">Tools</p>
-                            <hr class="panel-group-divider" />
-                            <div class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#form-check"></use>
-                                    </svg>
-                                </div>
-                                <label for="autoFeedBack" class="panel-group-item-middle">
-                                    <h2>Fill Feedback</h2>
-                                    <small>click to execute the fill-script</small>
-                                </label>
-                                <div class="panel-group-item-end">
-                                    <div class="panel-group-item-end">
-                                        <svg>
-                                            <use href="../../assets/sprite.svg#terminal"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div>
-                            <p class="panel-group-label">Quick Links</p>
-                            <hr class="panel-group-divider" />
-                            <a
-                                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#mortar-board"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Academic</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#home"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Home</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#briefcase"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>CDC</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <!-- <a
-                                href="https://erp.iitkgp.ac.in/TrainingPlacementSSO/Notice.jsp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#notice"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Noticeboard (CDC)</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a> -->
-                            <!-- <a
-                                href="https://erp.iitkgp.ac.in/IIT_ERP3/showext.htm?link=email"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#mail"
-                                        ></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Mail</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use
-                                            href="../../assets/sprite.svg#external-link"
-                                        ></use>
-                                    </svg>
-                                </div>
-                            </a> -->
-                            <a
-                                href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=30"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#organization"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Guest House</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <!-- link to view more -->
-                            <!-- <a href="#panel-about" class="panel-group-item">
+  <body>
+    <div class="box-container">
+      <div class="box1-content">
+        <main class="panel-container">
+          <section id="panel-home" class="panel">
+            <!-- <div>
+              <p class="panel-group-label">Select User</p>
+              <hr class="panel-group-divider" />
+              <div class="relative">
+                <div class="absolute left-0 top-0 flex h-full w-10 border border-transparent">
+                  <div
+                    class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
+                  >
+                    <svg class="h-4 w-4 fill-current">
+                      <use href="../../assets/sprite.svg#user"></use>
+                    </svg>
+                  </div>
+                </div>
+                <select
+                  name="user_select"
+                  id="user_select"
+                  class="border-0 bg-transparent pl-[40px] text-xs font-semibold shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
+                >
+                  <option value="" disabled>-- select user --</option>
+                </select>
+              </div>
+            </div> -->
+            <!-- <div>
+              <p class="panel-group-label">Tools</p>
+              <hr class="panel-group-divider" />
+              <div class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#form-check"></use>
+                  </svg>
+                </div>
+                <label for="autoFeedBack" class="panel-group-item-middle">
+                  <h2>Fill Feedback</h2>
+                  <small>click to execute the fill-script</small>
+                </label>
+                <div class="panel-group-item-end">
+                  <div class="panel-group-item-end">
+                    <svg>
+                      <use href="../../assets/sprite.svg#terminal"></use>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div>
+              <p class="panel-group-label">Quick Links</p>
+              <hr class="panel-group-divider" />
+              <a
+                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#mortar-board"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Academic</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://erp.iitkgp.ac.in/IIT_ERP3/home.htm"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#home"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Home</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=26"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#briefcase"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>CDC</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <!-- <a
+                href="https://erp.iitkgp.ac.in/TrainingPlacementSSO/Notice.jsp"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#notice"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Noticeboard (CDC)</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a> -->
+              <!-- <a
+                href="https://erp.iitkgp.ac.in/IIT_ERP3/showext.htm?link=email"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#mail"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Mail</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a> -->
+              <a
+                href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=30"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#organization"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Guest House</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <!-- link to view more -->
+              <!-- <a href="#panel-about" class="panel-group-item">
                 <div
                   class="panel-group-item-middle justify-end text-gray-700 dark:text-gray-400"
                 >
@@ -200,303 +192,290 @@
                   </svg>
                 </div>
                 </a> -->
-                        </div>
-                        <div>
-                            <p class="panel-group-label">Miscellaneous</p>
-                            <hr class="panel-group-divider" />
-                            <a
-                                href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#star"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Rate this addon</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://forms.gle/eZ8Tz7WxeNPyEax78"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-discuss"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Write a feedback</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://www.facebook.com/erptoolsiitkgp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#facebook"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Like us on facebook</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <p class="panel-group-label">Sources</p>
-                            <hr class="panel-group-divider" />
-                            <a href="#panel-about" class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#info"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>About</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#chevron-right"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a href="#panel-preferences" class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#gear"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Preferences</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#chevron-right"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <p class="panel-group-label">Status</p>
-                            <button id="status" class="right-button box-toggle-btn-panel-item">
-                                <svg>
-                                    <use
-                                        id="statusIcon"
-                                        href="../../assets/sprite.svg#warning"
-                                    ></use>
-                                </svg>
-                                <span id="statusText">Attention required!</span>
-                                <svg>
-                                    <use href="../../assets/sprite.svg#chevron-up"></use>
-                                </svg>
-                            </button>
-                        </div>
-                    </section>
-                    <section id="panel-about" class="panel">
-                        <header class="panel-header">
-                            <a href="#panel-home" class="panel-header-start">
-                                <svg>
-                                    <use href="../../assets/sprite.svg#chevron-left"></use>
-                                </svg>
-                            </a>
-                            <div class="panel-header-middle">
-                                <h2>About</h2>
-                            </div>
-                            <div class="panel-header-end">
-                                <svg>
-                                    <use href="../../assets/sprite.svg#info"></use>
-                                </svg>
-                            </div>
-                        </header>
+            </div>
+            <div>
+              <p class="panel-group-label">Miscellaneous</p>
+              <hr class="panel-group-divider" />
+              <a
+                href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#star"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Rate this addon</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://forms.gle/eZ8Tz7WxeNPyEax78"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-discuss"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Write a feedback</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.facebook.com/erptoolsiitkgp"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#facebook"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Like us on facebook</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div>
+              <p class="panel-group-label">Sources</p>
+              <hr class="panel-group-divider" />
+              <a href="#panel-about" class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#info"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>About</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#chevron-right"></use>
+                  </svg>
+                </div>
+              </a>
+              <a href="#panel-preferences" class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#gear"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Preferences</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#chevron-right"></use>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div>
+              <p class="panel-group-label">Status</p>
+              <button id="status" class="right-button box-toggle-btn-panel-item">
+                <svg>
+                  <use id="statusIcon" href="../../assets/sprite.svg#warning"></use>
+                </svg>
+                <span id="statusText">Attention required!</span>
+                <svg>
+                  <use href="../../assets/sprite.svg#chevron-up"></use>
+                </svg>
+              </button>
+            </div>
+          </section>
+          <section id="panel-about" class="panel">
+            <header class="panel-header">
+              <a href="#panel-home" class="panel-header-start">
+                <svg>
+                  <use href="../../assets/sprite.svg#chevron-left"></use>
+                </svg>
+              </a>
+              <div class="panel-header-middle">
+                <h2>About</h2>
+              </div>
+              <div class="panel-header-end">
+                <svg>
+                  <use href="../../assets/sprite.svg#info"></use>
+                </svg>
+              </div>
+            </header>
 
-                        <div>
-                            <p class="panel-group-label">Developer Contact</p>
-                            <!-- <hr class="panel-group-divider" /> -->
-                            <a
-                                href="https://t.me/siddsarkar"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#airplane"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Telegram</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://siddsarkar.github.io"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#web"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Website</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <hr class="panel-group-divider" />
-                            <p class="panel-group-label">Sources</p>
-                            <a
-                                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#github"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Github</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://design.firefox.com/photon/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#firefox"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Photon Design</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <hr class="panel-group-divider" />
-                            <p class="panel-group-label">Contribute</p>
-                            <a
-                                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#info"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Report an issue</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                            <a
-                                href="https://www.paypal.com/paypalme/siddsarkar"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="panel-group-item"
-                            >
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#heart"></use>
-                                    </svg>
-                                </div>
-                                <div class="panel-group-item-middle">
-                                    <h2>Donate</h2>
-                                </div>
-                                <div class="panel-group-item-end">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#external-link"></use>
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="panel-footer">
-                            designed & developed by
-                            <a
-                                target="_blank"
-                                href="https://github.com/siddsarkar"
-                                rel="noopener noreferrer"
-                            >
-                                siddharth</a
-                            >
-                            with
-                            <span>❤</span>
-                        </div>
-                    </section>
-                    <section id="panel-preferences" class="panel">
-                        <header class="panel-header">
-                            <a href="#panel-home" class="panel-header-start">
-                                <svg>
-                                    <use href="../../assets/sprite.svg#chevron-left"></use>
-                                </svg>
-                            </a>
-                            <div class="panel-header-middle">
-                                <h2>Preferences</h2>
-                            </div>
-                            <div class="panel-header-end">
-                                <svg>
-                                    <use href="../../assets/sprite.svg#info"></use>
-                                </svg>
-                            </div>
-                        </header>
-                        <div>
-                            <!-- <p class="panel-group-label">Miscellaneous</p> -->
-                            <!-- <hr class="panel-group-divider" /> -->
-                            <!-- <div class="panel-group-item">
+            <div>
+              <p class="panel-group-label">Developer Contact</p>
+              <!-- <hr class="panel-group-divider" /> -->
+              <a href="https://t.me/siddsarkar" target="_blank" rel="noopener noreferrer" class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#airplane"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Telegram</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a href="https://siddsarkar.github.io" target="_blank" rel="noopener noreferrer" class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#web"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Website</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div>
+              <hr class="panel-group-divider" />
+              <p class="panel-group-label">Sources</p>
+              <a
+                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#github"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Github</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://design.firefox.com/photon/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#firefox"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Photon Design</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div>
+              <hr class="panel-group-divider" />
+              <p class="panel-group-label">Contribute</p>
+              <a
+                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#info"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Report an issue</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+              <a
+                href="https://www.paypal.com/paypalme/siddsarkar"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="panel-group-item"
+              >
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#heart"></use>
+                  </svg>
+                </div>
+                <div class="panel-group-item-middle">
+                  <h2>Donate</h2>
+                </div>
+                <div class="panel-group-item-end">
+                  <svg>
+                    <use href="../../assets/sprite.svg#external-link"></use>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div class="panel-footer align-top">
+              designed & developed by
+              <a target="_blank" href="https://github.com/siddsarkar" rel="noopener noreferrer"> siddharth</a>
+              with
+              <span>❤</span>
+              <svg
+                style="height: 9; width: 9; display: inline-block"
+                class="fill-gray-900 align-super dark:fill-gray-300"
+              >
+                <use href="../../assets/sprite.svg#typescript"></use>
+              </svg>
+            </div>
+          </section>
+          <section id="panel-preferences" class="panel">
+            <header class="panel-header">
+              <a href="#panel-home" class="panel-header-start">
+                <svg>
+                  <use href="../../assets/sprite.svg#chevron-left"></use>
+                </svg>
+              </a>
+              <div class="panel-header-middle">
+                <h2>Preferences</h2>
+              </div>
+              <div class="panel-header-end">
+                <svg>
+                  <use href="../../assets/sprite.svg#info"></use>
+                </svg>
+              </div>
+            </header>
+            <div>
+              <!-- <p class="panel-group-label">Miscellaneous</p> -->
+              <!-- <hr class="panel-group-divider" /> -->
+              <!-- <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
                     <use href="../../assets/sprite.svg#heart"></use>
@@ -522,340 +501,298 @@
                   <input type="checkbox" name="theme" id="theme" />
                 </div>
               </div> -->
-                            <div class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#key"></use>
-                                    </svg>
-                                </div>
-                                <label for="autoLogin" class="panel-group-item-middle">
-                                    <h2>Autologin</h2>
-                                </label>
-                                <div class="panel-group-item-end">
-                                    <input type="checkbox" name="autologin" id="autoLogin" />
-                                </div>
-                            </div>
-                            <!-- <div class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#form-check"></use>
-                                    </svg>
-                                </div>
-                                <label for="fillFeedback" class="panel-group-item-middle">
-                                    <h2>Feedback Form (fill-only)</h2>
-                                </label>
-                                <div class="panel-group-item-end">
-                                    <input type="checkbox" name="fillFeedback" id="fillFeedback" />
-                                </div>
-                            </div> -->
-                        </div>
-                        <div>
-                            <p class="panel-group-label">Select Theme</p>
-                            <hr class="panel-group-divider" />
-                            <div class="relative">
-                                <div
-                                    class="absolute left-0 top-0 flex h-full w-10 border border-transparent"
-                                >
-                                    <div
-                                        class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
-                                    >
-                                        <svg class="h-4 w-4 fill-slate-900 dark:fill-slate-200">
-                                            <use href="../../assets/sprite.svg#moon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <select
-                                    name="theme_select"
-                                    id="theme_select"
-                                    class="border-0 bg-transparent pl-[40px] text-xs shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
-                                >
-                                    <option value="" disabled>-- select theme --</option>
-                                    <option value="light">Light Theme</option>
-                                    <option value="dark">Dark Theme</option>
-                                    <!-- <option value="colorful">Colorful</option> -->
-                                </select>
-                            </div>
-                            <div class="panel-group-item">
-                                <div class="panel-group-item-start">
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#image"></use>
-                                    </svg>
-                                </div>
-                                <label for="theme-bg" class="panel-group-item-middle">
-                                    <h2>Theme Background</h2>
-                                </label>
-                                <div class="panel-group-item-end">
-                                    <input type="checkbox" name="theme-bg" id="theme-bg" />
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </main>
-            </div>
-            <div class="box1-side">
-                <div class="relative flex w-full items-center justify-between gap-2 pl-2 pr-3">
-                    <div
-                        class="relative -ml-7 h-20 w-20 rounded-full bg-sky-500/40 p-4 dark:bg-slate-200"
-                    >
-                        <div
-                            class="absolute left-5 h-12 w-12 bg-[url('../../assets/images/iitkgp-logo.svg')] bg-contain bg-no-repeat"
-                        ></div>
-                    </div>
-                    <!-- <img
-                    class="w-12"
-                    src="../../assets/images/iitkgp-logo.svg"
-                    alt="ext-logo"
-                /> -->
-                    <div for="theme" class="ml-2 flex flex-col text-center">
-                        <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
-                        <small class="text-gray-600 dark:text-gray-400">Copyright © 2022.</small>
-                    </div>
-
-                    <a
-                        target="_blank"
-                        href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
-                        class="relative -mr-7 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full p-4 hover:bg-gray-400/30 dark:hover:bg-gray-400/40"
-                    >
-                        <svg class="h-5 w-5 fill-slate-600 dark:fill-slate-400">
-                            <use href="../../assets/sprite.svg#external-link"></use>
-                        </svg>
-                    </a>
+              <div class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#key"></use>
+                  </svg>
                 </div>
+                <label for="autoLogin" class="panel-group-item-middle">
+                  <h2>Autologin</h2>
+                </label>
+                <div class="panel-group-item-end">
+                  <input type="checkbox" name="autologin" id="autoLogin" />
+                </div>
+              </div>
+              <!-- <div class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#form-check"></use>
+                  </svg>
+                </div>
+                <label for="fillFeedback" class="panel-group-item-middle">
+                  <h2>Feedback Form (fill-only)</h2>
+                </label>
+                <div class="panel-group-item-end">
+                  <input type="checkbox" name="fillFeedback" id="fillFeedback" />
+                </div>
+              </div> -->
+            </div>
+            <div>
+              <h2 class="panel-group-label">Select Theme</h2>
+              <hr class="panel-group-divider" />
+              <div class="relative">
+                <div class="absolute left-0 top-0 flex h-full w-10 border border-transparent">
+                  <div
+                    class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
+                  >
+                    <svg class="h-4 w-4 fill-slate-900 dark:fill-slate-200">
+                      <use href="../../assets/sprite.svg#moon"></use>
+                    </svg>
+                  </div>
+                </div>
+                <select
+                  name="theme_select"
+                  id="theme_select"
+                  class="border-0 bg-transparent pl-[40px] text-xs shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
+                >
+                  <option value="" disabled>-- select theme --</option>
+                  <option value="light">Light Theme</option>
+                  <option value="dark">Dark Theme</option>
+                  <!-- <option value="colorful">Colorful</option> -->
+                </select>
+              </div>
+              <div class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#image"></use>
+                  </svg>
+                </div>
+                <label for="theme-bg" class="panel-group-item-middle">
+                  <h2>Theme Background</h2>
+                </label>
+                <div class="panel-group-item-end">
+                  <input type="checkbox" name="theme-bg" id="theme-bg" />
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+      <div class="box1-side">
+        <div class="relative flex w-full items-center justify-between gap-2 pl-2 pr-3">
+          <div class="relative -ml-7 h-20 w-20 rounded-full bg-sky-500/40 p-4 dark:bg-slate-200">
+            <div
+              class="absolute left-5 h-12 w-12 bg-[url('../../assets/images/iitkgp-logo.svg')] bg-contain bg-no-repeat"
+            ></div>
+          </div>
+          <!-- <img class="w-12" src="../../assets/images/iitkgp-logo.svg" alt="ext-logo" /> -->
+          <div for="theme" class="ml-2 flex flex-col text-center">
+            <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
+            <small class="text-gray-600 dark:text-gray-400">Copyright © 2022.</small>
+          </div>
 
-                <!-- <button class="right-button box-toggle-btn">
+          <a
+            target="_blank"
+            href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
+            class="relative -mr-7 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full p-4 hover:bg-gray-400/30 dark:hover:bg-gray-400/40"
+          >
+            <svg class="h-5 w-5 fill-slate-600 dark:fill-slate-400">
+              <use href="../../assets/sprite.svg#external-link"></use>
+            </svg>
+          </a>
+        </div>
+
+        <!-- <button class="right-button box-toggle-btn">
           <svg>
             <use href="../../assets/sprite.svg#add"></use>
           </svg>
           <span>Add User</span>
-          </button> -->
-            </div>
-            <div class="box2-side">
-                <button class="left-button box-toggle-btn">
-                    <svg>
-                        <use href="../../assets/sprite.svg#chevron-left"></use>
-                    </svg>
-                    <span>Back&emsp;</span>
-                </button>
-            </div>
-            <form class="box2-content" id="form_add_user">
-                <div class="warning" id="log">
-                    <svg>
-                        <use href="../../assets/sprite.svg#info" id="logIcon"></use>
-                    </svg>
-                    <span id="logText"></span>
+        </button> -->
+      </div>
+      <div class="box2-side">
+        <button class="left-button box-toggle-btn">
+          <svg>
+            <use href="../../assets/sprite.svg#chevron-left"></use>
+          </svg>
+          <span>Back&emsp;</span>
+        </button>
+      </div>
+      <form class="box2-content" id="form_add_user">
+        <div class="warning" id="log">
+          <svg>
+            <use href="../../assets/sprite.svg#info" id="logIcon"></use>
+          </svg>
+          <span id="logText"></span>
 
-                    <!-- ACTIONS BUTTONS ! -->
-                    <!-- <div class="action">Yes</div> -->
-                </div>
-                <div class="space-y-1">
-                    <div>
-                        <label class="form-textbox-label required-asterisk" for="username"
-                            >Login Info</label
-                        >
-                        <div class="form-textbox flex w-full flex-row gap-1">
-                            <div class="w-full">
-                                <div>
-                                    <svg>
-                                        <use href="../../assets/sprite.svg#mortar-board"></use>
-                                    </svg>
-                                </div>
-                                <input
-                                    id="username"
-                                    name="username"
-                                    type="text"
-                                    autofocus="true"
-                                    autocomplete="username"
-                                    placeholder="Your iitkgp roll no"
-                                    required
-                                    disabled
-                                />
-                            </div>
-
-                            <button
-                                type="button"
-                                disabled
-                                id="username_submit_button"
-                                class="svg-btn-primary"
-                            >
-                                <svg class="h-4 w-4">
-                                    <use href="../../assets/sprite.svg#chevron-right"></use>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-textbox">
-                        <div>
-                            <div>
-                                <svg>
-                                    <use href="../../assets/sprite.svg#key"></use>
-                                </svg>
-                            </div>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autocomplete="current-password"
-                                placeholder="Your erp password"
-                                required
-                                disabled
-                            />
-                        </div>
-                    </div>
-                </div>
+          <!-- ACTIONS BUTTONS ! -->
+          <!-- <div class="action">Yes</div> -->
+        </div>
+        <div class="space-y-1">
+          <div>
+            <label class="form-textbox-label required-asterisk" for="username">Login Info</label>
+            <div class="form-textbox flex w-full flex-row gap-1">
+              <div class="w-full">
                 <div>
-                    <div class="form-textbox">
-                        <label class="form-textbox-label required-asterisk" for="question_one"
-                            >Security Questions</label
-                        >
-                        <div>
-                            <div>
-                                <svg>
-                                    <use href="../../assets/sprite.svg#help"></use>
-                                </svg>
-                            </div>
-                            <input
-                                id="question_one"
-                                name="question"
-                                type="password"
-                                autocomplete="question_one"
-                                placeholder="Your erp question 1"
-                                required
-                                disabled
-                            />
-                        </div>
-                    </div>
-                    <div class="form-textbox">
-                        <label for="question_two"></label>
-                        <div>
-                            <div>
-                                <svg>
-                                    <use href="../../assets/sprite.svg#help"></use>
-                                </svg>
-                            </div>
-                            <input
-                                id="question_two"
-                                name="question"
-                                type="password"
-                                autocomplete="question_two"
-                                placeholder="Your erp question 2"
-                                required
-                                disabled
-                            />
-                        </div>
-                    </div>
-                    <div class="form-textbox">
-                        <label for="question_three"></label>
-                        <div>
-                            <div>
-                                <svg>
-                                    <use href="../../assets/sprite.svg#help"></use>
-                                </svg>
-                            </div>
-                            <input
-                                id="question_three"
-                                name="question"
-                                type="password"
-                                autocomplete="question_three"
-                                placeholder="Your erp question 3"
-                                required
-                                disabled
-                            />
-                        </div>
-                    </div>
+                  <svg>
+                    <use href="../../assets/sprite.svg#mortar-board"></use>
+                  </svg>
                 </div>
-                <div class="form-textbox">
-                    <label for="pin">Require PIN ?</label>
-                    <div>
-                        <div>
-                            <svg>
-                                <use href="../../assets/sprite.svg#lock"></use>
-                            </svg>
-                        </div>
-                        <input
-                            maxlength="4"
-                            pattern="^[0-9]{4}"
-                            id="pin"
-                            name="pin"
-                            type="password"
-                            autocomplete="off"
-                            placeholder="Set your 4-digit PIN"
-                            disabled
-                        />
-                    </div>
-                </div>
-                <!-- <div class="flex flex-col gap-2">
-                    <div class="flex items-center justify-center">
-                        <input
-                            id="autologin-check"
-                            name="autologin-check"
-                            type="checkbox"
-                            class=""
-                        />
-                        <label
-                            for="autologin-check"
-                            class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
-                            >Turn on autofill (or) autologin.
-                        </label>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <input
-                            id="terms-and-privacy"
-                            name="terms-and-privacy"
-                            type="checkbox"
-                            class=""
-                        />
-                        <label
-                            for="terms-and-privacy"
-                            class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
-                            >I agree to the
-                            <a href="#" class="link-text">Terms</a>
-                            and
-                            <a href="#" class="link-text">Privacy Policy</a>.
-                        </label>
-                    </div>
-                </div> -->
-                <div class="flex flex-col gap-2">
-                    <button id="submit_form" disabled type="submit" class="svg-btn-primary">
-                        <svg>
-                            <use href="../../assets/sprite.svg#check"></use>
-                        </svg>
-                        <span>Done</span>
-                    </button>
-                    <button id="reset_form" type="button" class="svg-btn-secondary">
-                        <svg>
-                            <use href="../../assets/sprite.svg#bin"></use>
-                        </svg>
-                        <span>Clear & Reset</span>
-                    </button>
-                </div>
-            </form>
-        </div>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  autofocus="true"
+                  autocomplete="username"
+                  placeholder="Your iitkgp roll no"
+                  required
+                  disabled
+                />
+              </div>
 
-        <div
-            id="loader"
-            class="absolute inset-0 flex items-center justify-center bg-white dark:bg-[#191919]"
-        >
-            <svg
-                class="relative h-5 w-5 animate-[spin_0.2s_linear_infinite]"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                ></circle>
-                <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-            </svg>
+              <button type="button" disabled id="username_submit_button" class="svg-btn-primary">
+                <svg class="h-4 w-4">
+                  <use href="../../assets/sprite.svg#chevron-right"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-textbox">
+            <div>
+              <div>
+                <svg>
+                  <use href="../../assets/sprite.svg#key"></use>
+                </svg>
+              </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Your erp password"
+                required
+                disabled
+              />
+            </div>
+          </div>
         </div>
-        <script src="popup.js"></script>
-    </body>
+        <div>
+          <div class="form-textbox">
+            <label class="form-textbox-label required-asterisk" for="question_one">Security Questions</label>
+            <div>
+              <div>
+                <svg>
+                  <use href="../../assets/sprite.svg#help"></use>
+                </svg>
+              </div>
+              <input
+                id="question_one"
+                name="question"
+                type="password"
+                autocomplete="question_one"
+                placeholder="Your erp question 1"
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-textbox">
+            <label for="question_two"></label>
+            <div>
+              <div>
+                <svg>
+                  <use href="../../assets/sprite.svg#help"></use>
+                </svg>
+              </div>
+              <input
+                id="question_two"
+                name="question"
+                type="password"
+                autocomplete="question_two"
+                placeholder="Your erp question 2"
+                required
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-textbox">
+            <label for="question_three"></label>
+            <div>
+              <div>
+                <svg>
+                  <use href="../../assets/sprite.svg#help"></use>
+                </svg>
+              </div>
+              <input
+                id="question_three"
+                name="question"
+                type="password"
+                autocomplete="question_three"
+                placeholder="Your erp question 3"
+                required
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-textbox">
+          <label for="pin">Require PIN ?</label>
+          <div>
+            <div>
+              <svg>
+                <use href="../../assets/sprite.svg#lock"></use>
+              </svg>
+            </div>
+            <input
+              maxlength="4"
+              pattern="^[0-9]{4}"
+              id="pin"
+              name="pin"
+              type="password"
+              autocomplete="off"
+              placeholder="Set your 4-digit PIN"
+              disabled
+            />
+          </div>
+        </div>
+        <!-- <div class="flex flex-col gap-2">
+          <div class="flex items-center justify-center">
+            <input id="autologin-check" name="autologin-check" type="checkbox" class="" />
+            <label for="autologin-check" class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
+              >Turn on autofill (or) autologin.
+            </label>
+          </div>
+          <div class="flex items-center justify-center">
+            <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="" />
+            <label for="terms-and-privacy" class="ml-2 block text-xs text-gray-900 dark:text-gray-200"
+              >I agree to the
+              <a href="#" class="link-text">Terms</a>
+              and
+              <a href="#" class="link-text">Privacy Policy</a>.
+            </label>
+          </div>
+        </div> -->
+        <div class="flex flex-col gap-2">
+          <button id="submit_form" disabled type="submit" class="svg-btn-primary">
+            <svg>
+              <use href="../../assets/sprite.svg#check"></use>
+            </svg>
+            <span>Done</span>
+          </button>
+          <button id="reset_form" type="button" class="svg-btn-secondary">
+            <svg>
+              <use href="../../assets/sprite.svg#bin"></use>
+            </svg>
+            <span>Clear & Reset</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="loader" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-[#191919]">
+      <svg
+        class="relative h-5 w-5 animate-[spin_0.2s_linear_infinite]"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </div>
+  </body>
 </html>

@@ -1,15 +1,23 @@
-const colors = require("tailwindcss/colors");
+const colors = require('tailwindcss/colors')
 
 module.exports = {
-    content: ["./src/pages/**/*.{html,js}"],
-    theme: {
-        colors: {
-            primary: "#5c6ac4",
-            secondary: "#ecc94b",
-            ...colors,
-        },
-        extend: {},
+  content: ['./src/pages/**/*.{html,ts}'],
+  theme: {
+    colors: {
+      primary: '#5c6ac4',
+      secondary: '#ecc94b',
+
+      // exclude renamed colors on tailwindcss/colors v3
+      ...Object.keys(colors).reduce((acc, key) => {
+        if (['lightBlue', 'warmGray', 'trueGray', 'coolGray', 'blueGray'].includes(key)) {
+        } else {
+          acc[key] = colors[key]
+        }
+        return acc
+      }, {})
     },
-    darkMode: "class",
-    plugins: [require("@tailwindcss/forms")],
-};
+    extend: {}
+  },
+  darkMode: 'class',
+  plugins: [require('@tailwindcss/forms')]
+}

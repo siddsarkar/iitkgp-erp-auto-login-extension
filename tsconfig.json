@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "target": "esnext",
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "addon"]
+}

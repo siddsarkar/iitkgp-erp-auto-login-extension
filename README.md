@@ -16,7 +16,7 @@
   <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/reviews">Feedback</a>
 </p>
 
-![Cover](/screenshots/cover.png)
+![Cover](/screenshots/cover_new.png)
 
 # ERP Auto Login - IITKGP
 
