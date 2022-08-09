@@ -26,21 +26,21 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Table of contents
 
--   [ERP Auto Login - IITKGP](#erp-auto-login---iitkgp)
-    -   [Table of contents](#table-of-contents)
-    -   [Status](#status)
-    -   [Why Us?](#why-us)
-    -   [Permissions Used](#permissions-used)
-    -   [Installation](#installation)
-    -   [Bugs and feature requests](#bugs-and-feature-requests)
-    -   [Previous releases](#previous-releases)
-    -   [Todos](#todos)
-    -   [Contributing](#contributing)
-    -   [Versioning](#versioning)
-    -   [Thanks](#thanks)
-    -   [Screenshots](#screenshots)
-    -   [Copyright and License](#copyright-and-license)
-    -   [Creator](#creator)
+- [ERP Auto Login - IITKGP](#erp-auto-login---iitkgp)
+  - [Table of contents](#table-of-contents)
+  - [Status](#status)
+  - [Why Us?](#why-us)
+  - [Permissions Used](#permissions-used)
+  - [Installation](#installation)
+  - [Bugs and feature requests](#bugs-and-feature-requests)
+  - [Previous releases](#previous-releases)
+  - [Todos](#todos)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [Thanks](#thanks)
+  - [Screenshots](#screenshots)
+  - [Copyright and License](#copyright-and-license)
+  - [Creator](#creator)
 
 ## Status
 
@@ -55,70 +55,70 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Why Us?
 
--   Local only extension (serverless)
--   No fancy permissions, minimum [permissions](#permissions-used) used to work.
--   Light on browser, size ~45-50 kilobytes
--   Updates every 2 months
--   Open source and documented code
+- Local only extension (serverless)
+- No fancy permissions, minimum [permissions](#permissions-used) used to work.
+- Light on browser, size ~45-50 kilobytes
+- Updates every 2 months
+- Open source and documented code
 
 ## Permissions Used
 
--   [Storage Local](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API by Mozilla.
--   Access to [erp.iitkgp.ac.in](https://erp.iitkgp.ac.in) to run script for automatic login
+- [Storage Local](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) API by Mozilla.
+- Access to [erp.iitkgp.ac.in](https://erp.iitkgp.ac.in) to run script for automatic login
 
 ## Installation
 
--   From Firefox/Chrome Stores (recommended)
-    <p align="left">
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
-            <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
-        </a>
-        <a href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl">
-            <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="ERP Auto Login - IITKGP logo">
-        </a>
-    </p>
+- From Firefox/Chrome Stores (recommended)
+  <p align="left">
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
+          <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
+      </a>
+      <a href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl">
+          <img src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" alt="ERP Auto Login - IITKGP logo">
+      </a>
+  </p>
 
-    > For android you can use extensions on the [Nightly](https://play.google.com/store/apps/details?id=org.mozilla.fenix&hl=en&gl=US) version of Firefox. [follow this article](https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/) to set it up.
+  > For android you can use extensions on the [Nightly](https://play.google.com/store/apps/details?id=org.mozilla.fenix&hl=en&gl=US) version of Firefox. [follow this article](https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/) to set it up.
 
--   From GitHub
+- From GitHub
 
-    -   [Click here](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) to download the latest release `.xpi` for firefox and `.crx` for chrome
-    -   Load the extension in `Firefox` as:
-        1. Open Add-on Manager from options (or) by pressing <kbd>Ctrl/Cmd+Shift+A</kbd> on Widows/Mac
-        2. Click the gear icon ⚙️ in the upper-right area of the Add-on Manager Extensions panel.
-        3. Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
-    -   Load the extension in `Chrome` as:
-        1. Goto `chrome://extensions/` in your chrome browser
-        2. Enable developer mode by turning the switch on from the top right corner of the chrome browser
-        3. Click on load unpacked and find and select the dowwloaded (.crx) file.
+  - [Click here](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/releases) to download the latest release `.xpi` for firefox and `.crx` for chrome
+  - Load the extension in `Firefox` as:
+    1. Open Add-on Manager from options (or) by pressing <kbd>Ctrl/Cmd+Shift+A</kbd> on Widows/Mac
+    2. Click the gear icon ⚙️ in the upper-right area of the Add-on Manager Extensions panel.
+    3. Select Install Add-on from file... from the menu, then find and select the dowwloaded (.xpi) file.
+  - Load the extension in `Chrome` as:
+    1. Goto `chrome://extensions/` in your chrome browser
+    2. Enable developer mode by turning the switch on from the top right corner of the chrome browser
+    3. Click on load unpacked and find and select the dowwloaded (.crx) file.
 
--   Build from source (for development)
+- Build from source (for development)
 
-    1. Clone the repository
-        ```bash
-        git clone https://github.com/siddsarkar/iitkgp-erp-auto-login-extension.git
-        ```
-    2. Cd into the repository
-        ```bash
-        cd iitkgp-erp-auto-login-extension
-        ```
-    3. Install dependencies
-        ```bash
-        yarn install
-        ```
-    4. Build the extension and watch for changes
-        ```bash
-        yarn dev:firefox # for firefox
-        yarn dev:chrome # (or) for chrome
-        ```
-    5. The above step will create a `chrome` or a `firefox` folder with the extension in it.
-    6. Run the extension using [web-ext](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/) as below
-        ```bash
-        npm install --global web-ext # install web-ext globally (once only)
-        web-ext run # run the extension for firefox
-        web-ext run -t chromium # (or) run the extension for chrome
-        ```
-    7. Check that the extension is loaded by opening the extensions page in Firefox `about:addons` or in Chrome `chrome://extensions/`.
+  1. Clone the repository
+     ```bash
+     git clone https://github.com/siddsarkar/iitkgp-erp-auto-login-extension.git
+     ```
+  2. Cd into the repository
+     ```bash
+     cd iitkgp-erp-auto-login-extension
+     ```
+  3. Install dependencies
+     ```bash
+     yarn install
+     ```
+  4. Build the extension and watch for changes
+     ```bash
+     yarn dev:firefox # for firefox
+     yarn dev:chrome # (or) for chrome
+     ```
+  5. The above step will create a `chrome` or a `firefox` folder with the extension in it.
+  6. Run the extension using [web-ext](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/) as below
+     ```bash
+     npm install --global web-ext # install web-ext globally (once only)
+     web-ext run # run the extension for firefox
+     web-ext run -t chromium # (or) run the extension for chrome
+     ```
+  7. Check that the extension is loaded by opening the extensions page in Firefox `about:addons` or in Chrome `chrome://extensions/`.
 
 ## Bugs and feature requests
 
@@ -130,12 +130,12 @@ You can find all our [previous releases](https://github.com/siddsarkar/iitkgp-er
 
 ## Todos
 
--   [x] Add a reset warning
--   [x] Add autofill mode
--   [x] Show Changelogs on update
--   [ ] Add Overlay during autofill, show animation loader
--   [ ] Multiple users support
--   [ ] Add Uninstall, Install pages to show
+- [x] Add a reset warning
+- [x] Add autofill mode
+- [x] Show Changelogs on update
+- [ ] Add Overlay during autofill, show animation loader
+- [ ] Multiple users support
+- [ ] Add Uninstall, Install pages to show
 
 ## Contributing
 
@@ -155,8 +155,8 @@ Thanks to [vs code](https://code.visualstudio.com/) and [web-ext](https://www.np
 
 ## Screenshots
 
--   [Light](/screenshots/v4_light.png)
--   [Dark](/screenshots/v4_dark.png)
+- [Light](/screenshots/v4_light.png)
+- [Dark](/screenshots/v4_dark.png)
 
 ## Copyright and License
 
