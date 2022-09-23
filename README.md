@@ -155,8 +155,9 @@ Thanks to [vs code](https://code.visualstudio.com/) and [web-ext](https://www.np
 
 ## Screenshots
 
-- [Light](/screenshots/v4_light.png)
-- [Dark](/screenshots/v4_dark.png)
+| ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(1).png) | ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(7).png) | ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(2).png) |
+| ------------------------ | ------------------------ | ------------------------ |
+| ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(5).png) | ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(4).png) | ![](/screenshots/chrome-extension___hianmedhblomknonbbmalncjjffdligl_pages_Popup_index.html%20(3).png) |
 
 ## Copyright and License
 
