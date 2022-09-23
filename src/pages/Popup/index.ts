@@ -5,7 +5,8 @@ import ERP from 'services/erp'
 import { default as logger } from 'utils/displayMessageOnPopup'
 
 /* Initialize Theme */
-chrome.storage.local.get(['theme', 'bg'], (result) => {
+chrome.storage.local.get(['theme', 'bg', 'landingPage'], (result) => {
+  const landingPageSelect = document.getElementById('landing_page') as HTMLSelectElement
   const themeSelect = document.getElementById('theme_select') as HTMLSelectElement
   const themeBg = document.getElementById('theme-bg') as HTMLInputElement
 
@@ -69,6 +70,14 @@ chrome.storage.local.get(['theme', 'bg'], (result) => {
 
     document.documentElement.classList.toggle('dark')
     chrome.storage.local.set({ theme: (ev.target as HTMLInputElement).value })
+  }
+
+  if (result.landingPage) {
+    landingPageSelect.value = result.landingPage
+  }
+
+  landingPageSelect.onchange = (ev) => {
+    chrome.storage.local.set({ landingPage: (ev.target as HTMLInputElement).value })
   }
 })
 

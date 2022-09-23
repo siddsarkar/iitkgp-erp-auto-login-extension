@@ -46,7 +46,7 @@ const login = async (res: { [key: string]: unknown }) => {
   let password, answer
 
   const sessionToken = extractQueryParamFromStr(window.location.search, 'sessionToken') || undefined
-  const requestedUrl = extractQueryParamFromStr(window.location.search, 'requestedUrl') || undefined
+  const requestedUrl = res.landingPage || extractQueryParamFromStr(window.location.search, 'requestedUrl') || undefined
 
   const questionRes = await fetchFromErp('/SSOAdministration/getSecurityQues.htm', `user_id=${username}`)
   const question = (await questionRes.text()) ?? 'FALSE'
@@ -93,4 +93,4 @@ const login = async (res: { [key: string]: unknown }) => {
   else displayMessageOnErpLoginPage('Wrong credentials set! Please update your credentials', '#a4000f')
 }
 
-chrome.storage.local.get('authCredentials', login)
+chrome.storage.local.get(['authCredentials', 'landingPage'], login)
