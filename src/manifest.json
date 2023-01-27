@@ -28,5 +28,12 @@
       "matches": ["*://erp.iitkgp.ac.in/SSOAdministration/login.htm*"],
       "js": ["content.js"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/images/ext_icon.png"],
+      "matches": ["*://erp.iitkgp.ac.in/*"],
+      "use_dynamic_url": true
+    }
   ]
 }

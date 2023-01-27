@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-    "sourceMap": true,
     "strict": true,
-    "noImplicitReturns": true,
+    "allowJs": true,
+    "sourceMap": true,
     "noImplicitAny": true,
-    "module": "es6",
     "isolatedModules": true,
-    "moduleResolution": "node",
-    "target": "esnext",
-    "allowJs": true
+    "noImplicitReturns": true,
+    "baseUrl": "src",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node"
   },
   "include": ["src"],
   "exclude": ["node_modules", "addon"]
 }
+

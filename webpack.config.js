@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const { resolve } = require('path')
 const { sync } = require('glob')
 const CopyPlugin = require('copy-webpack-plugin')
@@ -17,8 +20,9 @@ const config = {
     ...Object.fromEntries(sync('src/pages/**/*.ts').map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`]))
   },
   output: {
-    path: resolve(__dirname, 'addon'),
+    clean: true,
     filename: '[name].js',
+    path: resolve(__dirname, 'addon'),
     assetModuleFilename: 'assets/images/[name][ext][query]'
   },
   module: {
@@ -66,7 +70,7 @@ const config = {
             collapseWhitespace: false,
             removeComments: true
           },
-          inject: 'body',
+          inject: 'head',
           scriptLoading: 'module',
           filename: /(?<=src\/).+(?=[$.])/.exec(v)[0] + '.html',
           chunks: [/(?<=src\/).+(?=[$.])/.exec(v)[0]]
