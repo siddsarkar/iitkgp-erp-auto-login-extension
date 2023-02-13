@@ -41,18 +41,13 @@ const login = async (res: { [key: string]: unknown }) => {
     displayMessageOnErpLoginPage('Logging you in! please wait...')
 
   const { requirePin, username } = credentials
-  // const pin = requirePin ? prompt('Enter your 4 digit PIN') : ''
+
   let pin = ''
   if (requirePin) {
     // pin = await getPinFromDialog() // TODO: Add this as an option
     pin = prompt('Enter your 4 digit PIN') ?? ''
-
-    // if the pin is not 4 digits long, then return
-    if (pin.length !== 4) {
-      displayMessageOnErpLoginPage('Incorrect PIN!, Please reset if forgot or refresh page to retry.', '#a4000f')
-      return
-    }
   }
+
   let password, answer
 
   const sessionToken = extractQueryParamFromStr(window.location.search, 'sessionToken') || undefined
