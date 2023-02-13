@@ -1,4 +1,4 @@
-import type AuthRequestCredentials from 'models/AuthRequestCredentials'
+import type AuthRequestCredentials from '../models/AuthRequestCredentials'
 
 class ERP {
   onGetSecurityQues: (question: string) => void

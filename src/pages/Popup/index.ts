@@ -1,8 +1,8 @@
-import Credential from 'models/Credential'
-import 'pages/Popup/style.css'
-import WebCrypto from 'services/crypto'
-import ERP from 'services/erp'
-import { default as logger } from 'utils/displayMessageOnPopup'
+import Credential from '../../models/Credential'
+import WebCrypto from '../../services/crypto'
+import ERP from '../../services/erp'
+import { default as logger } from '../../utils/displayMessageOnPopup'
+import './style.css'
 
 /* Initialize Theme */
 chrome.storage.local.get(['theme', 'bg', 'landingPage'], (result) => {

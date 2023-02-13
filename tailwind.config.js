@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/pages/**/*.{html,ts}'],
@@ -7,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#5c6ac4',
-        secondary: '#ecc94b',
+        secondary: '#ecc94b'
       }
     }
   },

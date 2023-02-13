@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
+    "outDir": "addon",
     "strict": true,
     "allowJs": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "isolatedModules": true,
     "noImplicitReturns": true,
-    "baseUrl": "src",
-    "module": "ESNext",
-    "target": "ESNext",
+    "module": "esnext",
+    "target": "esnext",
     "moduleResolution": "node"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "addon"]
+  "exclude": ["node_modules", "addon"],
+  "include": ["src"]
 }
-
