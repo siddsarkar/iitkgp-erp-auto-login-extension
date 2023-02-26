@@ -1,8 +1,8 @@
-import Credential from '../../models/Credential'
-import { encrypt } from '../../services/crypto'
-import ERP from '../../services/erp'
-import { default as logger } from '../../utils/displayMessageOnPopup'
-import './style.css'
+import Credential from 'models/Credential'
+import 'pages/Popup/style.css'
+import { encrypt } from 'services/crypto'
+import ERP from 'services/erp'
+import { default as logger } from 'utils/displayMessageOnPopup'
 
 /* Initialize Theme */
 chrome.storage.local.get(['theme', 'bg', 'landingPage'], (result) => {

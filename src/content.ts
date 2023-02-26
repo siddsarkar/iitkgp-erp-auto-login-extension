@@ -1,9 +1,9 @@
-import Credential from './models/Credential'
-import { decrypt } from './services/crypto'
-import displayMessageOnErpLoginPage from './utils/displayMessageOnErpLoginPage'
-import extractQueryParamFromStr from './utils/extractQueryParamFromStr'
-import fetchFromErp from './utils/fetchFromErp'
-import validateCredentials, { FieldValidationStatus } from './utils/validateCredentials'
+import Credential from 'models/Credential'
+import { decrypt } from 'services/crypto'
+import displayMessageOnErpLoginPage from 'utils/displayMessageOnErpLoginPage'
+import extractQueryParamFromStr from 'utils/extractQueryParamFromStr'
+import fetchFromErp from 'utils/fetchFromErp'
+import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
 
 // Execute the login request
 const login = async (res: { [key: string]: unknown }) => {
