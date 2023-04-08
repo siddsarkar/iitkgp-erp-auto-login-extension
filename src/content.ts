@@ -3,6 +3,7 @@ import { decrypt } from 'services/crypto'
 import displayMessageOnErpLoginPage from 'utils/displayMessageOnErpLoginPage'
 import extractQueryParamFromStr from 'utils/extractQueryParamFromStr'
 import fetchFromErp from 'utils/fetchFromErp'
+import getPinFromDialog from 'utils/pinDialog'
 import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
 
 // Execute the login request
@@ -41,8 +42,7 @@ const login = async (res: { [key: string]: unknown }) => {
 
   let pin = ''
   if (requirePin) {
-    // pin = await getPinFromDialog() // TODO: Add this as an option
-    pin = prompt('Enter your 4 digit PIN') ?? ''
+    res.useAltPINDialog ? (pin = await getPinFromDialog()) : (pin = prompt('Enter your 4 digit PIN') ?? '')
   }
 
   let password, answer
@@ -95,4 +95,11 @@ const login = async (res: { [key: string]: unknown }) => {
   else displayMessageOnErpLoginPage('Wrong credentials set! Please update your credentials', '#a4000f')
 }
 
-chrome.storage.local.get(['authCredentials', 'landingPage'], login)
+chrome.storage.local.get(
+  {
+    authCredentials: null,
+    landingPage: null,
+    useAltPINDialog: false
+  },
+  login
+)

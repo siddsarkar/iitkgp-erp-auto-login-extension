@@ -10,7 +10,7 @@ pinDialog.innerHTML = `
 	<input type="password" id="digit-1" name="digit-1" data-next="digit-2" />
     <input type="password" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" />
     <input type="password" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" />
-    <input type="password" id="digit-4" name="digit-4"  data-previous="digit-3" />
+    <input type="password" id="digit-4" name="digit-4" data-previous="digit-3" />
   </form>
 	<button id="pinDialogCloseBtn">Close</button>
 `
@@ -23,15 +23,16 @@ body {
 dialog {
     z-index: 2147483646 !important;
     position: fixed;
-    top: 50%;
+    // top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 200px;
+    transform: translate(-50%, 0%);
+    width: 340px;
+    // height: 200px;
     border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 0;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    padding-left: 35px;
     margin: 0;
     
     background-color: #fff;
@@ -43,14 +44,13 @@ dialog {
 
     background-image: url("${chrome.runtime.getURL('assets/images/ext_icon.png')}");
     background-repeat: no-repeat;
-    background-position: left 10px bottom 10px;
+    background-position: 25px center;
     background-size: 50px;
-    background-opacity: 0.5;
   }
   
   dialog::backdrop {
     background-color: rgba(0 0 0 / 0.5);
-    backdrop-filter: blur(1px);
+    // backdrop-filter: blur(3px);
   }
 
   
@@ -84,6 +84,7 @@ dialog {
   border: none;
   // color: white;
   color: black;
+  padding: 5px 10px;
 }
 `
 

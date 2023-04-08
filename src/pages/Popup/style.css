@@ -23,6 +23,7 @@
   }
 
   body {
+    color-scheme: light dark;
     font-family: system-ui, sans-serif;
     font-weight: 300;
     font-size: 13px;
