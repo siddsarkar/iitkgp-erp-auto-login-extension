@@ -1,18 +1,26 @@
 {
-  "root": true,
   "env": {
-    "es6": true,
-    "node": true,
-    "browser": true
+    "webextensions": true,
+    "browser": true,
+    "es2021": true
   },
+  "extends": ["standard-with-typescript", "prettier"],
+  "overrides": [],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["plugin:@typescript-eslint/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
   "rules": {
-    "no-console": 0,
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-empty-function": 0,
-    "@typescript-eslint/ban-types": 0,
-    "@typescript-eslint/no-extra-semi": 0
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ]
   }
 }

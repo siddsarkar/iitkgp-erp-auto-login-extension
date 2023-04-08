@@ -7,7 +7,7 @@
     <title>ERP Auto Login - IITKGP</title>
   </head>
 
-  <body>
+  <body class="mx-auto">
     <div class="box-container">
       <div class="box1-content">
         <main class="panel-container">
@@ -17,9 +17,7 @@
               <hr class="panel-group-divider" />
               <div class="relative">
                 <div class="absolute left-0 top-0 flex h-full w-10 border border-transparent">
-                  <div
-                    class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
-                  >
+                  <div class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg">
                     <svg class="h-4 w-4 fill-current">
                       <use href="../../assets/sprite.svg#user"></use>
                     </svg>
@@ -31,6 +29,7 @@
                   class="border-0 bg-transparent pl-[40px] text-xs font-semibold shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0"
                 >
                   <option value="" disabled>-- select user --</option>
+                  <option value="guest">Guest</option>
                 </select>
               </div>
             </div> -->
@@ -159,7 +158,7 @@
                   </svg>
                 </div>
               </a> -->
-              <a
+              <!-- <a
                 href="https://erp.iitkgp.ac.in/IIT_ERP3/menulist.htm?module_id=30"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -178,7 +177,7 @@
                     <use href="../../assets/sprite.svg#external-link"></use>
                   </svg>
                 </div>
-              </a>
+              </a> -->
               <!-- link to view more -->
               <!-- <a href="#panel-about" class="panel-group-item">
                 <div
@@ -514,6 +513,19 @@
                   <input type="checkbox" name="autologin" id="autoLogin" />
                 </div>
               </div>
+              <div class="panel-group-item">
+                <div class="panel-group-item-start">
+                  <svg>
+                    <use href="../../assets/sprite.svg#asterisk"></use>
+                  </svg>
+                </div>
+                <label for="useAltPINDialog" class="panel-group-item-middle">
+                  <h2>Alternate PIN Dialog</h2>
+                </label>
+                <div class="panel-group-item-end">
+                  <input type="checkbox" name="useAltPINDialog" id="useAltPINDialog" />
+                </div>
+              </div>
               <!-- <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
@@ -567,7 +579,7 @@
               </div>
             </div>
             <div>
-              <p class="panel-group-label">Landing Page (Beta)</p>
+              <p class="panel-group-label">Landing Page</p>
               <hr class="panel-group-divider" />
               <div class="relative">
                 <div class="absolute left-0 top-0 flex h-full w-10 border border-transparent">
@@ -752,7 +764,7 @@
           </div>
         </div>
         <div class="form-textbox">
-          <label for="pin">Require PIN ?</label>
+          <label for="pin">PIN (4-digit number)</label>
           <div>
             <div>
               <svg>

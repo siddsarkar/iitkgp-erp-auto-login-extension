@@ -1,12 +1,10 @@
 import Credential from 'models/Credential'
-import WebCrypto from 'services/crypto'
+import { decrypt } from 'services/crypto'
 import displayMessageOnErpLoginPage from 'utils/displayMessageOnErpLoginPage'
 import extractQueryParamFromStr from 'utils/extractQueryParamFromStr'
 import fetchFromErp from 'utils/fetchFromErp'
+import getPinFromDialog from 'utils/pinDialog'
 import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
-
-// Initialize the crypto service
-const c = new WebCrypto()
 
 // Execute the login request
 const login = async (res: { [key: string]: unknown }) => {
@@ -41,7 +39,11 @@ const login = async (res: { [key: string]: unknown }) => {
     displayMessageOnErpLoginPage('Logging you in! please wait...')
 
   const { requirePin, username } = credentials
-  const pin = requirePin ? prompt('Enter your 4 digit PIN') : ''
+
+  let pin = ''
+  if (requirePin) {
+    res.useAltPINDialog ? (pin = await getPinFromDialog()) : (pin = prompt('Enter your 4 digit PIN') ?? '')
+  }
 
   let password, answer
 
@@ -74,8 +76,8 @@ const login = async (res: { [key: string]: unknown }) => {
 
   if (requirePin) {
     try {
-      password = await c.decrypt(credentials.password, pin as string)
-      answer = await c.decrypt(answer, pin as string)
+      password = await decrypt(credentials.password, pin as string)
+      answer = await decrypt(answer, pin as string)
     } catch (_) {
       displayMessageOnErpLoginPage('Incorrect PIN!, Please reset if forgot or refresh page to retry.', '#a4000f')
       return
@@ -93,4 +95,11 @@ const login = async (res: { [key: string]: unknown }) => {
   else displayMessageOnErpLoginPage('Wrong credentials set! Please update your credentials', '#a4000f')
 }
 
-chrome.storage.local.get(['authCredentials', 'landingPage'], login)
+chrome.storage.local.get(
+  {
+    authCredentials: null,
+    landingPage: null,
+    useAltPINDialog: false
+  },
+  login
+)

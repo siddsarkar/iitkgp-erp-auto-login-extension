@@ -1,11 +1,20 @@
 import Credential from 'models/Credential'
 import 'pages/Popup/style.css'
-import WebCrypto from 'services/crypto'
+import { encrypt } from 'services/crypto'
 import ERP from 'services/erp'
 import { default as logger } from 'utils/displayMessageOnPopup'
 
 /* Initialize Theme */
-chrome.storage.local.get(['theme', 'bg', 'landingPage'], (result) => {
+chrome.storage.local.get(['theme', 'bg', 'landingPage', 'useAltPINDialog'], (result) => {
+  const useAltPINDialogInput = document.getElementById('useAltPINDialog') as HTMLInputElement
+  useAltPINDialogInput.checked = result.useAltPINDialog || false
+
+  useAltPINDialogInput.onchange = (ev) => {
+    chrome.storage.local.set({
+      useAltPINDialog: (ev.target as HTMLInputElement).checked
+    })
+  }
+
   const landingPageSelect = document.getElementById('landing_page') as HTMLSelectElement
   const themeSelect = document.getElementById('theme_select') as HTMLSelectElement
   const themeBg = document.getElementById('theme-bg') as HTMLInputElement
@@ -141,10 +150,10 @@ window.addEventListener('DOMContentLoaded', () => {
         logger(`You are all set! ${authCredentials.username}`, 'success')
 
         pin.style.display = 'none'
-        const smallText = document.createElement('small') as HTMLElement
+        const smallText = document.createElement('b') as HTMLElement
         smallText.setAttribute('style', 'margin-left: 50px')
-        if (authCredentials.requirePin) smallText.innerText = 'PIN is set !'
-        else smallText.innerText = 'PIN is NOT set !'
+        if (authCredentials.requirePin) smallText.innerText = 'PIN was set !'
+        else smallText.innerText = 'PIN was NOT set !'
 
         pin.after(smallText)
       }
@@ -196,13 +205,11 @@ window.addEventListener('DOMContentLoaded', () => {
           smallText.innerText = 'PIN is set!'
           pin.after(smallText)
 
-          const crypto = new WebCrypto()
-
           const [ans1, ans2, ans3, pass] = await Promise.all([
-            crypto.encrypt(a1.value, pin.value),
-            crypto.encrypt(a2.value, pin.value),
-            crypto.encrypt(a3.value, pin.value),
-            crypto.encrypt(password.value, pin.value)
+            encrypt(a1.value, pin.value),
+            encrypt(a2.value, pin.value),
+            encrypt(a3.value, pin.value),
+            encrypt(password.value, pin.value)
           ])
 
           const encryptedCred: Credential = {
