@@ -1,10 +1,12 @@
 import Credential from 'models/Credential'
 import { decrypt } from 'services/crypto'
 import displayMessageOnErpLoginPage from 'utils/displayMessageOnErpLoginPage'
+import extractQueryParamFromStr from 'utils/extractQueryParamFromStr'
 import fetchFromErp from 'utils/fetchFromErp'
 import getPinFromDialog from 'utils/pinDialog'
 import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
 
+// Execute the login request
 const login = async (res: { [key: string]: unknown }) => {
   /**
    * ?Skip if no credentials are stored or autoLogin is not enabled
@@ -34,7 +36,7 @@ const login = async (res: { [key: string]: unknown }) => {
    */
 
   if (fieldsValidationStatus === FieldValidationStatus.AllFieldsFilled)
-    displayMessageOnErpLoginPage('Requesting otp! please wait...')
+    displayMessageOnErpLoginPage('Logging you in! please wait...')
 
   const { requirePin, username } = credentials
 
@@ -44,6 +46,9 @@ const login = async (res: { [key: string]: unknown }) => {
   }
 
   let password, answer
+
+  const sessionToken = extractQueryParamFromStr(window.location.search, 'sessionToken') || undefined
+  const requestedUrl = res.landingPage || extractQueryParamFromStr(window.location.search, 'requestedUrl') || undefined
 
   const questionRes = await fetchFromErp('/SSOAdministration/getSecurityQues.htm', `user_id=${username}`)
   const question = (await questionRes.text()) ?? 'FALSE'
@@ -81,30 +86,13 @@ const login = async (res: { [key: string]: unknown }) => {
     password = credentials.password
   }
 
-  // Get OTP
-  const otpRes = await fetchFromErp('/SSOAdministration/getEmilOTP.htm', `typeee=SI&loginid=${credentials.username}`)
-  const otpResObj = await otpRes.json()
+  const result = await fetchFromErp(
+    '/SSOAdministration/auth.htm',
+    `user_id=${username}&password=${password}&answer=${answer}&requestedUrl=${requestedUrl}&sessionToken=${sessionToken}`
+  )
 
-  let email_otp
-  if (otpResObj.msg) {
-    email_otp = prompt(otpResObj.msg) ?? ''
-  }
-
-  if (typeof email_otp !== 'string') {
-    displayMessageOnErpLoginPage('OTP not entered!', '#a4000f')
-    return
-  }
-
-  displayMessageOnErpLoginPage('Logging you in! please wait...')
-
-  const formEl = document.getElementById('loginForm') as HTMLFormElement
-
-  ;(formEl.querySelector('#user_id') as HTMLInputElement).value = username
-  ;(formEl.querySelector('#password') as HTMLInputElement).value = password
-  ;(formEl.querySelector('#answer') as HTMLInputElement).value = answer
-  ;(formEl.querySelector('#email_otp1') as HTMLInputElement).value = email_otp
-
-  formEl.submit()
+  if (result.status === 200 && result.statusText === 'OK' && result.redirected) location.href = result.url
+  else displayMessageOnErpLoginPage('Wrong credentials set! Please update your credentials', '#a4000f')
 }
 
 chrome.storage.local.get(

@@ -4,4 +4,5 @@ export default interface AuthRequestCredentials {
   answer: string
   requestedUrl?: string
   sessionToken?: string
+  email_otp?: string
 }

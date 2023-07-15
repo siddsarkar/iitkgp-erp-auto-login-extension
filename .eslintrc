@@ -7,7 +7,7 @@
   "extends": ["standard-with-typescript", "prettier"],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import", "prettier"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
