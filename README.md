@@ -44,6 +44,8 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Status
 
+[![Release](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/release.yml/badge.svg)](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/release.yml)
+[![CodeQL](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/github-code-scanning/codeql)
 ![Chrome Add-on](https://img.shields.io/chrome-web-store/users/hianmedhblomknonbbmalncjjffdligl?label=chrome-users)
 ![Mozilla Add-on](https://img.shields.io/amo/v/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
 ![Mozilla Add-on](https://img.shields.io/amo/users/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D?label=mozilla-users)
