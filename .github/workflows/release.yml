@@ -1,0 +1,34 @@
+# 0. install dependencies with `npm install`
+# 1. build with `npm run build-prod` (this will generate the addon folder)
+# 2. zip the addon folder
+# 3. create a release on github
+# 4. upload the zip file to the release
+
+name: Release
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install
+        run: |
+          npm install
+      - name: Build
+        run: |
+          npm run build-prod
+      - name: Zip
+        run: |
+          zip -r addon.zip addon
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            addon.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
