@@ -5,6 +5,8 @@ import fetchFromErp from 'utils/fetchFromErp'
 import getPinFromDialog from 'utils/pinDialog'
 import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
 
+// Create an observer instance linked to the callback function
+
 const login = async (res: { [key: string]: unknown }) => {
   /**
    * ?Skip if no credentials are stored or autoLogin is not enabled
@@ -34,7 +36,7 @@ const login = async (res: { [key: string]: unknown }) => {
    */
 
   if (fieldsValidationStatus === FieldValidationStatus.AllFieldsFilled)
-    displayMessageOnErpLoginPage('Requesting otp! please wait...')
+    displayMessageOnErpLoginPage('Prefilling credentials! please wait...')
 
   const { requirePin, username } = credentials
 
@@ -43,68 +45,79 @@ const login = async (res: { [key: string]: unknown }) => {
     res.useAltPINDialog ? (pin = await getPinFromDialog()) : (pin = prompt('Enter your 4 digit PIN') ?? '')
   }
 
-  let password, answer
+  let password = '',
+    question = '',
+    answer = ''
 
-  const questionRes = await fetchFromErp('/SSOAdministration/getSecurityQues.htm', `user_id=${username}`)
-  const question = (await questionRes.text()) ?? 'FALSE'
+  const usernameInput = document.getElementById('user_id') as HTMLInputElement
 
-  switch (question) {
-    case credentials.q1:
-      answer = credentials.a1
-      break
+  const observer = new MutationObserver(async (mutationList, observer) => {
+    let [mutation] = mutationList
+    let [node] = mutation.addedNodes
 
-    case credentials.q2:
-      answer = credentials.a2
-      break
+    question = node.nodeValue as string
+    observer.disconnect()
 
-    case credentials.q3:
-      answer = credentials.a3
-      break
+    switch (question) {
+      case credentials.q1:
+        answer = credentials.a1
+        break
 
-    default:
-      /**
-       * !This means that the credentials are invalid
-       */
-      displayMessageOnErpLoginPage('Invalid username/password set! Please update your credentials', '#a4000f')
-      return
-  }
+      case credentials.q2:
+        answer = credentials.a2
+        break
 
-  if (requirePin) {
-    try {
-      password = await decrypt(credentials.password, pin as string)
-      answer = await decrypt(answer, pin as string)
-    } catch (_) {
-      displayMessageOnErpLoginPage('Incorrect PIN!, Please reset if forgot or refresh page to retry.', '#a4000f')
+      case credentials.q3:
+        answer = credentials.a3
+        break
+
+      default:
+        /**
+         * !This means that the credentials are invalid
+         */
+        displayMessageOnErpLoginPage('Invalid username/password set! Please update your credentials', '#a4000f')
+        return
+    }
+
+    if (requirePin) {
+      try {
+        password = await decrypt(credentials.password, pin as string)
+        answer = await decrypt(answer, pin as string)
+      } catch (_) {
+        displayMessageOnErpLoginPage('Incorrect PIN!, Please reset if forgot or refresh page to retry.', '#a4000f')
+        return
+      }
+    } else {
+      password = credentials.password
+    }
+
+    displayMessageOnErpLoginPage('Prefilling credentials! please wait...')
+
+    let passwordInput = document.getElementById('password') as HTMLInputElement
+    let answerInput = document.getElementById('answer') as HTMLInputElement
+
+    if (!passwordInput || !answerInput) {
+      displayMessageOnErpLoginPage('Something went wrong! Please refresh page and retry', '#a4000f')
       return
     }
-  } else {
-    password = credentials.password
+
+    passwordInput.value = password
+    answerInput.value = answer
+
+    displayMessageOnErpLoginPage("Data filled! Click 'Send OTP' to continue", '#4a4a4f')
+  })
+
+  if (usernameInput) {
+    observer.observe(document.getElementById('answer_div') as Node, {
+      attributes: false,
+      childList: true,
+      subtree: true
+    })
+
+    // make sure
+    usernameInput.value = username
+    usernameInput.blur()
   }
-
-  // Get OTP
-  const otpRes = await fetchFromErp('/SSOAdministration/getEmilOTP.htm', `typeee=SI&loginid=${credentials.username}`)
-  const otpResObj = await otpRes.json()
-
-  let email_otp
-  if (otpResObj.msg) {
-    email_otp = prompt(otpResObj.msg) ?? ''
-  }
-
-  if (typeof email_otp !== 'string') {
-    displayMessageOnErpLoginPage('OTP not entered!', '#a4000f')
-    return
-  }
-
-  displayMessageOnErpLoginPage('Logging you in! please wait...')
-
-  const formEl = document.getElementById('loginForm') as HTMLFormElement
-
-  ;(formEl.querySelector('#user_id') as HTMLInputElement).value = username
-  ;(formEl.querySelector('#password') as HTMLInputElement).value = password
-  ;(formEl.querySelector('#answer') as HTMLInputElement).value = answer
-  ;(formEl.querySelector('#email_otp1') as HTMLInputElement).value = email_otp
-
-  formEl.submit()
 }
 
 chrome.storage.local.get(

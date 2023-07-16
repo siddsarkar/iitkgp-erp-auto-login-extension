@@ -22,7 +22,7 @@
     ]
   },
   "permissions": ["storage"],
-  "host_permissions": ["https://erp.iitkgp.ac.in/"],
+  "host_permissions": ["*://erp.iitkgp.ac.in/*"],
   "content_scripts": [
     {
       "matches": ["*://erp.iitkgp.ac.in/SSOAdministration/login.htm*"],

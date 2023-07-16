@@ -4,6 +4,8 @@ async function fetchFromErp(endpoint: string, params: string) {
   requestHeaders.append('Content-type', 'application/x-www-form-urlencoded')
 
   const driveRequest = new Request(requestURL, {
+    credentials: 'include',
+    mode: 'cors',
     method: 'POST',
     headers: requestHeaders,
     body: params
