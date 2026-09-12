@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+const { resolve } = require('node:path')
 const { sync } = require('glob')
 const CopyPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -16,7 +16,7 @@ const prod = {
     content: `${__dirname}/src/content.ts`,
 
     // page scripts
-    ...Object.fromEntries(sync('src/pages/**/*.ts').map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`]))
+    ...Object.fromEntries(sync('src/pages/**/*.ts', { posix: true }).map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`]))
   },
   output: {
     path: resolve(__dirname, 'addon'),
@@ -40,7 +40,12 @@ const prod = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        resourceQuery: { not: [/raw/] },
         type: 'asset/resource'
+      },
+      {
+        resourceQuery: /raw/,
+        type: 'asset/source'
       },
       {
         test: /\.ts(x)?$/,
@@ -60,7 +65,7 @@ const prod = {
       patterns: ['src/manifest.json', { from: 'src/assets', to: 'assets' }]
     }),
 
-    ...sync('src/pages/**/*.html').map(
+    ...sync('src/pages/**/*.html', { posix: true }).map(
       (v) =>
         new HtmlWebpackPlugin({
           template: v,
@@ -107,7 +112,7 @@ const dev = {
     content: `${__dirname}/src/content.ts`,
 
     // page scripts
-    ...Object.fromEntries(sync('src/pages/**/*.ts').map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`]))
+    ...Object.fromEntries(sync('src/pages/**/*.ts', { posix: true }).map((v) => [/(?<=src\/).+(?=[$.])/.exec(v)[0], `./${v}`]))
   },
   output: {
     path: resolve(__dirname, 'addon'),
@@ -131,7 +136,12 @@ const dev = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        resourceQuery: { not: [/raw/] },
         type: 'asset/resource'
+      },
+      {
+        resourceQuery: /raw/,
+        type: 'asset/source'
       },
       {
         test: /\.ts(x)?$/,
@@ -151,7 +161,7 @@ const dev = {
       patterns: ['src/manifest.json', { from: 'src/assets', to: 'assets' }]
     }),
 
-    ...sync('src/pages/**/*.html').map(
+    ...sync('src/pages/**/*.html', { posix: true }).map(
       (v) =>
         new HtmlWebpackPlugin({
           template: v,

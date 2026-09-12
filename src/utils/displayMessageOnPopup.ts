@@ -35,10 +35,10 @@ const displayMessageOnPopup = (
   }
 
   logText.textContent = message
-  logIcon.setAttribute('href', chrome.runtime.getURL(`/assets/sprite.svg#${iconId || 'info'}`))
+  logIcon.setAttribute('href', `#${iconId || 'info'}`)
 
   statusText.textContent = message
-  statusIcon.setAttribute('href', chrome.runtime.getURL(`/assets/sprite.svg#${iconId || 'info'}`))
+  statusIcon.setAttribute('href', `#${iconId || 'info'}`)
 
   if (actions) {
     document.querySelectorAll('.action').forEach((el) => el.remove())

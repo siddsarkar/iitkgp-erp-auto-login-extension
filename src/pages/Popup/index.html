@@ -8,6 +8,8 @@
   </head>
 
   <body class="mx-auto">
+    <!-- Inlined at build time: an external sprite.svg via <use href> wedges the popup's load event on its 2nd open (Chrome 152) -->
+    <%= require('assets/sprite.svg?raw').replace(/<\?xml[^>]*\?>\s*/, '') %>
     <div class="box-container">
       <div class="box1-content">
         <main class="panel-container">
@@ -19,7 +21,7 @@
                 <div class="absolute left-0 top-0 flex h-full w-10 border border-transparent">
                   <div class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg">
                     <svg class="h-4 w-4 fill-current">
-                      <use href="../../assets/sprite.svg#user"></use>
+                      <use href="#user"></use>
                     </svg>
                   </div>
                 </div>
@@ -39,7 +41,7 @@
               <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#form-check"></use>
+                    <use href="#form-check"></use>
                   </svg>
                 </div>
                 <label for="autoFeedBack" class="panel-group-item-middle">
@@ -49,7 +51,7 @@
                 <div class="panel-group-item-end">
                   <div class="panel-group-item-end">
                     <svg>
-                      <use href="../../assets/sprite.svg#terminal"></use>
+                      <use href="#terminal"></use>
                     </svg>
                   </div>
                 </div>
@@ -66,7 +68,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#mortar-board"></use>
+                    <use href="#mortar-board"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -74,7 +76,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -86,7 +88,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#home"></use>
+                    <use href="#home"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -94,7 +96,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -106,7 +108,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#briefcase"></use>
+                    <use href="#briefcase"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -114,7 +116,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -126,7 +128,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#notice"></use>
+                    <use href="#notice"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -134,7 +136,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a> -->
@@ -146,7 +148,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#mail"></use>
+                    <use href="#mail"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -154,7 +156,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a> -->
@@ -166,7 +168,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#organization"></use>
+                    <use href="#organization"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -174,7 +176,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a> -->
@@ -187,7 +189,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#chevron-right"></use>
+                    <use href="#chevron-right"></use>
                   </svg>
                 </div>
                 </a> -->
@@ -203,7 +205,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#star"></use>
+                    <use href="#star"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -211,7 +213,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -223,7 +225,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-discuss"></use>
+                    <use href="#external-discuss"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -231,7 +233,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -243,7 +245,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#facebook"></use>
+                    <use href="#facebook"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -251,7 +253,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -262,7 +264,7 @@
               <a href="#panel-about" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#info"></use>
+                    <use href="#info"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -270,14 +272,14 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#chevron-right"></use>
+                    <use href="#chevron-right"></use>
                   </svg>
                 </div>
               </a>
               <a href="#panel-preferences" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#gear"></use>
+                    <use href="#gear"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -285,7 +287,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#chevron-right"></use>
+                    <use href="#chevron-right"></use>
                   </svg>
                 </div>
               </a>
@@ -294,11 +296,11 @@
               <p class="panel-group-label">Status</p>
               <button id="status" class="right-button box-toggle-btn-panel-item">
                 <svg>
-                  <use id="statusIcon" href="../../assets/sprite.svg#warning"></use>
+                  <use id="statusIcon" href="#warning"></use>
                 </svg>
                 <span id="statusText">Attention required!</span>
                 <svg>
-                  <use href="../../assets/sprite.svg#chevron-up"></use>
+                  <use href="#chevron-up"></use>
                 </svg>
               </button>
             </div>
@@ -307,7 +309,7 @@
             <header class="panel-header">
               <a href="#panel-home" class="panel-header-start">
                 <svg>
-                  <use href="../../assets/sprite.svg#chevron-left"></use>
+                  <use href="#chevron-left"></use>
                 </svg>
               </a>
               <div class="panel-header-middle">
@@ -315,7 +317,7 @@
               </div>
               <div class="panel-header-end">
                 <svg>
-                  <use href="../../assets/sprite.svg#info"></use>
+                  <use href="#info"></use>
                 </svg>
               </div>
             </header>
@@ -326,7 +328,7 @@
               <a href="https://t.me/siddsarkar" target="_blank" rel="noopener noreferrer" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#airplane"></use>
+                    <use href="#airplane"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -334,14 +336,14 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
               <a href="https://siddsarkar.github.io" target="_blank" rel="noopener noreferrer" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#web"></use>
+                    <use href="#web"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -349,7 +351,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -365,7 +367,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#github"></use>
+                    <use href="#github"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -373,7 +375,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -385,7 +387,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#firefox"></use>
+                    <use href="#firefox"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -393,7 +395,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -409,7 +411,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#info"></use>
+                    <use href="#info"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -417,7 +419,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -429,7 +431,7 @@
               >
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#heart"></use>
+                    <use href="#heart"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
@@ -437,7 +439,7 @@
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
-                    <use href="../../assets/sprite.svg#external-link"></use>
+                    <use href="#external-link"></use>
                   </svg>
                 </div>
               </a>
@@ -451,7 +453,7 @@
                 style="height: 9; width: 9; display: inline-block"
                 class="fill-gray-900 align-super dark:fill-gray-300"
               >
-                <use href="../../assets/sprite.svg#typescript"></use>
+                <use href="#typescript"></use>
               </svg>
             </div>
           </section>
@@ -459,7 +461,7 @@
             <header class="panel-header">
               <a href="#panel-home" class="panel-header-start">
                 <svg>
-                  <use href="../../assets/sprite.svg#chevron-left"></use>
+                  <use href="#chevron-left"></use>
                 </svg>
               </a>
               <div class="panel-header-middle">
@@ -467,7 +469,7 @@
               </div>
               <div class="panel-header-end">
                 <svg>
-                  <use href="../../assets/sprite.svg#info"></use>
+                  <use href="#info"></use>
                 </svg>
               </div>
             </header>
@@ -477,7 +479,7 @@
               <!-- <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#heart"></use>
+                    <use href="#heart"></use>
                   </svg>
                 </div>
                 <label for="prideTheme" class="panel-group-item-middle">
@@ -490,7 +492,7 @@
               <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#moon"></use>
+                    <use href="#moon"></use>
                   </svg>
                 </div>
                 <label for="theme" class="panel-group-item-middle">
@@ -503,7 +505,7 @@
               <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#key"></use>
+                    <use href="#key"></use>
                   </svg>
                 </div>
                 <label for="autoLogin" class="panel-group-item-middle">
@@ -516,7 +518,7 @@
               <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#asterisk"></use>
+                    <use href="#asterisk"></use>
                   </svg>
                 </div>
                 <label for="useAltPINDialog" class="panel-group-item-middle">
@@ -529,7 +531,7 @@
               <!-- <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#form-check"></use>
+                    <use href="#form-check"></use>
                   </svg>
                 </div>
                 <label for="fillFeedback" class="panel-group-item-middle">
@@ -549,7 +551,7 @@
                     class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
                   >
                     <svg class="h-4 w-4 fill-slate-900 dark:fill-slate-200">
-                      <use href="../../assets/sprite.svg#moon"></use>
+                      <use href="#moon"></use>
                     </svg>
                   </div>
                 </div>
@@ -567,7 +569,7 @@
               <div class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
-                    <use href="../../assets/sprite.svg#image"></use>
+                    <use href="#image"></use>
                   </svg>
                 </div>
                 <label for="theme-bg" class="panel-group-item-middle">
@@ -587,7 +589,7 @@
                     class="flex h-full w-full items-center justify-center rounded-tl rounded-bl text-lg text-gray-600"
                   >
                     <svg class="h-4 w-4 fill-slate-900 dark:fill-slate-200">
-                      <use href="../../assets/sprite.svg#mortar-board"></use>
+                      <use href="#mortar-board"></use>
                     </svg>
                   </div>
                 </div>
@@ -626,14 +628,14 @@
             class="relative -mr-7 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full p-4 hover:bg-gray-400/30 dark:hover:bg-gray-400/40"
           >
             <svg class="h-5 w-5 fill-slate-600 dark:fill-slate-400">
-              <use href="../../assets/sprite.svg#external-link"></use>
+              <use href="#external-link"></use>
             </svg>
           </a>
         </div>
 
         <!-- <button class="right-button box-toggle-btn">
           <svg>
-            <use href="../../assets/sprite.svg#add"></use>
+            <use href="#add"></use>
           </svg>
           <span>Add User</span>
         </button> -->
@@ -641,7 +643,7 @@
       <div class="box2-side">
         <button class="left-button box-toggle-btn">
           <svg>
-            <use href="../../assets/sprite.svg#chevron-left"></use>
+            <use href="#chevron-left"></use>
           </svg>
           <span>Back&emsp;</span>
         </button>
@@ -649,7 +651,7 @@
       <form class="box2-content" id="form_add_user">
         <div class="warning" id="log">
           <svg>
-            <use href="../../assets/sprite.svg#info" id="logIcon"></use>
+            <use href="#info" id="logIcon"></use>
           </svg>
           <span id="logText"></span>
 
@@ -663,7 +665,7 @@
               <div class="w-full">
                 <div>
                   <svg>
-                    <use href="../../assets/sprite.svg#mortar-board"></use>
+                    <use href="#mortar-board"></use>
                   </svg>
                 </div>
                 <input
@@ -680,7 +682,7 @@
 
               <button type="button" disabled id="username_submit_button" class="svg-btn-primary">
                 <svg class="h-4 w-4">
-                  <use href="../../assets/sprite.svg#chevron-right"></use>
+                  <use href="#chevron-right"></use>
                 </svg>
               </button>
             </div>
@@ -689,7 +691,7 @@
             <div>
               <div>
                 <svg>
-                  <use href="../../assets/sprite.svg#key"></use>
+                  <use href="#key"></use>
                 </svg>
               </div>
               <input
@@ -710,7 +712,7 @@
             <div>
               <div>
                 <svg>
-                  <use href="../../assets/sprite.svg#help"></use>
+                  <use href="#help"></use>
                 </svg>
               </div>
               <input
@@ -729,7 +731,7 @@
             <div>
               <div>
                 <svg>
-                  <use href="../../assets/sprite.svg#help"></use>
+                  <use href="#help"></use>
                 </svg>
               </div>
               <input
@@ -748,7 +750,7 @@
             <div>
               <div>
                 <svg>
-                  <use href="../../assets/sprite.svg#help"></use>
+                  <use href="#help"></use>
                 </svg>
               </div>
               <input
@@ -768,7 +770,7 @@
           <div>
             <div>
               <svg>
-                <use href="../../assets/sprite.svg#lock"></use>
+                <use href="#lock"></use>
               </svg>
             </div>
             <input
@@ -803,13 +805,13 @@
         <div class="flex flex-col gap-2">
           <button id="submit_form" disabled type="submit" class="svg-btn-primary">
             <svg>
-              <use href="../../assets/sprite.svg#check"></use>
+              <use href="#check"></use>
             </svg>
             <span>Done</span>
           </button>
           <button id="reset_form" type="button" class="svg-btn-secondary">
             <svg>
-              <use href="../../assets/sprite.svg#bin"></use>
+              <use href="#bin"></use>
             </svg>
             <span>Clear & Reset</span>
           </button>
