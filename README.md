@@ -7,7 +7,7 @@
 <h3 align="center">ERP Auto Login - IITKGP</h3>
 
 <p align="center">
-  Minimial yet powerful and customizable autologin/autofill extension, for IIT Kharagpur enrolled students.
+  Autofill / automatic login browser extension for the IIT Kharagpur ERP, for enrolled students.
   <br>
   <a href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new">Report a bug</a>
   ·
@@ -20,7 +20,7 @@
 
 # ERP Auto Login - IITKGP
 
-Our default branch `master` is the source code to the recent stable release. Want to test beta versions? Head to the [`develop` branch](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/tree/develop) to view the latest updates and features before the official release.
+Our default branch `master` is the source code to the recent stable release. Want to test beta versions? Head to the [`develop` branch](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/tree/develop) to view the latest updates and features before the stable release.
 
 > This extension `never` shares your credentials. It stays locally in your browser itself using the browser API [`storage.local`](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/storage/local) by mozilla.
 
@@ -29,7 +29,7 @@ Our default branch `master` is the source code to the recent stable release. Wan
 - [ERP Auto Login - IITKGP](#erp-auto-login---iitkgp)
   - [Table of contents](#table-of-contents)
   - [Status](#status)
-  - [Why Us?](#why-us)
+  - [Features](#features)
   - [Permissions Used](#permissions-used)
   - [Installation](#installation)
   - [Bugs and feature requests](#bugs-and-feature-requests)
@@ -46,22 +46,20 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 [![Release](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/release.yml/badge.svg)](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/release.yml)
 [![CodeQL](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/actions/workflows/github-code-scanning/codeql)
-![Chrome Add-on](https://img.shields.io/chrome-web-store/users/hianmedhblomknonbbmalncjjffdligl?label=chrome-users)
 ![Mozilla Add-on](https://img.shields.io/amo/v/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Mozilla Add-on](https://img.shields.io/amo/users/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D?label=mozilla-users)
-![Mozilla Add-on](https://img.shields.io/amo/dw/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
 ![GitHub](https://img.shields.io/github/license/siddsarkar/iitkgp-erp-auto-login-extension)
-![Mozilla Add-on](https://img.shields.io/amo/rating/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
-![Mozilla Add-on](https://img.shields.io/amo/stars/%7Bfa21e38a-41b3-4891-8f6b-8ba837e2df65%7D)
 ![Code Style](https://img.shields.io/badge/code%20style-prettier-ff69b4)
 
-## Why Us?
+## Features
 
-- Local only extension (serverless)
-- No fancy permissions, minimum [permissions](#permissions-used) used to work.
-- Light on browser, size ~45-50 kilobytes
-- Updates every 2 months
-- Open source and documented code
+- Automatic login / autofill on [erp.iitkgp.ac.in](https://erp.iitkgp.ac.in)
+- Works with the ERP's OTP login flow (fills the form, you click "Send OTP")
+- Optional 4-digit PIN; credentials are encrypted when a PIN is set
+- Credentials stay local in the browser (`storage.local`), no external server
+- Quick links to ERP modules (Home, Academic, CDC, Guest House) and a configurable landing page
+- Light and dark themes
+- Minimal [permissions](#permissions-used)
+- Open source
 
 ## Permissions Used
 
@@ -70,7 +68,7 @@ Our default branch `master` is the source code to the recent stable release. Wan
 
 ## Installation
 
-- From Firefox/Chrome Stores (recommended)
+- From Firefox/Chrome Stores
   <p align="left">
       <a href="https://addons.mozilla.org/en-US/firefox/addon/erp-auto-login-iitkgp/">
           <img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="ERP Auto Login - IITKGP logo" height="58">
